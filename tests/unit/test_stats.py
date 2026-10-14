@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from voicecx.cx.stats import bootstrap_ci, compare_distributions, compare_proportions, rating_mismatch, shrink_mean
+from voclens.cx.stats import bootstrap_ci, compare_distributions, compare_proportions, rating_mismatch, shrink_mean
 
 
 def test_shrink_mean_pulls_small_samples():

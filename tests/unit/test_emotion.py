@@ -1,6 +1,6 @@
 import pytest
 
-from voicecx.text.emotion import LexiconEmotionModel
+from voclens.text.emotion import LexiconEmotionModel
 
 
 @pytest.fixture(scope="module")

@@ -6,12 +6,12 @@ import wave
 import numpy as np
 import pytest
 
-from voicecx.cli import main
-from voicecx.config import REPO_ROOT, load_settings
-from voicecx.cx.recovery import recovery_trigger_summary
-from voicecx.ingest.call_transcript import load_transcript
-from voicecx.pipelines.call import CallModels, build_call_session, run_call_pipeline
-from voicecx.store import db
+from voclens.cli import main
+from voclens.config import REPO_ROOT, load_settings
+from voclens.cx.recovery import recovery_trigger_summary
+from voclens.ingest.call_transcript import load_transcript
+from voclens.pipelines.call import CallModels, build_call_session, run_call_pipeline
+from voclens.store import db
 
 CALLS = REPO_ROOT / "data" / "samples" / "calls"
 SR = 16000

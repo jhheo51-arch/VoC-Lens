@@ -1,6 +1,6 @@
 import pytest
 
-from voicecx.text.segment import split_clauses, split_sentences, segment
+from voclens.text.segment import split_clauses, split_sentences, segment
 
 
 @pytest.mark.parametrize(

@@ -1,4 +1,4 @@
-# 구현 계획: VoiceCX Lens
+# 구현 계획: VoC Lens
 
 | 항목 | 내용 |
 |---|---|
@@ -20,7 +20,7 @@
 | 4 | Google Cloud 프로젝트 생성 → YouTube Data API v3 키 발급 | 메타데이터·댓글 수집 |
 | 5 | 로컬 설치: Python 3.11, uv, ffmpeg, Git | |
 | 6 | GitHub 저장소 생성 (public), `.gitignore`에 `data/`, `.env`, 모델 파일 등록 | AI Hub 데이터는 재배포 불가 |
-| 7 | Google Drive에 `voicecx/` 폴더 생성 (Colab 체크포인트·중간 결과 저장) | Colab 세션 끊김 대비 |
+| 7 | Google Drive에 `voclens/` 폴더 생성 (Colab 체크포인트·중간 결과 저장) | Colab 세션 끊김 대비 |
 
 API 키와 토큰은 `.env`에만 두고 커밋하지 않는다.
 
@@ -29,7 +29,7 @@ API 키와 토큰은 `.env`에만 두고 커밋하지 않는다.
 ## 1. 저장소 구조
 
 ```
-voicecx-lens/
+voc-lens/
 ├── README.md
 ├── pyproject.toml              # uv로 의존성 관리
 ├── .env.example                # HF_TOKEN, YOUTUBE_API_KEY 자리만
@@ -39,7 +39,7 @@ voicecx-lens/
 │   ├── journey_stages.yaml     # 도메인별 고객 여정 단계
 │   ├── lexicons/               # CX 신호 사전 (재주문, 이탈, 반복, 공감, 해결 ...)
 │   └── difficulty.yaml         # 불만 유형별 실행 난이도 (개선 과제 리포트용)
-├── src/voicecx/
+├── src/voclens/
 │   ├── schema.py               # 공통 분석 단위 스키마 (pydantic)
 │   ├── config.py
 │   ├── ingest/                 # 입력 처리
@@ -86,7 +86,7 @@ voicecx-lens/
 │   │   ├── review.py
 │   │   ├── call.py
 │   │   └── video.py
-│   └── cli.py                  # voicecx review / call / video / report
+│   └── cli.py                  # voclens review / call / video / report
 ├── app/
 │   └── streamlit_app.py        # 대시보드
 ├── notebooks/
@@ -151,7 +151,7 @@ runs      (run_id PK, pipeline, config_hash, model_versions_json, started_at, st
 ### 1주차: 리뷰 파이프라인 뼈대 + 분류 기준 초안
 | # | 작업 | 산출물 |
 |---|---|---|
-| 1-1 | 저장소 뼈대, `pyproject.toml`, `schema.py`, `config.py`, CLI 골격 | `voicecx --help` 동작 |
+| 1-1 | 저장소 뼈대, `pyproject.toml`, `schema.py`, `config.py`, CLI 골격 | `voclens --help` 동작 |
 | 1-2 | 리뷰 데이터 확보: 네이버 쇼핑 리뷰 공개 데이터 + 배달 리뷰 샘플 CSV (직접 정리) | `data/raw/` |
 | 1-3 | `text/preprocess.py`: 반복 문자 정규화, 띄어쓰기, 이모티콘 감정 토큰, 리뷰 이벤트 표시, 개인정보 마스킹 | 단위 테스트 20개 이상 |
 | 1-4 | `text/segment.py`: kss 문장 분리 + 대조 표현 절 분리 | 골든 테스트 (리뷰 30개) |
@@ -162,7 +162,7 @@ runs      (run_id PK, pipeline, config_hash, model_versions_json, started_at, st
 | 1-9 | `pipelines/review.py`: CSV → 지수 → SQLite 저장, 간단한 집계 출력 | **엔드투엔드 1회 성공** |
 | 1-10 | `labeling/guidelines.md` 초안 + Label Studio 설치·설정 | 라벨링 준비 완료 |
 
-**완료 기준**: `voicecx review data/raw/sample.csv` 한 줄로 리뷰 1,000건이 5분 안에 DB에 저장되고, 브랜드별 불만 유형 비율이 SQL로 조회된다. (정확도는 아직 기준선 수준이어도 됨)
+**완료 기준**: `voclens review data/raw/sample.csv` 한 줄로 리뷰 1,000건이 5분 안에 DB에 저장되고, 브랜드별 불만 유형 비율이 SQL로 조회된다. (정확도는 아직 기준선 수준이어도 됨)
 
 ### 2주차: 텍스트 모델 고도화 (라벨링 + Colab 학습)
 | # | 작업 | 산출물 |
@@ -198,7 +198,7 @@ runs      (run_id PK, pipeline, config_hash, model_versions_json, started_at, st
 | 4-3 | `05_fusion_stacking` (Colab): KEMDy로 융합 가중치 학습, 음향 단독·텍스트 단독과 비교 (Ablation) | 융합 효과 표 |
 | 4-4 | `fusion/calibrate.py`: 온도 스케일링, 채널별 기준 코퍼스 백분위 | |
 | 4-5 | `indices/compute.py`, `session.py`, `events.py`: 6개 지수, Peak-End, 변화점 탐지 | |
-| 4-6 | `pipelines/call.py` 완성 + DB 저장 | `voicecx call 파일.wav` |
+| 4-6 | `pipelines/call.py` 완성 + DB 저장 | `voclens call 파일.wav` |
 | 4-7 | **상담 30건 사람 점수 매기기** (좌절·회복, 1~5점) → 지수와 Spearman 상관 | 타당성 검증표 |
 
 **완료 기준**: 상담 1건 → 6개 지수, 이벤트, Peak-End가 DB에 저장된다. 좌절·회복 지수와 사람 점수의 ρ가 0.5 이상 (미달이면 원인 분석을 기록하고 가중치 조정).
@@ -212,7 +212,7 @@ runs      (run_id PK, pipeline, config_hash, model_versions_json, started_at, st
 | 5-4 | `video/segment.py`: 임베딩 유사도 기반 내용 구간 분할, 구간별 속성·여정 단계 | |
 | 5-5 | `video/comments.py`: 댓글을 리뷰 파이프라인으로 분석, 타임스탬프 댓글 타임라인 연결 | |
 | 5-6 | 말–톤 불일치 탐지, 총평 구간 가중, 크리에이터 vs 시청자 감정 비교 | |
-| 5-7 | `pipelines/video.py` 완성 | `voicecx video URL` |
+| 5-7 | `pipelines/video.py` 완성 | `voclens video URL` |
 
 **완료 기준**: 10분짜리 리뷰 영상 URL 1개 → 구간별 감정, 6개 지수, 댓글 분석이 저장된다 (CPU 기준 20분 이내).
 
@@ -227,7 +227,7 @@ runs      (run_id PK, pipeline, config_hash, model_versions_json, started_at, st
 | 6-6 | 여정 단계 분류기 파인튜닝 (2주차 방식, 라벨 200개 추가) | |
 | 6-7 | `store/queries/` SQL 집계 쿼리 10개 정리 | |
 
-**완료 기준**: 리뷰셋 1개로 `voicecx report`를 실행하면 4분면 매트릭스와 근거가 들어간 개선 과제 리포트가 나온다.
+**완료 기준**: 리뷰셋 1개로 `voclens report`를 실행하면 4분면 매트릭스와 근거가 들어간 개선 과제 리포트가 나온다.
 
 ### 7주차: 대시보드 + 검증 정리
 | # | 작업 | 산출물 |

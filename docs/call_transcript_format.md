@@ -1,6 +1,6 @@
 # 상담 전사본 형식
 
-`voicecx call`은 아래 형식의 JSON을 읽는다. 음성 파일만 있으면 `audio.stt`로 전사·화자 분리를 먼저 한다. 이 경로는 `pip install -e .[audio]`와 `HF_TOKEN`이 필요하다.
+`voclens call`은 아래 형식의 JSON을 읽는다. 음성 파일만 있으면 `audio.stt`로 전사·화자 분리를 먼저 한다. 이 경로는 `pip install -e .[audio]`와 `HF_TOKEN`이 필요하다.
 
 ```json
 {

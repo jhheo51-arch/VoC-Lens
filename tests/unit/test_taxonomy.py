@@ -1,10 +1,10 @@
 import numpy as np
 import pytest
 
-from voicecx.schema import SourceType, Unit
-from voicecx.text.cx_signals import CxSignalDetector
-from voicecx.text.journey import JourneyTagger
-from voicecx.text.taxonomy import (
+from voclens.schema import SourceType, Unit
+from voclens.text.cx_signals import CxSignalDetector
+from voclens.text.journey import JourneyTagger
+from voclens.text.taxonomy import (
     COMPLAINT_VALENCE_CAP,
     EmbeddingTaxonomyClassifier,
     KeywordTaxonomyClassifier,

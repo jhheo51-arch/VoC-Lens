@@ -4,14 +4,14 @@ import csv
 
 import pytest
 
-from voicecx.cli import main
-from voicecx.config import REPO_ROOT, load_settings
-from voicecx.cx.report import build_report
-from voicecx.pipelines.call import run_call_pipeline
-from voicecx.pipelines.video import run_video_pipeline
-from voicecx.pipelines.review import build_session, run_review_pipeline
-from voicecx.ingest.review_csv import ReviewRecord, load_reviews
-from voicecx.store import db
+from voclens.cli import main
+from voclens.config import REPO_ROOT, load_settings
+from voclens.cx.report import build_report
+from voclens.pipelines.call import run_call_pipeline
+from voclens.pipelines.video import run_video_pipeline
+from voclens.pipelines.review import build_session, run_review_pipeline
+from voclens.ingest.review_csv import ReviewRecord, load_reviews
+from voclens.store import db
 
 SAMPLE = REPO_ROOT / "data" / "samples" / "delivery_reviews_synthetic.csv"
 

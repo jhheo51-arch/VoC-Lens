@@ -1,13 +1,13 @@
 import pytest
 
-from voicecx.ingest.subtitles import Cue, cues_to_sentences, dedupe_rolling, parse_subtitles, parse_timestamp
-from voicecx.ingest.youtube import parse_comment_threads, video_id_from_url
-from voicecx.pipelines.video import audience_engagement
-from voicecx.text.emotion import LexiconEmotionModel
-from voicecx.text.taxonomy import KeywordTaxonomyClassifier, normalize_domain
-from voicecx.video.classify import VideoTypeClassifier
-from voicecx.video.comments import compare_creator_audience, extract_timestamps, find_segment
-from voicecx.video.segment import TextTilingSegmenter
+from voclens.ingest.subtitles import Cue, cues_to_sentences, dedupe_rolling, parse_subtitles, parse_timestamp
+from voclens.ingest.youtube import parse_comment_threads, video_id_from_url
+from voclens.pipelines.video import audience_engagement
+from voclens.text.emotion import LexiconEmotionModel
+from voclens.text.taxonomy import KeywordTaxonomyClassifier, normalize_domain
+from voclens.video.classify import VideoTypeClassifier
+from voclens.video.comments import compare_creator_audience, extract_timestamps, find_segment
+from voclens.video.segment import TextTilingSegmenter
 
 VTT = """WEBVTT
 Kind: captions

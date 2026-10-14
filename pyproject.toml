@@ -3,7 +3,7 @@ requires = ["setuptools>=69"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "voicecx"
+name = "voclens"
 version = "0.1.0"
 description = "영상·상담 음성·리뷰에서 고객 감정과 CX 지표를 추정하는 분석 도구"
 readme = "README.md"
@@ -27,13 +27,13 @@ app = ["streamlit>=1.36"]
 dev = ["pytest>=8.0"]
 
 [project.scripts]
-voicecx = "voicecx.cli:main"
+voclens = "voclens.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-voicecx = ["templates/*.j2", "store/queries/*.sql", "store/schema.sql"]
+voclens = ["templates/*.j2", "store/queries/*.sql", "store/schema.sql"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

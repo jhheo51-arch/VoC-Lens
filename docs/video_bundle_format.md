@@ -1,11 +1,11 @@
 # 영상 입력 형식
 
-`voicecx video`는 **영상 번들 JSON**이나 **YouTube URL**을 받는다.
+`voclens video`는 **영상 번들 JSON**이나 **YouTube URL**을 받는다.
 
 ```bash
-voicecx video data/samples/videos                 # 번들 폴더
-voicecx video "https://www.youtube.com/watch?v=..."  # URL (pip install -e .[video])
-voicecx video "https://youtu.be/..." --stt        # 사람 자막이 없을 때 음성 전사 (pip install -e .[audio])
+voclens video data/samples/videos                 # 번들 폴더
+voclens video "https://www.youtube.com/watch?v=..."  # URL (pip install -e .[video])
+voclens video "https://youtu.be/..." --stt        # 사람 자막이 없을 때 음성 전사 (pip install -e .[audio])
 ```
 
 ## URL 경로

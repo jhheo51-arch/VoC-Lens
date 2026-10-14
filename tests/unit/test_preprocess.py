@@ -1,6 +1,6 @@
 import pytest
 
-from voicecx.text.preprocess import (
+from voclens.text.preprocess import (
     detect_review_event,
     mask_pii,
     normalize_repeats,

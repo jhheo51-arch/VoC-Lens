@@ -1,6 +1,6 @@
 # 기본 설정. 다른 파일을 --config로 넘기면 같은 키만 덮어쓴다.
 
-db_path: data/voicecx.db
+db_path: data/voclens.db
 
 review:
   # CSV 열 이름

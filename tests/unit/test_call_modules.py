@@ -1,16 +1,16 @@
 import numpy as np
 import pytest
 
-from voicecx.audio.acoustic import SegmentFeatures, estimate_snr_db, normalize_by_speaker, segment_features
-from voicecx.audio.dynamics import DynamicsAnalyzer, char_bigrams, overlap_coefficient
-from voicecx.audio.roles import RoleAssigner
-from voicecx.audio.ser import AcousticArousalBaseline
-from voicecx.audio.stt import SpeakerSpan, SttSegment, assign_speakers
-from voicecx.config import load_settings
-from voicecx.cx.recovery import categorize
-from voicecx.fusion.fuse import fuse_dimension
-from voicecx.indices.events import detect_changes, ema
-from voicecx.ingest.call_transcript import Turn
+from voclens.audio.acoustic import SegmentFeatures, estimate_snr_db, normalize_by_speaker, segment_features
+from voclens.audio.dynamics import DynamicsAnalyzer, char_bigrams, overlap_coefficient
+from voclens.audio.roles import RoleAssigner
+from voclens.audio.ser import AcousticArousalBaseline
+from voclens.audio.stt import SpeakerSpan, SttSegment, assign_speakers
+from voclens.config import load_settings
+from voclens.cx.recovery import categorize
+from voclens.fusion.fuse import fuse_dimension
+from voclens.indices.events import detect_changes, ema
+from voclens.ingest.call_transcript import Turn
 
 SR = 16000
 

@@ -4,11 +4,11 @@ import json
 
 import pytest
 
-from voicecx.cli import main
-from voicecx.config import REPO_ROOT, load_settings
-from voicecx.ingest.youtube import load_bundle
-from voicecx.pipelines.video import VideoModels, build_video_session, run_video_pipeline
-from voicecx.store import db
+from voclens.cli import main
+from voclens.config import REPO_ROOT, load_settings
+from voclens.ingest.youtube import load_bundle
+from voclens.pipelines.video import VideoModels, build_video_session, run_video_pipeline
+from voclens.store import db
 
 VIDEOS = REPO_ROOT / "data" / "samples" / "videos"
 

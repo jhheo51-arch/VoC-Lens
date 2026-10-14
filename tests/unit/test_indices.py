@@ -1,13 +1,13 @@
 import pytest
 
-from voicecx.indices.compute import (
+from voclens.indices.compute import (
     assign_percentiles,
     engagement_index,
     recovery_index,
     score_session,
     unit_scores,
 )
-from voicecx.schema import Session, SourceType, Unit
+from voclens.schema import Session, SourceType, Unit
 
 
 def u(order, valence, arousal=0.3, text="텍스트", signals=None, aspect=None):

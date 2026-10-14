@@ -1,4 +1,6 @@
-# VoiceCX Lens
+# VoC Lens
+
+**VoC**는 Voice of Customer(고객의 소리)의 약자입니다. 이 도구는 영상·상담 음성·리뷰 세 채널에서 고객의 소리를 하나의 기준으로 들여다봅니다.
 
 영상·상담 음성·리뷰에서 고객의 감정을 추정하고, 그 결과를 **우선순위가 매겨진 CX 개선 과제**로 바꾸는 분석 도구입니다.
 
@@ -21,7 +23,7 @@
 | 감정 회복 | 부정 감정이 뒤에서 긍정으로 돌아섰는지 | 서비스 회복, FCR |
 | 몰입 | 관심과 열의 (구체성, 재주문·추천 의사) | NPS 성향 |
 
-모든 지수는 Valence(긍정–부정) × Arousal(각성) 모델을 바탕으로 합니다. 정의와 산식은 [PRD 7장](docs/PRD.md)과 [`indices/compute.py`](src/voicecx/indices/compute.py)에 있습니다.
+모든 지수는 Valence(긍정–부정) × Arousal(각성) 모델을 바탕으로 합니다. 정의와 산식은 [PRD 7장](docs/PRD.md)과 [`indices/compute.py`](src/voclens/indices/compute.py)에 있습니다.
 
 ## 빠른 시작
 
@@ -30,13 +32,13 @@ python -m venv .venv
 .venv/Scripts/activate          # macOS/Linux: source .venv/bin/activate
 pip install -e ".[dev]"
 
-voicecx review data/samples/delivery_reviews_synthetic.csv
-voicecx report --out reports/review_report.md
-voicecx call data/samples/calls
-voicecx video data/samples/videos
-voicecx query --list
-voicecx query complaint_share_by_brand
-voicecx query recovery_triggers
+voclens review data/samples/delivery_reviews_synthetic.csv
+voclens report --out reports/review_report.md
+voclens call data/samples/calls
+voclens video data/samples/videos
+voclens query --list
+voclens query complaint_share_by_brand
+voclens query recovery_triggers
 pytest
 ```
 
@@ -126,13 +128,13 @@ CSV → 정제 (반복 문자, 이모티콘 → 감정 토큰, 개인정보 마�
     → SQLite → SQL 집계 / 개선 과제 리포트
 ```
 
-지금의 감정·불만 분류는 **사전·규칙 기반 기준선**입니다. 2주차에 능동 학습으로 라벨을 만들고 파인튜닝 모델로 바꿉니다. 그 뒤 기준선과의 성능 비교를 [experiments/](experiments/README.md)에 기록합니다. 분류기 인터페이스는 그대로라서 모델만 바꾸면 됩니다. 임베딩 Zero-shot 분류기와 능동 학습 순위 함수는 이미 [`text/taxonomy.py`](src/voicecx/text/taxonomy.py)에 있습니다.
+지금의 감정·불만 분류는 **사전·규칙 기반 기준선**입니다. 2주차에 능동 학습으로 라벨을 만들고 파인튜닝 모델로 바꿉니다. 그 뒤 기준선과의 성능 비교를 [experiments/](experiments/README.md)에 기록합니다. 분류기 인터페이스는 그대로라서 모델만 바꾸면 됩니다. 임베딩 Zero-shot 분류기와 능동 학습 순위 함수는 이미 [`text/taxonomy.py`](src/voclens/text/taxonomy.py)에 있습니다.
 
 ## 저장소 구조
 
 ```
 configs/            분류 기준, 감정·CX 신호 사전, 여정 단계, 기본 설정
-src/voicecx/
+src/voclens/
   text/             정제, 절 분리, 감정, 불만 유형, 여정 단계, CX 신호
   audio/            화자 역할 판정, 대화 역학, 음향 특징, 음성 각성, STT·화자 분리 어댑터
   video/            영상 유형, 내용 구간 분할, 타임스탬프 댓글
