@@ -1,0 +1,26 @@
+# 데이터: AI Hub 등 외부 데이터는 재배포 금지라 커밋하지 않는다
+data/*
+!data/samples/
+models/
+*.db
+*.parquet
+
+# 비밀값
+.env
+
+# Python
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+
+# 산출물
+reports/*
+!reports/.gitkeep
+experiments/**/*.png
+
+# 에디터
+.vscode/
+.idea/

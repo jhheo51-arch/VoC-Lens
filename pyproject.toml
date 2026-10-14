@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "voicecx"
+version = "0.1.0"
+description = "영상·상담 음성·리뷰에서 고객 감정과 CX 지표를 추정하는 분석 도구"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "scipy>=1.13",
+    "pydantic>=2.7",
+    "pyyaml>=6.0",
+    "jinja2>=3.1",
+]
+
+[project.optional-dependencies]
+# 2주차 이후: 임베딩 Zero-shot, 파인튜닝 모델 추론
+nlp = ["kss>=6.0", "sentence-transformers>=3.0"]
+# 3주차 이후: 음성 파이프라인
+audio = ["faster-whisper>=1.0", "pyannote.audio>=3.1", "opensmile>=2.5"]
+app = ["streamlit>=1.36"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+voicecx = "voicecx.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+voicecx = ["templates/*.j2", "store/queries/*.sql", "store/schema.sql"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: 무거운 모델이 필요한 테스트"]

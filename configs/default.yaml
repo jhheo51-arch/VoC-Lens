@@ -1,0 +1,29 @@
+# 기본 설정. 다른 파일을 --config로 넘기면 같은 키만 덮어쓴다.
+
+db_path: data/voicecx.db
+
+review:
+  # CSV 열 이름
+  columns:
+    text: text
+    rating: rating
+    created_at: created_at
+    brand: brand
+    store: store
+    owner_reply: owner_reply
+  # 리뷰 이벤트로 쓴 리뷰를 집계에서 뺄지 (뺀 결과와 넣은 결과를 둘 다 보려면 false로 두고 필터)
+  exclude_review_event: false
+
+indices:
+  # 단위 점수가 이 값 이상이면 "임계치 초과"로 센다 (0~1)
+  above_threshold: 0.5
+  # 감정 회복 지수를 계산하려면 전반부 최저 Valence가 이 값보다 낮아야 한다
+  recovery_min_negative: -0.2
+
+report:
+  # 표본이 이보다 적은 그룹은 결과를 흐리게(주의) 표시
+  min_n: 30
+  # 베이지안 축소 강도 (가상의 표본 수)
+  shrinkage_k: 10
+  bootstrap_iterations: 2000
+  seed: 42

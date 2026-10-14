@@ -1,0 +1,37 @@
+<!-- Label Studio 설정: 절 단위 불만 유형 다중 라벨링
+     가져올 데이터 형식: [{"data": {"text": "...", "review": "...", "zero_shot": "...", "margin": 0.03}}] -->
+<View>
+  <Header value="리뷰 전체 (참고용)"/>
+  <Text name="review" value="$review" granularity="word"/>
+  <Header value="라벨을 붙일 절"/>
+  <Text name="text" value="$text"/>
+  <Header value="Zero-shot 예측: $zero_shot (1·2위 차이 $margin)"/>
+
+  <Choices name="complaint" toName="text" choice="multiple" showInline="false">
+    <Choice value="맛"/>
+    <Choice value="온도·식감"/>
+    <Choice value="양"/>
+    <Choice value="위생·이물질"/>
+    <Choice value="배달 지연"/>
+    <Choice value="누락·오배송"/>
+    <Choice value="포장 상태"/>
+    <Choice value="배달원 응대"/>
+    <Choice value="가격"/>
+    <Choice value="배달비"/>
+    <Choice value="쿠폰·할인"/>
+    <Choice value="환불·취소"/>
+    <Choice value="매장 응대"/>
+    <Choice value="문의·연락"/>
+    <Choice value="요청 미반영"/>
+    <Choice value="앱·결제 오류"/>
+    <Choice value="정보 불일치"/>
+    <Choice value="칭찬"/>
+    <Choice value="해당 없음"/>
+    <Choice value="분류 불가"/>
+  </Choices>
+
+  <Choices name="hold" toName="text" choice="single">
+    <Choice value="보류"/>
+  </Choices>
+  <TextArea name="memo" toName="text" placeholder="애매한 이유, 새 분류 제안" rows="2"/>
+</View>

@@ -1,0 +1,126 @@
+# 리뷰 VoC 개선 과제 리포트
+
+- 생성: {{ generated_at }}
+{% if filters %}
+- 필터: {% for k, v in filters.items() %}{{ k }} = {{ v }}{% if not loop.last %}, {% endif %}{% endfor %}
+
+{% endif %}
+- 분석 모델: {% for k, v in models.items() %}{{ k }}={{ v }}{% if not loop.last %}, {% endif %}{% endfor %}
+
+
+> 모든 지수는 자동 추정치이며 의료적 진단이나 개인 평가에 쓸 수 없습니다.
+
+## 1. 한눈에 보기
+
+| 항목 | 값 |
+|---|---|
+| 분석한 리뷰 | {{ overview.n_reviews }}건 (절 {{ overview.n_units }}개) |
+| 평균 별점 | {{ overview.mean_rating | num(2) }} |
+| 리뷰 이벤트 참여 비율 | {{ overview.review_event_share | pct }} |
+| 평균 Peak-End (높을수록 나쁜 기억) | {{ overview.peak_end | num }} |
+
+| 지수 | n | 평균 (0~100) | 95% 신뢰구간 |
+|---|---|---|---|
+{% for row in overview.indices %}
+| {{ row.name }} | {{ row.n }} | {{ row.mean | num }} | {{ row.low | num }} ~ {{ row.high | num }} |
+{% endfor %}
+
+## 2. 우선 개선 과제
+
+{% if pains %}
+| 순위 | 불만 유형 | 대분류 | 언급 리뷰 | 감정 강도 | 이탈 의사 (전체 대비) | 추세 | 난이도 | 우선순위 | 4분면 |
+|---|---|---|---|---|---|---|---|---|---|
+{% for p in pains %}
+| {{ loop.index }} | {{ p.label }} | {{ p.category }} | {{ p.n_reviews }}건 ({{ p.share | pct }}) | {{ (p.intensity * 100) | num }} | {{ p.churn_with | pct }} ({{ p.churn_all | pct }}) | {% if p.trend is none %}-{% else %}{{ "%+.0f" | format(p.trend * 100) }}%{% endif %} | {{ p.difficulty }} | {{ p.priority | num }} | {{ p.quadrant }} |
+{% endfor %}
+
+4분면 기준: 우선순위가 중앙값 이상이면 "영향 큼", 난이도 1이면 "실행 쉬움".
+Quick Win = 영향 큼 + 실행 쉬움, 핵심 과제 = 영향 큼 + 실행 어려움, 소규모 개선 = 영향 작음 + 실행 쉬움, 모니터링 = 영향 작음 + 실행 어려움.
+
+{% for p in pains[:5] %}
+### {{ loop.index }}. {{ p.label }} — {{ p.quadrant }}
+
+- 전체 리뷰의 **{{ p.share | pct }}**({{ p.n_reviews }}건)에서 언급됐다.
+- 이 불만이 있는 리뷰의 이탈 의사 비율은 {{ p.churn_with | pct }}로 전체({{ p.churn_all | pct }}) 대비 {{ "%+.1f" | format((p.churn_with - p.churn_all) * 100) }}%p, 재주문 의사 비율은 {{ p.rep_with | pct }}로 전체({{ p.rep_all | pct }}) 대비 {{ "%+.1f" | format((p.rep_with - p.rep_all) * 100) }}%p다.
+{% if p.trend is not none %}
+- 기간 마지막 1/3의 언급 비율이 앞 기간 대비 {{ "%+.0f" | format(p.trend * 100) }}% 변했다.
+{% endif %}
+- 대표 원문:
+{% for e in p.evidence %}
+  - "{{ e }}"
+{% endfor %}
+- 가장 강한 부정 원문: "{{ p.worst }}"
+
+{% endfor %}
+{% else %}
+불만 유형이 붙은 절이 없습니다.
+{% endif %}
+
+## 3. 브랜드 비교
+
+{% if brands %}
+| 브랜드 | 리뷰 수 | 스트레스 | 행복 | 좌절 |
+|---|---|---|---|---|
+{% for r in brands.rows %}
+| {{ r.brand }}{% if r.small %} (표본 부족){% endif %} | {{ r.n }} | {{ r.stress | num }} | {{ r.happiness | num }} | {{ r.frustration | num }} |
+{% endfor %}
+
+지수는 표본 수에 따라 전체 평균 쪽으로 보정한 값이다 (베이지안 축소).
+
+{% for key, t in brands.tests.items() %}
+- {% if key == "complaint_mix" %}불만 유형 구성비{% else %}{{ brands.top_two[0] }} vs {{ brands.top_two[1] }} {{ "스트레스" if key == "stress" else "행복" }} 지수{% endif %}: {{ t.test }}, p = {{ "%.4f" | format(t.p_value) }}, 효과 크기 {{ "%.2f" | format(t.effect_size) }} ({{ t.effect_label }}) → {{ "유의미한 차이" if t.significant else "유의미한 차이 없음" }}
+{% endfor %}
+{% else %}
+브랜드가 2개 이상일 때 비교합니다.
+{% endif %}
+
+## 4. 고객 여정 단계별 감정
+
+| 단계 | 절 수 | 평균 Valence | 스트레스 | 좌절 | 행복 |
+|---|---|---|---|---|---|
+{% for r in journey %}
+| {{ r.stage }}{% if r.small %} *{% endif %} | {{ r.n }} | {{ r.valence | num(2) }} | {{ r.stress | num }} | {{ r.frustration | num }} | {{ r.happiness | num }} |
+{% endfor %}
+
+\* 표본 {{ min_n }}개 미만: 해석에 주의
+
+## 5. 속성별 감성
+
+| 속성 | 절 수 | 평균 감성 (-1~1) | 긍정 | 부정 |
+|---|---|---|---|---|
+{% for r in aspects %}
+| {{ r.aspect }} | {{ r.n }} | {{ r.sentiment | num(2) }} | {{ r.positive }} | {{ r.negative }} |
+{% endfor %}
+
+## 6. 별점–감정 불일치 리뷰
+
+{% if mismatches %}
+| 별점 | 평균 Valence | 표준화 잔차 | 리뷰 이벤트 | 원문 |
+|---|---|---|---|---|
+{% for m in mismatches %}
+| {{ m.rating | num(0) }} | {{ m.valence | num(2) }} | {{ "%+.2f" | format(m.z) }} | {{ "예" if m.review_event else "" }} | {{ m.text }} |
+{% endfor %}
+
+잔차가 양수면 감정은 부정인데 별점이 높다 (리뷰 이벤트 영향 가능성), 음수면 감정은 긍정인데 별점이 낮다 (잘못 누름 가능성).
+{% else %}
+별점과 감정 방향이 반대인 리뷰가 없거나, 별점이 있는 리뷰가 10건 미만입니다.
+{% endif %}
+
+## 7. 리뷰 이벤트 편향
+
+{% if event_bias %}
+| 구분 | 리뷰 수 | 평균 별점 | 평균 행복 지수 |
+|---|---|---|---|
+| 리뷰 이벤트 | {{ event_bias.n_event }} | {{ event_bias.rating_event | num(2) }} | {{ event_bias.happiness_event | num }} |
+| 일반 | {{ event_bias.n_normal }} | {{ event_bias.rating_normal | num(2) }} | {{ event_bias.happiness_normal | num }} |
+
+행복 지수 차이: {{ event_bias.test.test }}, p = {{ "%.4f" | format(event_bias.test.p_value) }} ({{ "유의미한 차이" if event_bias.test.significant else "유의미한 차이 없음" }})
+{% else %}
+리뷰 이벤트 리뷰와 일반 리뷰가 각각 3건 이상일 때 비교합니다.
+{% endif %}
+
+## 8. 한계
+
+- 감정·불만 분류는 사전·규칙 기반 기준선이다. 파인튜닝 모델로 바꾼 뒤 성능 비교 결과를 `experiments/`에 남긴다.
+- 이탈·재주문 의사는 리뷰에 표현된 경우만 잡는다. 실제 이탈 데이터와 다를 수 있다.
+- 난이도는 분류 기준(configs/taxonomy.yaml)에 미리 정한 값이다. 조직 상황에 맞게 조정해야 한다.
