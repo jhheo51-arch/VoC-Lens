@@ -1,0 +1,6 @@
+[theme]
+# 강조색: 기준 팔레트 1번 슬롯 파랑 (기본 빨강은 "위험"으로 읽히기 쉬움)
+primaryColor = "#2a78d6"
+
+[browser]
+gatherUsageStats = false

@@ -27,3 +27,6 @@ experiments/**/*.png
 # 에디터
 .vscode/
 .idea/
+
+# 로컬 도구 설정
+.claude/
