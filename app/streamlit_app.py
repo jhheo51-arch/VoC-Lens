@@ -47,6 +47,12 @@ with st.sidebar:
             data.build_sample_db(db_path, settings)
         st.success("샘플 분석을 마쳤습니다")
 
+default_db = str(REPO_ROOT / settings["db_path"])
+if db_path == default_db and not Path(db_path).exists():
+    # 배포 환경 첫 방문: DB가 없으면 합성 샘플로 바로 채운다
+    with st.spinner("처음 실행이라 합성 샘플 데이터를 분석하고 있습니다 (몇 초 걸립니다)"):
+        data.build_sample_db(db_path, settings)
+
 conn = db.connect(db_path)
 counts = data.counts(conn)
 

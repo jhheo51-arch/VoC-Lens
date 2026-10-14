@@ -14,7 +14,16 @@ from typing import Any
 
 import yaml
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+def _find_repo_root() -> Path:
+    """configs/가 있는 저장소 루트. editable 설치면 패키지 기준 두 단계 위,
+    일반 설치(배포 환경)면 현재 작업 폴더를 쓴다."""
+    package_based = Path(__file__).resolve().parents[2]
+    if (package_based / "configs").is_dir():
+        return package_based
+    return Path.cwd()
+
+
+REPO_ROOT = _find_repo_root()
 
 
 def config_dir() -> Path:

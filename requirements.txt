@@ -1,0 +1,3 @@
+# 대시보드 배포용 (Streamlit Community Cloud, Hugging Face Spaces)
+# 로컬 개발은 README의 pip install -e ".[dev,app]"를 쓴다.
+-e .[app]
