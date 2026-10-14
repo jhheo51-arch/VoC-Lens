@@ -1,0 +1,132 @@
+# 채널 통합 CX 리포트
+
+- 생성: {{ generated_at }}
+- 도메인: {{ {"delivery": "배달", "product": "제품"}.get(domain, "전체 (도메인 구분 없음)") }}
+{% if brand %}
+- 필터: 브랜드 = {{ brand }}
+{% endif %}
+
+> 모든 지표는 자동 추정치입니다. CSAT·CES·NPS는 설문 결과가 아니며, 의료적 진단이나 개인 평가에 쓸 수 없습니다.
+
+## 1. 채널별 CX 지표
+
+| 채널 | 세션 | 추정 CSAT (1~5) | 추정 CSAT% (4점 이상) | 실제 CSAT% (별점) | 추정 CES (1 쉬움~7 어려움) | NPS 성향 (판단 가능 비율) | 행복 | 좌절 |
+|---|---|---|---|---|---|---|---|---|
+{% for r in summary %}
+| {{ r.label }} | {{ r.n }} | {{ r.csat_est_mean | num(2) }} | {{ r.csat_pct | num }}% | {% if r.actual_csat_pct is none %}-{% else %}{{ r.actual_csat_pct | num }}%{% endif %} | {{ r.ces_mean | num(2) }} | {% if r.nps is none %}-{% else %}{{ "%+.0f" | format(r.nps) }}{% endif %} ({{ (r.nps_coverage * 100) | num(0) }}%) | {{ r.happiness | num }} | {{ r.frustration | num }} |
+{% endfor %}
+
+- **CSAT**는 리뷰 별점으로 학습한 회귀 모델의 추정 별점이다. 리뷰 채널은 실제 별점 기반 CSAT%와 함께 보여준다.
+- **CES**는 좌절 지수, 반복 문의, 대기, 미해결(보류·이관)로 계산한 노력 점수다. 높을수록 고객이 애를 많이 썼다는 뜻이다.
+- **NPS 성향**은 추천·재주문 의사와 이탈·비추천 의사가 드러난 세션만으로 계산한다. 괄호는 그런 세션의 비율이다. 비율이 낮으면 해석에 주의한다.
+
+{% if outcomes %}
+### 상담 결과별 노력과 만족
+
+| 통화 결과 | 통화 수 | 추정 CES | 추정 CSAT | 좌절 |
+|---|---|---|---|---|
+{% for r in outcomes %}
+| {{ {"resolved": "해결", "pending": "보류", "transferred": "이관"}.get(r.outcome, r.outcome or "불명") }} | {{ r.n }} | {{ r.ces | num(2) }} | {{ r.csat | num(2) }} | {{ r.frustration | num }} |
+{% endfor %}
+{% endif %}
+
+## 2. CSAT 추정 모델 검증
+
+{% if evaluation %}
+학습에 쓰지 않은 리뷰 {{ evaluation.n_test }}건으로 평가했다 (학습 {{ evaluation.n_train }}건, 리뷰 이벤트 리뷰 제외). 모델: `{{ model_name }}` (특징 {{ evaluation.coefficients | length }}개 릿지 회귀).
+
+| 모델 | 별점 예측 MAE (낮을수록 좋음) |
+|---|---|
+| 상수 기준선 (평균 별점) | {{ evaluation.mae_constant | num(3) }} |
+| Valence 하나만 쓰는 회귀 | {{ evaluation.mae_valence_only | num(3) }} |
+| **전체 특징 릿지 회귀** | **{{ evaluation.mae_model | num(3) }}** |
+
+- Valence 단일 회귀 대비 MAE {{ (evaluation.improvement_vs_valence * 100) | num }}% {{ "개선" if evaluation.improvement_vs_valence >= 0 else "악화" }}, 예측과 실제 별점의 Spearman ρ = {{ evaluation.spearman | num(3) }}
+- 만족 비율(별점 4점 이상): 실제 {{ evaluation.csat_pct_actual | num }}%, 추정 {{ evaluation.csat_pct_est | num }}% (보정 없이 추정 별점 4.0 이상으로 세면 {{ evaluation.csat_pct_est_raw | num }}%). 회귀 예측은 평균 쪽으로 몰리기 때문에, 학습 데이터의 실제 만족 비율에 맞춰 기준값을 보정했다.
+- 영향이 큰 특징 (표준화 계수): {% for name, coef in evaluation.coefficients[:5] %}{{ name }} {{ "%+.2f" | format(coef) }}{% if not loop.last %}, {% endif %}{% endfor %}. 특징끼리 상관이 높아서(예: 최저·평균 Valence, Peak-End) 개별 계수의 부호는 해석하지 않는다.
+
+- 상담·영상에는 리뷰로 학습한 모델을 그대로 적용했다. 말투와 길이가 달라서 오차가 더 클 수 있고, 상담 데이터로 따로 검증해야 한다.
+{% else %}
+별점이 있는 일반 리뷰가 20건 미만이라 CSAT 모델을 학습하지 않았습니다.
+{% endif %}
+
+## 3. 불만 유형 구성비 (채널 비교)
+
+{% if mix_rows %}
+채널 안에서 불만 언급 중 각 유형이 차지하는 비율(%)이다. 원점수 대신 구성비로 비교하는 이유는 채널마다 감정 분포가 다르기 때문이다 (리뷰는 긍정, 상담은 부정 쪽으로 치우침).
+
+| 불만 유형 | 전체 언급 |{% for c in channels %} {{ labels[c] }} |{% endfor %}
+
+|---|---|{% for c in channels %}---|{% endfor %}
+
+{% for r in mix_rows %}
+| {{ r.label }} | {{ r.n }} |{% for c in channels %} {{ r[c] | num }} |{% endfor %}
+
+{% endfor %}
+
+{% if mix_test %}
+채널 × 불만 유형 독립성: {{ mix_test.test }}, p = {{ "%.4f" | format(mix_test.p_value) }}, Cramér's V = {{ "%.2f" | format(mix_test.effect_size) }} ({{ mix_test.effect_label }}) → {{ "채널마다 불만 구성이 다르다" if mix_test.significant else "채널 간 구성 차이가 유의하지 않다" }}
+{% endif %}
+
+### 조용한 불만 (리뷰보다 다른 채널에서 비중이 큰 유형)
+
+{% if gaps.silent %}
+| 불만 유형 | 채널 | 그 채널 비중 | 리뷰 비중 | 배수 | 언급 수 (채널 전체) |
+|---|---|---|---|---|---|
+{% for g in gaps.silent %}
+| {{ g.label }} | {{ labels[g.channel] }}{% if g.small_sample %} ⚠ 표본 적음{% endif %} | {{ g.channel_share | num }}% | {{ g.review_share | num }}% | {% if g.ratio is none %}리뷰에 없음{% else %}{{ g.ratio | num }}배{% endif %} | {{ g.n_mentions }} ({{ g.channel_total }}) |
+{% endfor %}
+
+⚠ 표본 적음: 그 채널의 불만 언급이 {{ small_threshold }}건 미만이다. 몇 건만 달라져도 비중이 크게 바뀌므로 데이터를 더 모은 뒤 판단한다.
+
+리뷰만 보면 놓치기 쉬운 불만이다. 상담 녹취·영상 댓글을 함께 모니터링해야 하는 근거가 된다.
+{% else %}
+기준(비중 10% 이상, 리뷰의 2배 이상, 언급 2건 이상)을 넘는 유형이 없습니다.
+{% endif %}
+
+### 리뷰에서만 큰 불만
+
+{% if gaps.review_only %}
+리뷰 비중을 다른 채널(상담·영상·댓글) 전체를 합친 비중과 비교했다.
+
+| 불만 유형 | 리뷰 비중 | 다른 채널 합계 비중 | 리뷰 언급 수 |
+|---|---|---|---|
+{% for g in gaps.review_only %}
+| {{ g.label }} | {{ g.review_share | num }}% | {{ g.channel_share | num }}%{% if g.small_sample %} ⚠{% endif %} | {{ g.n_mentions }} |
+{% endfor %}
+{% else %}
+해당 유형이 없습니다.
+{% endif %}
+{% else %}
+불만 언급이 없습니다.
+{% endif %}
+
+## 4. 채널 안에서의 브랜드 위치
+
+{% if positions %}
+{% for index, table in positions.items() %}
+### {{ "행복" if index == "happiness" else "좌절" }} 지수 (채널 내 z-score)
+
+| 브랜드 |{% for c in table.columns %} {{ labels.get(c, c) }} |{% endfor %}
+
+|---|{% for c in table.columns %}---|{% endfor %}
+
+{% for brand_name, row in table.iterrows() %}
+| {{ brand_name }} |{% for c in table.columns %} {{ row[c] | signed }} |{% endfor %}
+
+{% endfor %}
+
+{% endfor %}
+0은 그 채널의 평균, +1은 채널 안에서 1 표준편차 위다. 같은 브랜드가 여러 채널에 있을 때, 채널 편향을 빼고 위치를 비교할 수 있다. 세션 3개 미만인 칸과 그런 칸만 있는 브랜드는 뺐다.
+{% else %}
+브랜드별 세션이 3개 이상인 칸이 없습니다.
+{% endif %}
+
+## 5. 해석할 때 주의할 점
+
+- 채널마다 브랜드 구성이 다르면, 채널 차이처럼 보이는 것이 실제로는 브랜드 차이일 수 있다. 채널별 브랜드 구성:
+{% for r in brand_mix %}
+  - {{ labels.get(r.source_type, r.source_type) }} / {{ r.brand or "브랜드 없음" }}: {{ r.n }}건
+{% endfor %}
+- 감정·불만 분류는 사전·규칙 기반 기준선이다. 파인튜닝 모델로 바꾸면 구성비가 달라질 수 있다.
+- 이탈·추천 의사는 표현된 경우만 잡는다. 실제 행동(재구매, 이탈)과 다를 수 있다.

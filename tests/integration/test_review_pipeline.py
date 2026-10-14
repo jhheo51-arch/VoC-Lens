@@ -6,6 +6,7 @@ import pytest
 
 from voclens.cli import main
 from voclens.config import REPO_ROOT, load_settings
+from voclens.cx.cx_report import run_cx
 from voclens.cx.report import build_report
 from voclens.pipelines.call import run_call_pipeline
 from voclens.pipelines.video import run_video_pipeline
@@ -24,6 +25,7 @@ def pipeline_db(tmp_path_factory):
     # 상담·영상 쿼리도 함께 검사하려고 같은 DB에 샘플을 넣는다
     run_call_pipeline([REPO_ROOT / "data" / "samples" / "calls"], settings, db_path=path)
     run_video_pipeline([str(REPO_ROOT / "data" / "samples" / "videos")], settings, db_path=path)
+    run_cx(db.connect(path), settings)  # estimates 쿼리용
     return path, run_id, sessions, settings
 
 

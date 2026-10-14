@@ -71,6 +71,7 @@ def _delete_session(conn: sqlite3.Connection, session_id: str) -> None:
     conn.execute("DELETE FROM units WHERE session_id = ?", (session_id,))
     conn.execute("DELETE FROM indices WHERE session_id = ?", (session_id,))
     conn.execute("DELETE FROM events WHERE session_id = ?", (session_id,))
+    conn.execute("DELETE FROM estimates WHERE session_id = ?", (session_id,))
     conn.execute("DELETE FROM sessions WHERE session_id = ?", (session_id,))
 
 

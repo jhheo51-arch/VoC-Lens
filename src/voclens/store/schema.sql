@@ -91,6 +91,15 @@ CREATE TABLE IF NOT EXISTS events (
     trigger_unit_id TEXT
 );
 
+-- CX 지표 추정 (voclens cx 실행 시 전체를 다시 계산)
+CREATE TABLE IF NOT EXISTS estimates (
+    session_id      TEXT PRIMARY KEY REFERENCES sessions(session_id),
+    csat_est        REAL,                   -- 추정 별점 1~5
+    ces_est         REAL,                   -- 추정 고객 노력 1(쉬움)~7(어려움)
+    nps_group       TEXT,                   -- promoter | detractor | unknown
+    model           TEXT
+);
+
 CREATE INDEX IF NOT EXISTS idx_units_session ON units(session_id);
 CREATE INDEX IF NOT EXISTS idx_labels_type ON unit_labels(label_type, label);
 CREATE INDEX IF NOT EXISTS idx_sessions_source ON sessions(source_id);

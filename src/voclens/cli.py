@@ -4,6 +4,7 @@
   voclens call data/samples/calls
   voclens video data/samples/videos
   voclens report --out reports/review_report.md
+  voclens cx --out reports/cx_report.md
   voclens query --list
   voclens query complaint_share_by_brand
 """
@@ -135,6 +136,25 @@ def cmd_video(args, settings) -> int:
     return 0
 
 
+def cmd_cx(args, settings) -> int:
+    from voclens.cx.cx_report import build_cx_report
+    from voclens.store import db
+
+    conn = db.connect(args.db or settings["db_path"])
+    try:
+        text = build_cx_report(conn, settings, brand=args.brand, domain=args.domain)
+    finally:
+        conn.close()
+    if args.out:
+        out = Path(args.out)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(text, encoding="utf-8")
+        print(f"CX 리포트 저장: {out}")
+    else:
+        print(text)
+    return 0
+
+
 def cmd_report(args, settings) -> int:
     from voclens.cx.report import build_report
     from voclens.store import db
@@ -190,6 +210,12 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("sources", nargs="+", help="번들 JSON, 번들이 든 폴더, 또는 YouTube URL")
     p.add_argument("--stt", action="store_true", help="사람 자막이 없으면 음성을 받아 전사 (선택 의존성 필요)")
     p.set_defaults(func=cmd_video)
+
+    p = sub.add_parser("cx", help="채널 통합 CX 리포트: CSAT·CES·NPS 추정, 채널 비교 (Markdown)")
+    p.add_argument("--out", help="저장 경로. 없으면 화면에 출력")
+    p.add_argument("--brand", help="특정 브랜드만")
+    p.add_argument("--domain", default="default", help="비교할 도메인: delivery | product | all (기본: 설정의 리뷰 도메인)")
+    p.set_defaults(func=cmd_cx)
 
     p = sub.add_parser("report", help="개선 과제 리포트 생성 (Markdown)")
     p.add_argument("--out", help="저장 경로. 없으면 화면에 출력")
