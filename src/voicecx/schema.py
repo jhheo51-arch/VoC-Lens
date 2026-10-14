@@ -52,6 +52,9 @@ class Unit(BaseModel):
     complaint_categories: list[str] = Field(default_factory=list)
     journey_stage: str | None = None
     cx_signals: dict[str, bool] = Field(default_factory=dict)
+    # 영상: 내용 구간 (도입·언박싱·사용·장단점·총평)
+    segment: str | None = None
+    segment_index: int | None = None
 
     # 단위 점수 (0~1). 세션 지수는 이것을 모아서 만든다.
     scores: dict[str, float] = Field(default_factory=dict)

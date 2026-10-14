@@ -12,11 +12,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-from voicecx.audio import acoustic
+from voicecx.audio.apply import Span, apply_audio
 from voicecx.audio.dynamics import DynamicsAnalyzer
 from voicecx.audio.roles import RoleAssigner
 from voicecx.audio.ser import AcousticArousalBaseline
-from voicecx.fusion.fuse import fuse_unit
 from voicecx.indices.call import score_call
 from voicecx.ingest.call_transcript import CallTranscript, load_transcript
 from voicecx.schema import Session, SourceType, Unit
@@ -60,25 +59,6 @@ class CallModels:
         return {k: getattr(self, k).name for k in ("emotion", "taxonomy", "cx", "journey", "roles", "dynamics", "ser")}
 
 
-def _apply_audio(call: CallTranscript, units: list[Unit], models: CallModels, settings: dict) -> dict:
-    path = call.audio_path()
-    if not path or not path.exists():
-        return {"audio_used": False}
-    if path.suffix.lower() != ".wav":
-        return {"audio_used": False, "audio_note": "WAV만 직접 읽습니다. ffmpeg로 16kHz 모노 WAV로 바꿔 주세요."}
-
-    signal, sr = acoustic.read_wav(path)
-    feats = [acoustic.segment_features(signal, sr, t.start, t.end, t.text) for t in call.turns]
-    zs = acoustic.normalize_by_speaker(
-        feats, [t.speaker for t in call.turns], [t.start for t in call.turns], settings["call"]["acoustic_baseline_sec"]
-    )
-    snr = acoustic.estimate_snr_db(signal, sr)
-    predictions = models.ser.predict(zs, [f.reliable for f in feats], snr_db=snr)
-    for unit, pred in zip(units, predictions):
-        fuse_unit(unit, pred.valence, pred.arousal, pred.confidence, settings["call"]["fusion"])
-    return {"audio_used": True, "snr_db": round(snr, 1), "sample_rate": sr}
-
-
 def build_call_session(call: CallTranscript, models: CallModels, settings: dict) -> Session:
     assignment = models.roles.assign(call.turns)
     dynamics = models.dynamics.analyze(call.turns, assignment.roles)
@@ -106,10 +86,11 @@ def build_call_session(call: CallTranscript, models: CallModels, settings: dict)
         )
 
     models.emotion.predict(units)
-    audio_meta = _apply_audio(call, units, models, settings)
+    spans = [Span(t.start, t.end, t.text, t.speaker) for t in call.turns]
+    audio_meta = apply_audio(units, spans, call.audio_path(), models.ser, settings)
 
     customer = [u for u in units if u.speaker_role == "customer"]
-    models.taxonomy.predict(customer)
+    models.taxonomy.predict(customer, domain=call.meta.get("domain"))
     models.cx.predict(customer)
     models.journey.predict(customer)
     for unit, flags in zip(units, dynamics.turn_flags):

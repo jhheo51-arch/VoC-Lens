@@ -18,6 +18,9 @@ POSITIVE = {"기쁨"}
 _NEG_BEFORE = re.compile(r"(^|\s)(안|못|덜)\s?$")
 # "좋지 않", "만족스럽지 않", "추천 안 함", "추천은 못"
 _NEG_AFTER = re.compile(r"^[가-힣]{0,3}(지\s?않|진\s?않|지는\s?않|지\s?못)|^[가-힣]{0,2}\s(안|못)(\s|$|해|함|하)")
+# 긍정 표현에만 적용하는 가정·기대 미충족: "빨랐으면 재주문할 텐데", "더 좋아야", "좋았으면"
+_COND_BEFORE = re.compile(r"으면\s?$")
+_COND_AFTER = re.compile(r"^[가-힣]{0,2}(아야|어야|았으면|었으면)")
 
 
 @dataclass
@@ -54,6 +57,8 @@ class LexiconEmotionModel:
                     after = text[m.end() : m.end() + 8]
                     w = weight * (1.5 if self.intensifier.search(before) else 1.0)
                     negated = bool(_NEG_BEFORE.search(before) or _NEG_AFTER.search(after))
+                    if emotion in POSITIVE and (_COND_BEFORE.search(before) or _COND_AFTER.search(after)):
+                        negated = True
                     if negated:
                         target, ratio = self.flip_positive_to if emotion in POSITIVE else self.flip_negative_to
                         scores[target] += w * ratio

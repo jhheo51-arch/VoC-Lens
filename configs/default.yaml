@@ -11,6 +11,8 @@ review:
     brand: brand
     store: store
     owner_reply: owner_reply
+  # 분류 기준의 도메인 (delivery | product). 다른 도메인 전용 불만 유형은 쓰지 않는다
+  domain: delivery
   # 리뷰 이벤트로 쓴 리뷰를 집계에서 뺄지 (뺀 결과와 넣은 결과를 둘 다 보려면 false로 두고 필터)
   exclude_review_event: false
 

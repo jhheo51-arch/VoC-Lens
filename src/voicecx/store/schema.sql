@@ -51,6 +51,8 @@ CREATE TABLE IF NOT EXISTS units (
     aspect          TEXT,
     aspect_sentiment REAL,
     journey_stage   TEXT,
+    segment         TEXT,
+    segment_index   INTEGER,
     cx_signals_json TEXT,
     scores_json     TEXT,
     confidence_json TEXT

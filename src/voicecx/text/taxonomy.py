@@ -23,6 +23,16 @@ from voicecx.schema import Unit
 # 불만 표현이 있으면 감정 사전이 놓쳐도 이 값 이하의 Valence로 본다 ("1시간 걸렸어요")
 COMPLAINT_VALENCE_CAP = -0.3
 
+_DOMAIN_ALIASES = {
+    "delivery": "delivery", "배달": "delivery", "food": "delivery", "음식": "delivery",
+    "product": "product", "제품": "product", "가전": "product", "전자": "product",
+}
+
+
+def normalize_domain(value: str | None) -> str | None:
+    """메타데이터의 도메인 표기(배달, product 등)를 분류 기준의 도메인 이름으로. 모르면 None(전체 사용)."""
+    return _DOMAIN_ALIASES.get(str(value).strip().lower()) if value else None
+
 
 @dataclass
 class Taxonomy:
@@ -70,15 +80,22 @@ class KeywordTaxonomyClassifier:
         self._topic = {k: _compile(v.get("topic", [])) for k, v in self.taxonomy.subcategories.items()}
         self._aspect = {a: _compile(kws) for a, kws in self.taxonomy.aspect_keywords.items()}
 
-    def classify(self, text: str, valence: float) -> list[tuple[str, float]]:
-        """(소분류, 강도) 목록. 강도 1.0 = 불만 표현, 0.5 = 주제 + 부정 감정."""
+    def _in_domain(self, label: str, domain: str | None) -> bool:
+        domains = self.taxonomy.subcategories[label].get("domains")
+        return domain is None or not domains or domain in domains
+
+    def classify(self, text: str, valence: float, domain: str | None = None) -> list[tuple[str, float]]:
+        """(소분류, 강도) 목록. 강도 1.0 = 불만 표현, 0.5 = 주제 + 부정 감정.
+
+        domain을 주면 다른 도메인 전용 소분류는 쓰지 않는다 (제품 영상의 "충전이 오래 걸려"가 배달 지연이 되지 않게).
+        """
         hits: dict[str, float] = {}
         for label, pattern in self._complaint.items():
-            if pattern and pattern.search(text):
+            if pattern and self._in_domain(label, domain) and pattern.search(text):
                 hits[label] = 1.0
         if valence < 0:
             for label, pattern in self._topic.items():
-                if label not in hits and pattern and pattern.search(text):
+                if label not in hits and pattern and self._in_domain(label, domain) and pattern.search(text):
                     hits[label] = 0.5
         return sorted(hits.items(), key=lambda kv: -kv[1])
 
@@ -88,12 +105,13 @@ class KeywordTaxonomyClassifier:
                 return aspect
         return None
 
-    def predict(self, units: list[Unit]) -> list[Unit]:
+    def predict(self, units: list[Unit], domain: str | None = None) -> list[Unit]:
         tx = self.taxonomy
+        domain = normalize_domain(domain)
         for unit in units:
             text = unit.clean_text or unit.text
             valence = unit.valence or 0.0
-            hits = self.classify(text, valence)
+            hits = self.classify(text, valence, domain)
 
             if hits:
                 unit.complaint_categories = [label for label, _ in hits]

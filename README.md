@@ -2,7 +2,7 @@
 
 영상·상담 음성·리뷰에서 고객의 감정을 추정하고, 그 결과를 **우선순위가 매겨진 CX 개선 과제**로 바꾸는 분석 도구입니다.
 
-> 진행 상황: **리뷰 파이프라인 기준선 완료, 상담 파이프라인 기준선 완료**(전사본 + 음향 특징). 학습 모델 교체(2주차)와 영상 파이프라인(5주차)이 남았습니다. 자세한 일정은 [구현 계획](docs/implementation_plan.md)에 있습니다.
+> 진행 상황: **리뷰·상담·영상 세 채널의 파이프라인 기준선 완료.** 학습 모델 교체(2주차, 데이터 승인 후), CSAT·CES·NPS 추정과 채널 비교(6주차), 대시보드(7주차)가 남았습니다. 자세한 일정은 [구현 계획](docs/implementation_plan.md)에 있습니다.
 
 ## 왜 만들었나
 
@@ -33,13 +33,14 @@ pip install -e ".[dev]"
 voicecx review data/samples/delivery_reviews_synthetic.csv
 voicecx report --out reports/review_report.md
 voicecx call data/samples/calls
+voicecx video data/samples/videos
 voicecx query --list
 voicecx query complaint_share_by_brand
 voicecx query recovery_triggers
 pytest
 ```
 
-상담은 전사본 JSON을 읽습니다. 형식은 [상담 전사본 형식](docs/call_transcript_format.md)에 있습니다.
+상담은 전사본 JSON을 읽습니다. 형식은 [상담 전사본 형식](docs/call_transcript_format.md)에 있습니다. 영상은 번들 JSON이나 YouTube URL을 받습니다. 형식은 [영상 입력 형식](docs/video_bundle_format.md)에 있습니다.
 
 리뷰 CSV에는 `text` 열이 필요합니다. `rating`, `created_at`, `brand`, `store`, `owner_reply` 열은 있으면 씁니다. 열 이름은 [configs/default.yaml](configs/default.yaml)에서 바꿉니다.
 
@@ -85,6 +86,33 @@ pytest
 
 회복 계기 분석은 고객 감정이 크게 오르기 직전의 상담원 발화를 모아 표현 유형별 lift를 계산합니다. 첫 통화에서는 "다시 보내 드리도록 요청했고 쿠폰도 넣어 드렸습니다"가 계기로 잡혔습니다.
 
+## 영상 분석 흐름
+
+```
+번들 JSON 또는 YouTube URL (사람이 단 자막만 사용, 댓글은 Data API)
+    → 문장 분리 + 시각 보간, 구독·좋아요 같은 상투 문구 제거
+    → 주 화자(크리에이터) 판정
+    → 문장 감정, [WAV가 있으면] 음향 각성 융합과 말–톤 불일치 표시
+    → 불만 유형·속성 (영상 도메인에 맞는 분류만: 제품 / 배달)
+    → 내용 구간 분할 (TextTiling) → 도입·언박싱·사용·장단점·총평
+    → 영상 유형 (리뷰·브이로그·인터뷰·상담 재연·뉴스)
+    → 댓글 감정·불만 유형, "3:20" 타임스탬프 → 구간 연결
+    → 크리에이터 지수, 총평 가중 Valence, 시청자 지수, 시청자 반응 기반 몰입 지수
+```
+
+합성 무선청소기 리뷰 영상의 구간 결과입니다. 실제 영상이 아닙니다.
+
+| 구간 | 시간 | Valence | 주요 속성 | 타임스탬프 댓글 | 댓글 Valence |
+|---|---|---|---|---|---|
+| 도입 | 0:00~0:16 | 0.00 | — | 0 | — |
+| 언박싱 | 0:20~1:06 | +0.20 | 포장, 배터리, 디자인 | 1 | +0.52 |
+| 사용 | 1:06~1:42 | +0.19 | 성능, 사용성 | 2 | +0.40 |
+| 사용 | 1:42~2:38 | -0.14 | 배터리, 성능 | 2 | -0.33 |
+| 장단점 | 2:38~3:34 | -0.11 | 가격, 디자인, 사용성 | 1 | -0.30 |
+| 총평 | 3:34~4:04 | +0.16 | 배터리 | 0 | — |
+
+크리에이터가 배터리·소음을 말한 구간(1:42~)을 시청자도 타임스탬프 댓글로 짚었습니다. 이 구간에서는 시청자 감정도 함께 부정으로 바뀝니다.
+
 ## 리뷰 분석 흐름
 
 ```
@@ -107,11 +135,13 @@ configs/            분류 기준, 감정·CX 신호 사전, 여정 단계, 기�
 src/voicecx/
   text/             정제, 절 분리, 감정, 불만 유형, 여정 단계, CX 신호
   audio/            화자 역할 판정, 대화 역학, 음향 특징, 음성 각성, STT·화자 분리 어댑터
+  video/            영상 유형, 내용 구간 분할, 타임스탬프 댓글
   fusion/           음향 + 텍스트 융합
   indices/          지수 계산, 상담 지수, 감정 급변 탐지
   cx/               통계, 개선 과제 리포트, 회복 계기 분석
   store/            SQLite 스키마, SQL 집계 쿼리
-  pipelines/        채널별 파이프라인 (리뷰, 상담)
+  ingest/           리뷰 CSV, 상담 전사본, 자막(VTT/SRT), YouTube
+  pipelines/        채널별 파이프라인 (리뷰, 상담, 영상)
   templates/        리포트 템플릿
 labeling/           라벨링 기준서, Label Studio 설정
 scripts/            합성 데이터 생성기
@@ -127,7 +157,7 @@ tests/              단위·통합 테스트
 | 2 | 능동 학습 라벨링, 감정·ABSA·불만 유형 파인튜닝 (Colab) | 예정 |
 | 3 | 상담 음성: STT, 화자 분리·역할 판정, 음성 감정 | 기준선 완료 (음향 규칙 기준선, STT·화자 분리는 어댑터만, 학습 SER은 데이터 승인 후) |
 | 4 | 대화 흐름 지표, 음성·텍스트 융합, 감정 급변 탐지 | 기준선 완료 (융합 가중치 학습, 사람 점수와의 상관 검증은 데이터 승인 후) |
-| 5 | 영상: 자막·STT, 구간 분할, 타임스탬프 댓글 연결 | 예정 |
+| 5 | 영상: 자막·STT, 구간 분할, 타임스탬프 댓글 연결 | 기준선 완료 (실제 YouTube 수집은 API 키 발급 후 확인) |
 | 6 | CSAT·CES·NPS 추정, 채널 비교, 회복 계기 분석 | 회복 계기 분석 완료, 나머지 예정 |
 | 7 | Streamlit 대시보드, 검증 결과 정리 | 예정 |
 | 8 | 케이스 스터디 3건, 배포 | 예정 |
@@ -147,4 +177,5 @@ tests/              단위·통합 테스트
 - [데이터 신청 목록](docs/data_sources.md)
 - [VoC 불만 유형 분류 기준](docs/voc_taxonomy.md)
 - [상담 전사본 형식](docs/call_transcript_format.md)
+- [영상 입력 형식](docs/video_bundle_format.md)
 - [라벨링 기준서](labeling/guidelines.md)

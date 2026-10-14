@@ -82,7 +82,7 @@ def analyze_records(records: list[ReviewRecord], settings: dict, models: ReviewM
         units = session.units
         # 순서가 중요하다: 불만 분류는 Valence를 쓰고, 명시적 불만이면 Valence를 낮춘다
         models.emotion.predict(units)
-        models.taxonomy.predict(units)
+        models.taxonomy.predict(units, domain=settings["review"].get("domain"))
         models.cx.predict(units)
         models.journey.predict(units)
         score_session(session, threshold=idx["above_threshold"], min_negative=idx["recovery_min_negative"])

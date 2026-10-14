@@ -2,6 +2,7 @@
 
   voicecx review data/samples/delivery_reviews_synthetic.csv
   voicecx call data/samples/calls
+  voicecx video data/samples/videos
   voicecx report --out reports/review_report.md
   voicecx query --list
   voicecx query complaint_share_by_brand
@@ -99,6 +100,41 @@ def cmd_call(args, settings) -> int:
     return 0
 
 
+def cmd_video(args, settings) -> int:
+    from voicecx.pipelines.video import run_video_pipeline
+
+    started = time.perf_counter()
+    run_id, sessions = run_video_pipeline(args.sources, settings, db_path=args.db, allow_stt=args.stt)
+    elapsed = time.perf_counter() - started
+    print(f"실행 ID: {run_id}")
+    print(f"영상 {len(sessions)}건 분석 ({elapsed:.1f}초) → {args.db or settings['db_path']}")
+    for s in sessions:
+        m = s.meta
+        cva = m["creator_vs_audience"]
+        print()
+        print(f"[{s.source_id}] {m.get('title') or ''}")
+        print(f"  유형 {m['video_type_label']} (신뢰도 {m['video_type_confidence']}), 자막 출처 {m['transcript_source']}, "
+              f"문장 {m['n_sentences']}개, 댓글 {m['n_comments']}개 (타임스탬프 {m['n_timestamp_comments']}개)")
+        print(f"  행복 {s.indices['happiness'].raw}  스트레스 {s.indices['stress'].raw}  몰입 {s.indices['engagement'].raw}  "
+              f"총평 가중 Valence {m['weighted_valence']}  시청자-크리에이터 Valence 차이 {cva['audience_minus_creator']}")
+        _print_table(
+            [
+                {
+                    "구간": f"{seg['index']} {seg['label']}",
+                    "시작": seg["start_sec"],
+                    "끝": seg["end_sec"],
+                    "문장": seg["n_sentences"],
+                    "Valence": seg["valence"],
+                    "속성": ", ".join(seg["aspects"]),
+                    "타임스탬프 댓글": seg["n_timestamp_comments"],
+                    "댓글 Valence": seg["comment_valence"],
+                }
+                for seg in m["segments"]
+            ]
+        )
+    return 0
+
+
 def cmd_report(args, settings) -> int:
     from voicecx.cx.report import build_report
     from voicecx.store import db
@@ -149,6 +185,11 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("call", help="상담 전사본(JSON)·음성 파일 분석")
     p.add_argument("paths", nargs="+", help="전사본 JSON, 음성 파일, 또는 JSON이 든 폴더")
     p.set_defaults(func=cmd_call)
+
+    p = sub.add_parser("video", help="영상 번들 JSON 또는 YouTube URL 분석")
+    p.add_argument("sources", nargs="+", help="번들 JSON, 번들이 든 폴더, 또는 YouTube URL")
+    p.add_argument("--stt", action="store_true", help="사람 자막이 없으면 음성을 받아 전사 (선택 의존성 필요)")
+    p.set_defaults(func=cmd_video)
 
     p = sub.add_parser("report", help="개선 과제 리포트 생성 (Markdown)")
     p.add_argument("--out", help="저장 경로. 없으면 화면에 출력")

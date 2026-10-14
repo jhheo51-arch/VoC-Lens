@@ -1,4 +1,4 @@
-# VoC 불만 유형 분류 기준 v0.1 (배달·커머스 리뷰 기준)
+# VoC 불만 유형 분류 기준 v0.2 (배달·제품 도메인)
 #
 # 각 소분류의 필드
 #   category   대분류
@@ -8,13 +8,15 @@
 #   complaint  이 표현이 나오면 감정과 상관없이 불만으로 본다 (정규식)
 #   topic      주제만 나타내는 표현. 절의 Valence가 음수일 때만 불만으로 본다 (정규식)
 #   seeds      대표 문장. 2주차 임베딩 Zero-shot 분류에 쓴다
+#   domains    이 소분류를 쓰는 도메인 (delivery, product). 없으면 모든 도메인
 #
 # 기준을 고치면 docs/voc_taxonomy.md의 개정 이력에 남긴다.
 
-version: "0.1"
+version: "0.2"
 
 subcategories:
   맛:
+    domains: [delivery]
     category: 제품·품질
     aspect: 맛
     stage: 수령·섭취
@@ -23,6 +25,7 @@ subcategories:
     topic: ['맛', '간이', '소스', '양념']
     seeds: ['너무 짜서 못 먹었어요', '맛이 예전 같지 않아요', '소스가 이상한 맛이 나요']
   온도·식감:
+    domains: [delivery]
     category: 제품·품질
     aspect: 맛
     stage: 수령·섭취
@@ -31,6 +34,7 @@ subcategories:
     topic: ['온도', '식감', '바삭']
     seeds: ['다 식어서 왔어요', '튀김이 눅눅해요', '면이 다 불어서 왔어요']
   양:
+    domains: [delivery]
     category: 제품·품질
     aspect: 양
     stage: 수령·섭취
@@ -39,6 +43,7 @@ subcategories:
     topic: ['양이', '양은']
     seeds: ['가격에 비해 양이 너무 적어요', '양이 예전보다 줄었어요']
   위생·이물질:
+    domains: [delivery]
     category: 제품·품질
     aspect: 위생
     stage: 수령·섭취
@@ -47,14 +52,16 @@ subcategories:
     topic: ['위생']
     seeds: ['음식에서 머리카락이 나왔어요', '상한 것 같은 냄새가 나요']
   배달 지연:
+    domains: [delivery]
     category: 배송·이행
     aspect: 배달
     stage: 배달
     difficulty: 3
-    complaint: ['늦게 왔', '늦게 도착', '늦었', '늦어서', '지연', '오래 걸', '한참 걸', '한참 기다', '기다리다 지쳐', '아직도 안 와', '\d+\s*시간[이가]?\s*(넘|걸|만에)', '한\s?시간[이가]?\s*(넘|걸|만에)', '[4-9]\d\s*분[이가]?\s*(넘|걸|만에)']
+    complaint: ['늦게 왔', '늦게 도착', '늦었', '늦어서', '늦어요', '늦네', '너무 늦', '지연', '오래 걸', '한참 걸', '한참 기다', '기다리다 지쳐', '아직도 안 와', '\d+\s*시간[이가]?\s*(넘|걸|만에)', '한\s?시간[이가]?\s*(넘|걸|만에)', '[4-9]\d\s*분[이가]?\s*(넘|걸|만에)']
     topic: ['배달 시간', '도착 시간', '예상 시간']
     seeds: ['한 시간 넘게 걸려서 왔어요', '예상 시간보다 훨씬 늦게 도착했어요']
   누락·오배송:
+    domains: [delivery]
     category: 배송·이행
     aspect: 배달
     stage: 조리·포장
@@ -63,6 +70,7 @@ subcategories:
     topic: []
     seeds: ['콜라가 누락됐어요', '주문한 메뉴랑 다른 게 왔어요']
   포장 상태:
+    domains: [delivery]
     category: 배송·이행
     aspect: 포장
     stage: 조리·포장
@@ -71,6 +79,7 @@ subcategories:
     topic: ['포장']
     seeds: ['국물이 다 새서 왔어요', '포장이 뜯어져 있었어요']
   배달원 응대:
+    domains: [delivery]
     category: 배송·이행
     aspect: 배달
     stage: 배달
@@ -87,6 +96,7 @@ subcategories:
     topic: ['가격', '가성비']
     seeds: ['이 가격이면 너무 비싸요', '가성비가 너무 별로예요']
   배달비:
+    domains: [delivery]
     category: 가격·혜택
     aspect: 가격
     stage: 주문·결제
@@ -127,6 +137,7 @@ subcategories:
     topic: ['전화', '연락', '문의', '고객센터']
     seeds: ['가게에 전화해도 안 받아요', '문의했는데 답변이 없어요']
   요청 미반영:
+    domains: [delivery]
     category: 응대·서비스
     aspect: 응대
     stage: 조리·포장
@@ -151,6 +162,44 @@ subcategories:
     topic: ['사진', '메뉴 설명']
     seeds: ['메뉴 사진이랑 너무 달라요']
 
+  # --- 일반 제품 (영상 리뷰 등). 여정 단계는 배달 도메인 기준이라 비워 둔다 ---
+  제품 불량:
+    domains: [product]
+    category: 제품·품질
+    aspect: 품질
+    stage: null
+    difficulty: 2
+    complaint: ['불량', '고장', '하자가', '하자 있', '파손', '깨져', '작동이 안', '작동 안', '먹통이', '반품']
+    topic: ['마감', '내구성', '만듦새']
+    seeds: ['받자마자 고장 났어요', '마감이 너무 엉성해요']
+  성능:
+    domains: [product]
+    category: 제품·품질
+    aspect: 성능
+    stage: null
+    difficulty: 3
+    complaint: ['흡입력이 약', '성능이 별로', '느려', '버벅', '끊겨', '렉이', '소음이 커', '시끄러']
+    topic: ['성능', '흡입력', '속도', '소음', '화질', '음질']
+    seeds: ['흡입력이 생각보다 약해요', '소음이 너무 커요']
+  배터리:
+    domains: [product]
+    category: 제품·품질
+    aspect: 배터리
+    stage: null
+    difficulty: 3
+    complaint: ['배터리가 빨리', '배터리가 금방', '금방 닳', '빨리 닳', '충전이 오래']
+    topic: ['배터리', '충전']
+    seeds: ['배터리가 금방 닳아요']
+  사용 편의:
+    domains: [product]
+    category: 사용성
+    aspect: 사용성
+    stage: null
+    difficulty: 2
+    complaint: ['쓰기 불편', '사용하기 불편', '조작이 어려', '너무 무거', '복잡해']
+    topic: ['무게', '조작', '사용법', '불편']
+    seeds: ['무거워서 쓰기 불편해요', '조작이 복잡해요']
+
 # 불만 표현이 없을 때 속성을 찾는 키워드 (칭찬 절의 속성별 감성용)
 aspect_keywords:
   맛: ['맛', '바삭', '촉촉', '간이', '소스', '양념', '신선', '따뜻']
@@ -161,6 +210,11 @@ aspect_keywords:
   응대: ['사장님', '친절', '응대', '서비스']
   위생: ['위생', '깨끗']
   앱: ['앱', '결제']
+  디자인: ['디자인', '색상', '예쁘', '예뻐', '외관']
+  성능: ['성능', '흡입력', '화질', '음질', '소음', '속도']
+  배터리: ['배터리', '충전']
+  품질: ['마감', '내구성', '품질', '만듦새']
+  사용성: ['무게', '가벼', '조작', '사용법', '편해', '편리']
 
 # 불만이 아닌 긍정 평가는 "칭찬"으로, 어느 분류에도 안 맞는 부정 평가는 "분류 불가"로 둔다.
 praise_label: 칭찬

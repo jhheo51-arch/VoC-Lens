@@ -15,4 +15,8 @@
 `calls/*.json` 4건도 **직접 쓴 가상 상담**이다. 시나리오는 각 파일의 `meta.scenario`에 있다.
 음성 파일은 없다. 테스트에서는 사인파로 만든 합성 WAV로 음향 경로를 검사한다.
 
+## 영상 번들 (videos/)
+
+`videos/*.json` 2건도 **직접 쓴 가상 영상 자막과 댓글**이다. 채널·브랜드 이름은 가상이고, 시나리오는 각 파일의 `meta.scenario`에 있다.
+
 AI Hub 등 외부 데이터는 재배포할 수 없어서 저장소에 넣지 않는다. 신청 방법은 [docs/data_sources.md](../../docs/data_sources.md)에 있다.

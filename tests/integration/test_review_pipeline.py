@@ -8,6 +8,7 @@ from voicecx.cli import main
 from voicecx.config import REPO_ROOT, load_settings
 from voicecx.cx.report import build_report
 from voicecx.pipelines.call import run_call_pipeline
+from voicecx.pipelines.video import run_video_pipeline
 from voicecx.pipelines.review import build_session, run_review_pipeline
 from voicecx.ingest.review_csv import ReviewRecord, load_reviews
 from voicecx.store import db
@@ -20,8 +21,9 @@ def pipeline_db(tmp_path_factory):
     path = tmp_path_factory.mktemp("db") / "test.db"
     settings = load_settings()
     run_id, sessions = run_review_pipeline(SAMPLE, settings, db_path=path)
-    # 상담 쿼리도 함께 검사하려고 같은 DB에 상담 샘플을 넣는다
+    # 상담·영상 쿼리도 함께 검사하려고 같은 DB에 샘플을 넣는다
     run_call_pipeline([REPO_ROOT / "data" / "samples" / "calls"], settings, db_path=path)
+    run_video_pipeline([str(REPO_ROOT / "data" / "samples" / "videos")], settings, db_path=path)
     return path, run_id, sessions, settings
 
 

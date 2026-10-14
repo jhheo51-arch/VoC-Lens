@@ -31,7 +31,20 @@ def connect(db_path: str | Path) -> sqlite3.Connection:
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     conn.executescript(resources.files(QUERIES_PACKAGE).joinpath("schema.sql").read_text(encoding="utf-8"))
+    _migrate(conn)
     return conn
+
+
+# 예전 버전으로 만든 DB에 없는 열을 추가한다 (테이블, 열, 타입)
+_ADDED_COLUMNS = [("units", "segment", "TEXT"), ("units", "segment_index", "INTEGER")]
+
+
+def _migrate(conn: sqlite3.Connection) -> None:
+    for table, column, kind in _ADDED_COLUMNS:
+        existing = {r[1] for r in conn.execute(f"PRAGMA table_info({table})")}
+        if column not in existing:
+            conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {kind}")
+    conn.commit()
 
 
 def start_run(conn: sqlite3.Connection, pipeline: str, input_path: str, config: dict, models: dict) -> str:
@@ -93,12 +106,14 @@ def save_sessions(
             for u in s.units:
                 conn.execute(
                     "INSERT INTO units (unit_id, session_id, source_type, ord, speaker_role, start_sec, end_sec, text,"
-                    " valence, arousal, emotion_json, aspect, aspect_sentiment, journey_stage, cx_signals_json,"
-                    " scores_json, confidence_json) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    " valence, arousal, emotion_json, aspect, aspect_sentiment, journey_stage, segment, segment_index,"
+                    " cx_signals_json, scores_json, confidence_json)"
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                     (
                         u.unit_id, u.session_id, u.source_type.value, u.order, u.speaker_role, u.start_sec, u.end_sec,
                         u.text, u.valence, u.arousal, _json(u.emotion_probs), u.aspect, u.aspect_sentiment,
-                        u.journey_stage, _json(u.cx_signals), _json(u.scores), _json(u.confidence),
+                        u.journey_stage, u.segment, u.segment_index, _json(u.cx_signals), _json(u.scores),
+                        _json(u.confidence),
                     ),
                 )
                 for label in u.complaint_categories:
