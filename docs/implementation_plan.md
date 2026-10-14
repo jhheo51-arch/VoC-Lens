@@ -29,7 +29,7 @@ API 키와 토큰은 `.env`에만 두고 커밋하지 않는다.
 ## 1. 저장소 구조
 
 ```
-voc-lens/
+VoC-Lens/
 ├── README.md
 ├── pyproject.toml              # uv로 의존성 관리
 ├── .env.example                # HF_TOKEN, YOUTUBE_API_KEY 자리만
