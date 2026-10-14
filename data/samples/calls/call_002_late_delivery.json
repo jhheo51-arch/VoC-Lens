@@ -1,0 +1,16 @@
+{
+  "call_id": "call_002_late_delivery",
+  "meta": {"brand": "배달앱", "domain": "배달", "created_at": "2026-10-03", "synthetic": true, "scenario": "지연 → 반복 문의·끼어들기 → 보류 → 악화"},
+  "turns": [
+    {"speaker": "A", "start": 0.0, "end": 3.5, "text": "네 배달앱 고객센터입니다 무엇을 도와드릴까요"},
+    {"speaker": "B", "start": 4.0, "end": 7.5, "text": "한 시간 전에 주문했는데 아직도 안 와요"},
+    {"speaker": "A", "start": 8.0, "end": 11.5, "text": "주문 내역 확인해 드리겠습니다 잠시만 기다려 주세요"},
+    {"speaker": "A", "start": 26.0, "end": 29.0, "text": "고객님 현재 배달 중으로 확인됩니다"},
+    {"speaker": "B", "start": 28.5, "end": 33.0, "text": "아니 아까도 배달 중이라고 했잖아요 한 시간 넘게 기다렸어요"},
+    {"speaker": "A", "start": 33.5, "end": 36.0, "text": "죄송합니다 매장에 확인해 보겠"},
+    {"speaker": "B", "start": 35.5, "end": 39.0, "text": "한 시간 넘게 기다렸다니까요 언제 와요"},
+    {"speaker": "A", "start": 39.5, "end": 42.5, "text": "매장 확인 후 다시 연락드리겠습니다"},
+    {"speaker": "B", "start": 43.0, "end": 46.0, "text": "진짜 어이없네요 다신 안 시켜요"},
+    {"speaker": "A", "start": 46.5, "end": 48.5, "text": "불편을 드려 죄송합니다"}
+  ]
+}

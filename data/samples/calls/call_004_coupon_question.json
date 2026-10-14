@@ -1,0 +1,11 @@
+{
+  "call_id": "call_004_coupon_question",
+  "meta": {"brand": "배달앱", "domain": "배달", "created_at": "2026-10-06", "synthetic": true, "scenario": "쿠폰 문의 → 즉시 해결"},
+  "turns": [
+    {"speaker": "A", "start": 0.0, "end": 3.5, "text": "배달앱 고객센터 상담원 박서준입니다 무엇을 도와드릴까요"},
+    {"speaker": "B", "start": 4.0, "end": 6.5, "text": "쿠폰이 안 보여서 문의드려요"},
+    {"speaker": "A", "start": 7.0, "end": 12.0, "text": "확인해 드리겠습니다 고객님 계정에 지금 바로 쿠폰 발급해 드렸습니다"},
+    {"speaker": "B", "start": 12.5, "end": 15.5, "text": "아 빠르네요 감사합니다 잘 쓸게요"},
+    {"speaker": "A", "start": 16.0, "end": 18.0, "text": "감사합니다 맛있게 드세요"}
+  ]
+}

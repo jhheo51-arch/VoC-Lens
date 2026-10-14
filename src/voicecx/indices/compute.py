@@ -83,23 +83,25 @@ def engagement_index(units: list[Unit]) -> float:
     return round(_clip(score) * 100, 2)
 
 
-def score_session(session: Session, threshold: float = 0.5, min_negative: float = -0.2) -> Session:
-    if not session.units:
-        session.indices = {name: IndexSummary(name=name, raw=None) for name in INDEX_NAMES}
-        return session
-
+def score_session(
+    session: Session, threshold: float = 0.5, min_negative: float = -0.2, units: list[Unit] | None = None
+) -> Session:
+    """세션 지수를 계산한다. units를 주면 그 발화만으로 지수를 만든다 (상담: 고객 발화만)."""
     for unit in session.units:
         unit.scores = unit_scores(unit)
 
-    indices = {
-        name: _summarize(name, [u.scores[name] for u in session.units], threshold) for name in UNIT_LEVEL
-    }
-    indices["recovery"] = IndexSummary(name="recovery", raw=recovery_index(session.units, min_negative))
-    indices["engagement"] = IndexSummary(name="engagement", raw=engagement_index(session.units))
+    target = session.units if units is None else units
+    if not target:
+        session.indices = {name: IndexSummary(name=name, raw=None) for name in INDEX_NAMES}
+        return session
+
+    indices = {name: _summarize(name, [u.scores[name] for u in target], threshold) for name in UNIT_LEVEL}
+    indices["recovery"] = IndexSummary(name="recovery", raw=recovery_index(target, min_negative))
+    indices["engagement"] = IndexSummary(name="engagement", raw=engagement_index(target))
     session.indices = indices
 
     # Peak-End: 가장 나빴던 순간과 마지막 순간의 부정 경험 평균 (높을수록 나쁜 기억)
-    negative = [max(u.scores["stress"], u.scores["negative_affect"], u.scores["frustration"]) for u in session.units]
+    negative = [max(u.scores["stress"], u.scores["negative_affect"], u.scores["frustration"]) for u in target]
     session.peak_end = round((max(negative) + negative[-1]) / 2 * 100, 2)
     return session
 

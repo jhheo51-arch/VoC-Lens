@@ -2,7 +2,7 @@
 
 # 리뷰 VoC 개선 과제 리포트
 
-- 생성: 2026-10-14 09:44
+- 생성: 2026-10-14 10:45
 - 분석 모델: cx=cx-signals-v0.1, emotion=lexicon-v0.1, journey=journey-keyword-v0.1, taxonomy=keyword-v0.1
 
 > 모든 지수는 자동 추정치이며 의료적 진단이나 개인 평가에 쓸 수 없습니다.

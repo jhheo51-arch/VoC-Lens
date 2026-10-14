@@ -7,6 +7,7 @@ import pytest
 from voicecx.cli import main
 from voicecx.config import REPO_ROOT, load_settings
 from voicecx.cx.report import build_report
+from voicecx.pipelines.call import run_call_pipeline
 from voicecx.pipelines.review import build_session, run_review_pipeline
 from voicecx.ingest.review_csv import ReviewRecord, load_reviews
 from voicecx.store import db
@@ -19,13 +20,15 @@ def pipeline_db(tmp_path_factory):
     path = tmp_path_factory.mktemp("db") / "test.db"
     settings = load_settings()
     run_id, sessions = run_review_pipeline(SAMPLE, settings, db_path=path)
+    # 상담 쿼리도 함께 검사하려고 같은 DB에 상담 샘플을 넣는다
+    run_call_pipeline([REPO_ROOT / "data" / "samples" / "calls"], settings, db_path=path)
     return path, run_id, sessions, settings
 
 
 def test_pipeline_stores_every_review(pipeline_db):
     path, run_id, sessions, _ = pipeline_db
     conn = db.connect(path)
-    n_sessions = conn.execute("SELECT COUNT(*) FROM sessions").fetchone()[0]
+    n_sessions = conn.execute("SELECT COUNT(*) FROM sessions WHERE source_type = 'review'").fetchone()[0]
     run = conn.execute("SELECT status, n_sessions FROM runs WHERE run_id = ?", (run_id,)).fetchone()
     with SAMPLE.open(encoding="utf-8-sig") as f:
         n_rows = sum(1 for _ in csv.DictReader(f))
@@ -37,8 +40,10 @@ def test_pipeline_rerun_replaces_instead_of_duplicating(pipeline_db):
     path, _, sessions, settings = pipeline_db
     run_review_pipeline(SAMPLE, settings, db_path=path)
     conn = db.connect(path)
-    assert conn.execute("SELECT COUNT(*) FROM sessions").fetchone()[0] == len(sessions)
-    assert conn.execute("SELECT COUNT(*) FROM units").fetchone()[0] == sum(len(s.units) for s in sessions)
+    assert conn.execute("SELECT COUNT(*) FROM sessions WHERE source_type = 'review'").fetchone()[0] == len(sessions)
+    assert conn.execute("SELECT COUNT(*) FROM units WHERE source_type = 'review'").fetchone()[0] == sum(
+        len(s.units) for s in sessions
+    )
 
 
 @pytest.mark.parametrize("name", db.list_queries())

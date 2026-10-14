@@ -70,6 +70,20 @@ class IndexSummary(BaseModel):
     percentile: float | None = None
 
 
+class Event(BaseModel):
+    """감정 급변 구간. delta > 0이면 상승(예: 회복), < 0이면 하락."""
+
+    event_id: str
+    index_name: str
+    start_sec: float | None
+    end_sec: float | None
+    delta: float
+    start_unit_id: str
+    end_unit_id: str
+    # 급변 직전의 상대방 발화 (상담: 고객 감정 변화 직전의 상담원 발화)
+    trigger_unit_id: str | None = None
+
+
 class Session(BaseModel):
     """리뷰 1건 / 통화 1건 / 영상 1건."""
 
@@ -82,3 +96,4 @@ class Session(BaseModel):
     units: list[Unit] = Field(default_factory=list)
     indices: dict[str, IndexSummary] = Field(default_factory=dict)
     peak_end: float | None = None
+    events: list[Event] = Field(default_factory=list)

@@ -321,7 +321,9 @@ def build_report(conn: sqlite3.Connection, settings: dict, brand: str | None = N
     if data.sessions.empty:
         raise ValueError("리포트를 만들 리뷰가 없습니다. 먼저 `voicecx review <csv>`를 실행하세요.")
     min_n = settings["report"]["min_n"]
-    models = conn.execute("SELECT models_json FROM runs WHERE status = 'done' ORDER BY started_at DESC LIMIT 1").fetchone()
+    models = conn.execute(
+        "SELECT models_json FROM runs WHERE status = 'done' AND pipeline = 'review' ORDER BY started_at DESC LIMIT 1"
+    ).fetchone()
 
     context = {
         "generated_at": datetime.now(timezone.utc).astimezone().strftime("%Y-%m-%d %H:%M"),

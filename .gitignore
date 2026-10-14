@@ -3,6 +3,9 @@ data/*
 !data/samples/
 models/
 *.db
+*.wav
+*.mp3
+*.m4a
 *.parquet
 
 # 비밀값

@@ -20,6 +20,25 @@ indices:
   # 감정 회복 지수를 계산하려면 전반부 최저 Valence가 이 값보다 낮아야 한다
   recovery_min_negative: -0.2
 
+call:
+  # 이 길이(초) 이상의 무음은 "긴 침묵"(보류·조회 대기)으로 센다
+  long_silence_sec: 2.0
+  # 상대 발화가 끝나기 이 시간(초) 전에 시작하면 끼어들기로 본다
+  interruption_overlap_sec: 0.2
+  # 고객 발화끼리 글자 2-gram 겹침 계수(|A∩B|/min(|A|,|B|))가 이 값 이상이면 같은 말 반복으로 본다
+  repeat_similarity: 0.4
+  repeat_min_chars: 6
+  # 화자별 음향 기준선: 처음 몇 초 동안의 발화로 z-score 정규화
+  acoustic_baseline_sec: 30
+  # 감정 급변 탐지
+  event_window: 2
+  event_min_delta: 0.35
+  event_smoothing: 0.5
+  # 융합 가중치 (음향, 텍스트). 각성은 목소리, 긍정·부정은 말의 내용이 더 잘 드러낸다
+  fusion:
+    arousal: [0.7, 0.3]
+    valence: [0.3, 0.7]
+
 report:
   # 표본이 이보다 적은 그룹은 결과를 흐리게(주의) 표시
   min_n: 30

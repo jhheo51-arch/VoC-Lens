@@ -111,6 +111,12 @@ def save_sessions(
                         "INSERT OR IGNORE INTO unit_labels (unit_id, label_type, label, source) VALUES (?, 'journey', ?, ?)",
                         (u.unit_id, u.journey_stage, label_source),
                     )
+            for e in s.events:
+                conn.execute(
+                    "INSERT INTO events (event_id, session_id, start_sec, end_sec, index_name, delta, trigger_unit_id)"
+                    " VALUES (?, ?, ?, ?, ?, ?, ?)",
+                    (e.event_id, s.session_id, e.start_sec, e.end_sec, e.index_name, e.delta, e.trigger_unit_id),
+                )
             for idx in s.indices.values():
                 conn.execute(
                     "INSERT INTO indices (session_id, index_name, raw, mean, peak, above_ratio, end_value, percentile)"
