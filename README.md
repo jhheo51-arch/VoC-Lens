@@ -1,5 +1,7 @@
 # VoC Lens
 
+**라이브 대시보드: [voc-lens.streamlit.app](https://voc-lens.streamlit.app/)** (합성 데이터 시연)
+
 **VoC**는 Voice of Customer(고객의 소리)의 약자입니다. 이 도구는 영상·상담 음성·리뷰 세 채널에서 고객의 소리를 하나의 기준으로 들여다봅니다.
 
 영상·상담 음성·리뷰에서 고객의 감정을 추정하고, 그 결과를 **우선순위가 매겨진 CX 개선 과제**로 바꾸는 분석 도구입니다.
@@ -50,7 +52,7 @@ pip install -e ".[app]"
 streamlit run app/streamlit_app.py
 ```
 
-DB가 비어 있으면 사이드바의 **합성 샘플로 다시 분석** 버튼으로 세 채널 분석과 CX 추정을 한 번에 실행할 수 있습니다.
+DB가 없으면 첫 실행 때 합성 샘플로 세 채널 분석과 CX 추정을 자동으로 합니다. DB 경로를 바꾸거나 샘플을 다시 분석하는 사이드바 기능은 `VOCLENS_DASHBOARD_ADMIN=1` 환경 변수를 켰을 때만 나타납니다 (공개 배포에서 방문자가 서버 경로를 고르거나 데이터를 지우지 못하게).
 
 상담은 전사본 JSON을 읽습니다. 형식은 [상담 전사본 형식](docs/call_transcript_format.md)에 있습니다. 영상은 번들 JSON이나 YouTube URL을 받습니다. 형식은 [영상 입력 형식](docs/video_bundle_format.md)에 있습니다.
 

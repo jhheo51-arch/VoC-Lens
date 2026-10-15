@@ -7,6 +7,7 @@ DB가 비어 있으면 합성 샘플 데이터로 바로 분석할 수 있다 (�
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import pandas as pd
@@ -34,20 +35,29 @@ def fmt(x, digits=1, suffix=""):
     return "-" if x is None or pd.isna(x) else f"{x:.{digits}f}{suffix}"
 
 
-# --- 사이드바: 데이터 소스와 화면 선택 ---
+# DB 경로 변경과 다시 분석은 공개 배포에서 막는다 (방문자가 서버 경로를 고르거나 모두의 데이터를 지우지 못하게).
+# 로컬에서 쓰려면 VOCLENS_DASHBOARD_ADMIN=1 환경 변수를 켜고 실행한다.
+ADMIN = os.environ.get("VOCLENS_DASHBOARD_ADMIN") == "1"
+default_db = str(REPO_ROOT / settings["db_path"])
+
+# --- 사이드바: 화면 선택 (관리 모드에서는 데이터 소스도) ---
 with st.sidebar:
     st.title("VoC Lens")
     st.caption("Voice of Customer를 하나의 기준으로 보는 렌즈")
     page = st.radio("화면", PAGES, key="page")
     st.divider()
-    db_path = st.text_input("DB 경로", value=str(REPO_ROOT / settings["db_path"]), key="db_path")
-    if st.button("합성 샘플로 다시 분석", help="data/samples의 리뷰·상담·영상으로 세 채널 분석과 CX 추정을 다시 실행합니다"):
-        with st.spinner("샘플 데이터 분석 중"):
-            Path(db_path).unlink(missing_ok=True)
-            data.build_sample_db(db_path, settings)
-        st.success("샘플 분석을 마쳤습니다")
+    db_path = default_db
+    if ADMIN:
+        db_path = st.text_input("DB 경로", value=default_db, key="db_path")
+        if st.button("합성 샘플로 다시 분석", help="data/samples의 리뷰·상담·영상으로 세 채널 분석과 CX 추정을 다시 실행합니다"):
+            with st.spinner("샘플 데이터 분석 중"):
+                Path(db_path).unlink(missing_ok=True)
+                data.build_sample_db(db_path, settings)
+            st.success("샘플 분석을 마쳤습니다")
+    else:
+        st.caption("합성 데이터 시연입니다. 리뷰 180건, 상담 4건, 영상 2건으로 만든 결과이며 실제 고객 데이터가 아닙니다.")
+        st.markdown("[GitHub 저장소](https://github.com/jhheo51-arch/VoC-Lens)")
 
-default_db = str(REPO_ROOT / settings["db_path"])
 if db_path == default_db and not Path(db_path).exists():
     # 배포 환경 첫 방문: DB가 없으면 합성 샘플로 바로 채운다
     with st.spinner("처음 실행이라 합성 샘플 데이터를 분석하고 있습니다 (몇 초 걸립니다)"):
@@ -59,7 +69,7 @@ counts = data.counts(conn)
 st.warning(DISCLAIMER, icon="⚠️")
 
 if not counts:
-    st.info("분석된 데이터가 없습니다. 사이드바의 **합성 샘플로 다시 분석**을 누르거나, `voclens review / call / video` 명령으로 데이터를 넣어 주세요.")
+    st.info("분석된 데이터가 없습니다. `voclens review / call / video` 명령으로 데이터를 넣거나, VOCLENS_DASHBOARD_ADMIN=1로 실행해 사이드바의 **합성 샘플로 다시 분석**을 누르세요.")
     st.stop()
 
 if not data.has_estimates(conn):

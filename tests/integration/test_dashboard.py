@@ -93,8 +93,9 @@ def test_quadrant_spreads_points_with_same_difficulty():
 
 
 @pytest.mark.parametrize("page", ["홈", "리뷰", "상담", "영상", "채널 비교"])
-def test_app_pages_run_without_errors(sample_db, page):
+def test_app_pages_run_without_errors(sample_db, page, monkeypatch):
     testing = pytest.importorskip("streamlit.testing.v1")
+    monkeypatch.setenv("VOCLENS_DASHBOARD_ADMIN", "1")   # 테스트 DB로 바꾸려면 관리 모드가 필요하다
     at = testing.AppTest.from_file(str(APP), default_timeout=60)
     at.run()
     at.sidebar.text_input(key="db_path").set_value(str(sample_db)).run()
@@ -103,10 +104,22 @@ def test_app_pages_run_without_errors(sample_db, page):
     assert any("추정치" in w.value for w in at.warning)          # 고지 문구가 모든 화면에 있다
 
 
-def test_app_empty_db_shows_guide(tmp_path):
+def test_app_empty_db_shows_guide(tmp_path, monkeypatch):
     testing = pytest.importorskip("streamlit.testing.v1")
+    monkeypatch.setenv("VOCLENS_DASHBOARD_ADMIN", "1")
     at = testing.AppTest.from_file(str(APP), default_timeout=60)
     at.run()
     at.sidebar.text_input(key="db_path").set_value(str(tmp_path / "empty.db")).run()
     assert not at.exception
     assert any("분석된 데이터가 없습니다" in i.value for i in at.info)
+
+
+def test_public_mode_hides_db_controls(monkeypatch):
+    """공개 배포(관리 모드 아님)에서는 DB 경로 입력과 다시 분석 버튼이 없어야 한다."""
+    testing = pytest.importorskip("streamlit.testing.v1")
+    monkeypatch.delenv("VOCLENS_DASHBOARD_ADMIN", raising=False)
+    at = testing.AppTest.from_file(str(APP), default_timeout=120)
+    at.run()
+    assert not at.exception
+    assert len(at.sidebar.text_input) == 0
+    assert not any(b.label == "합성 샘플로 다시 분석" for b in at.sidebar.button)

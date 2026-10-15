@@ -1,5 +1,7 @@
 # 대시보드 배포
 
+배포 주소: **https://voc-lens.streamlit.app/** (Streamlit Community Cloud, `main` 브랜치에 push하면 자동으로 다시 배포됨)
+
 대시보드는 첫 방문 시 합성 샘플 데이터(리뷰 180건, 상담 4건, 영상 2건)로 DB를 자동으로 만든다. 그래서 별도 데이터 준비 없이 올릴 수 있다. 외부 데이터(AI Hub 등)는 재배포 금지라 배포본에 넣지 않는다.
 
 ## 방법 1. Streamlit Community Cloud (권장, 무료)
@@ -33,6 +35,14 @@
    app_port: 7860
    ---
    ```
+
+## 관리 모드
+
+공개 배포에서는 사이드바의 DB 경로 입력과 "합성 샘플로 다시 분석" 버튼을 숨긴다. 방문자가 서버의 임의 경로에 파일을 만들거나 다른 방문자가 보는 데이터를 지울 수 없게 하기 위해서다. 로컬에서 이 기능이 필요하면 환경 변수를 켜고 실행한다.
+
+```bash
+VOCLENS_DASHBOARD_ADMIN=1 streamlit run app/streamlit_app.py
+```
 
 ## 로컬에서 배포본 확인
 
