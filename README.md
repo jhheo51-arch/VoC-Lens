@@ -2,7 +2,7 @@
 
 **라이브 대시보드: [voc-lens.streamlit.app](https://voc-lens.streamlit.app/)** — 합성 데이터 시연과 함께, **직접 분석** 화면에서 리뷰 CSV·상담 전사본(+WAV)·영상 자막을 올려 바로 분석할 수 있습니다.
 
-포트폴리오 소개 페이지 원본: [docs/index.html](docs/index.html) (한 장으로 보는 프로젝트 요약, 이미지는 docs/images 사용)
+포트폴리오 소개 페이지: [docs/index.html](docs/index.html) · PDF [docs/VoC-Lens_portfolio.pdf](docs/VoC-Lens_portfolio.pdf)
 
 **VoC**는 Voice of Customer(고객의 소리)의 약자입니다. 이 도구는 영상·상담 음성·리뷰 세 채널에서 고객의 소리를 하나의 기준으로 들여다봅니다.
 

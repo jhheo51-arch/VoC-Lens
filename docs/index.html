@@ -189,6 +189,15 @@ footer { padding-block: 32px 48px; border-top: 1px solid var(--rule); font-size:
   .customer-path { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 1.6s ease-out 0.2s forwards; }
   @keyframes draw { to { stroke-dashoffset: 0; } }
 }
+@media print {
+  @page { size: A4; margin: 14mm 12mm; }
+  html { zoom: 0.7; }
+  body { padding-inline: 0; }
+  .customer-path { animation: none !important; stroke-dashoffset: 0 !important; }
+  .topbar nav { display: none; }
+  .card, .case, .shot, .steps li, .table-wrap, tr, figure { break-inside: avoid; }
+  h2, h3 { break-after: avoid; }
+}
 </style>
 
 <div class="wrap">
