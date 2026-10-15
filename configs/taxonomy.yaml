@@ -12,7 +12,7 @@
 #
 # 기준을 고치면 docs/voc_taxonomy.md의 개정 이력에 남긴다.
 
-version: "0.2"
+version: "0.2.1"
 
 subcategories:
   맛:
@@ -48,7 +48,7 @@ subcategories:
     aspect: 위생
     stage: 수령·섭취
     difficulty: 2
-    complaint: ['머리카락', '이물질', '벌레', '비닐이 들어', '상했', '쉰 냄새', '쉰내', '비위생']
+    complaint: ['머리카락', '이물질', '벌레', '비닐이 들어', '(?<!속)상했', '쉰 냄새', '쉰내', '비위생']
     topic: ['위생']
     seeds: ['음식에서 머리카락이 나왔어요', '상한 것 같은 냄새가 나요']
   배달 지연:

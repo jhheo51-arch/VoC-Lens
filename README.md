@@ -106,7 +106,7 @@ DB가 없으면 첫 실행 때 합성 샘플로 세 채널 분석과 CX 추정�
 
 | # | 질문 | 핵심 발견 (합성 데이터) |
 |---|---|---|
-| [1](docs/case_studies/01_delivery_brand_comparison.md) | 두 배달 브랜드는 무엇을 먼저 고쳐야 하나? | 감정 점수는 차이가 없지만(p = 0.52) 불만 구성은 크게 다름(Cramér's V = 0.73). A는 온도·식감이 핵심 과제, B는 누락이 Quick Win |
+| [1](docs/case_studies/01_delivery_brand_comparison.md) | 두 배달 브랜드는 무엇을 먼저 고쳐야 하나? | 감정 점수는 차이가 없지만(p = 0.52) 불만 구성은 크게 다름(Cramér's V = 0.74). A는 온도·식감이 핵심 과제, B는 누락이 Quick Win |
 | [2](docs/case_studies/02_call_quality_recovery.md) | 어떤 상담이 고객을 지치게 하고, 무엇이 감정을 회복시키나? | 끼어들기·반복·대기가 좌절을 키움(좌절 62.9, CES 5.66). 회복 계기는 "사과 + 구체적 조치"를 한 번에 말한 발화 |
 | [3](docs/case_studies/03_cross_channel_chicken_a.md) | 리뷰만 보면 놓치는 것이 있나? | 배달 지연은 리뷰·영상·댓글 모두에서 1~2위 → 브랜드 공통 과제. 타임스탬프 댓글이 시청자가 반응한 장면을 보여줌 |
 
@@ -134,7 +134,7 @@ Streamlit 화면 다섯 개로 구성됩니다. 모든 화면 맨 위에 "자동
 
 ![리뷰 화면: 개선 과제 우선순위 × 실행 난이도 4분면](docs/images/dashboard_review.jpg)
 
-![채널별 불만 유형 구성비 히트맵과 조용한 불만](docs/images/dashboard_channel_mix.png)
+![채널별 불만 유형 구성비 히트맵 (리뷰·상담·영상·댓글)](docs/images/dashboard_channel_mix.png)
 
 차트 색은 개체에 고정합니다. 채널은 리뷰=파랑, 상담=주황, 영상=청록이고, 감성은 파랑(긍정)↔빨강(부정)입니다. 모든 차트는 축 하나이고, 마우스를 올리면 값이 보이는 툴팁이 있습니다.
 

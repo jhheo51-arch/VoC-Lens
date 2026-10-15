@@ -12,6 +12,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 import time
 from pathlib import Path
@@ -155,6 +156,45 @@ def cmd_cx(args, settings) -> int:
     return 0
 
 
+def cmd_label(args, settings) -> int:
+    from voclens import labeling
+
+    if args.action == "prepare":
+        if args.text_col:
+            settings["review"]["columns"]["text"] = args.text_col
+        table = labeling.clause_table(args.input, settings, domain=args.domain)
+        encode = None
+        if args.embed:
+            from voclens.text.taxonomy import sentence_transformer_encoder
+
+            encode = sentence_transformer_encoder()
+        picked = labeling.select_for_labeling(labeling.score_uncertainty(table, encode), n=args.n, per_review=args.per_review)
+        out = Path(args.out)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(labeling.to_label_studio(picked), ensure_ascii=False, indent=1), encoding="utf-8")
+        basis = "임베딩 1·2위 유사도 차이" if args.embed else "규칙 기반 대리 지표"
+        print(f"절 {len(table):,}개 중 헷갈리는 순서로 {len(picked)}개 → {out} (기준: {basis})")
+        if "kind" in picked:
+            print(picked["kind"].value_counts().to_string())
+        print("Label Studio에서 labeling/label_studio_config.xml로 프로젝트를 만들고 이 파일을 가져오세요.")
+        return 0
+
+    if args.action == "import":
+        df = labeling.read_label_studio_export(args.input)
+        out = labeling.labels_to_csv(df, args.out, with_text=args.with_text)
+        print(f"라벨 {len(df)}개 (보류 {int(df['hold'].sum())}개) → {out}")
+        return 0
+
+    first = labeling.read_label_studio_export(args.input)
+    second = labeling.read_label_studio_export(args.second)
+    result = labeling.agreement(first, second)
+    print(f"공통 절 {result['n_common']}개 · 완전 일치 {result['exact_match']:.1%} · macro κ {result['macro_kappa']}")
+    _print_table([{"유형": k, "κ": v} for k, v in sorted(result["per_label"].items(), key=lambda kv: (kv[1] is None, kv[1]))])
+    if result["macro_kappa"] is not None and result["macro_kappa"] < 0.7:
+        print("목표(0.7)보다 낮습니다. 일치하지 않은 절을 labeling/guidelines.md 판정 사례에 추가하고 기준을 다듬으세요.")
+    return 0
+
+
 def cmd_report(args, settings) -> int:
     from voclens.cx.report import build_report
     from voclens.store import db
@@ -222,6 +262,19 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--brand", help="특정 브랜드만")
     p.add_argument("--exclude-review-event", action="store_true", help="리뷰 이벤트 리뷰 제외")
     p.set_defaults(func=cmd_report)
+
+    p = sub.add_parser("label", help="라벨링 준비·가져오기·자기 일치도 (2주차)")
+    p.add_argument("action", choices=["prepare", "import", "agreement"])
+    p.add_argument("input", help="prepare: 리뷰 CSV / import·agreement: Label Studio 내보내기 JSON")
+    p.add_argument("second", nargs="?", help="agreement: 두 번째 라벨링 내보내기 JSON")
+    p.add_argument("--out", default="labeling/tasks.json", help="prepare: 작업 JSON, import: 라벨 CSV 경로")
+    p.add_argument("--n", type=int, default=500, help="prepare: 고를 절 수")
+    p.add_argument("--per-review", type=int, default=2, help="prepare: 리뷰 하나에서 고를 최대 절 수")
+    p.add_argument("--domain", help="prepare: delivery | product")
+    p.add_argument("--text-col", help="prepare: 리뷰 본문 열 이름")
+    p.add_argument("--embed", action="store_true", help="prepare: 임베딩 Zero-shot 유사도 차이로 고름 (pip install -e .[nlp])")
+    p.add_argument("--with-text", action="store_true", help="import: CSV에 원문도 넣음 (외부 데이터는 넣지 말 것)")
+    p.set_defaults(func=cmd_label)
 
     p = sub.add_parser("query", help="저장된 SQL 집계 쿼리 실행")
     p.add_argument("name", nargs="?")

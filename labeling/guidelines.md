@@ -39,3 +39,22 @@
 - 라벨링을 마치고 1주일 뒤, 같은 데이터 100개를 순서를 섞어 다시 라벨링한다.
 - 자기 일치도 Cohen's κ를 계산한다. 목표는 0.7 이상이다.
 - 일치하지 않은 사례는 위 판정 사례 표에 추가한다.
+
+## 도구 사용법
+
+```bash
+# 1. 헷갈리는 절부터 500개 골라 Label Studio 작업 파일 만들기
+voclens label prepare data/raw/reviews.csv --n 500 --out labeling/tasks.json
+#    임베딩 Zero-shot 유사도 차이로 고르려면 (pip install -e .[nlp])
+voclens label prepare data/raw/reviews.csv --n 500 --embed
+
+# 2. Label Studio: labeling/label_studio_config.xml로 프로젝트를 만들고 tasks.json을 가져와 라벨링 → JSON으로 내보내기
+
+# 3. 라벨 가져오기 (기본은 원문 없이 절 ID와 라벨만 저장: AI Hub 데이터 재배포 방지)
+voclens label import labeling/export/round1.json --out labeling/export/round1_labels.csv
+
+# 4. 1주일 뒤 같은 절 100개를 순서를 섞어 다시 라벨링하고 자기 일치도 확인
+voclens label agreement labeling/export/round1.json labeling/export/round1_recheck.json
+```
+
+후보는 규칙 기반 분류가 헷갈리는 순서로 고른다: 여러 유형이 동시에 붙은 절 → 분류 불가 → 주제 표현만으로 붙은 절 → 부정인데 유형이 없는 절 → 중립 → 칭찬 → 확실한 불만. 같은 문장은 한 번만, 한 리뷰에서 2개까지만 고른다.
