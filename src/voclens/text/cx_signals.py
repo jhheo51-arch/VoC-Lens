@@ -12,6 +12,19 @@ from voclens.config import load_yaml
 from voclens.schema import Unit
 
 
+SIGNAL_LABELS = {
+    "repurchase_intent": "재주문 의사",
+    "churn_intent": "이탈 의사",
+    "recommend_intent": "추천 의사",
+    "not_recommend": "비추천",
+    "repeat_contact": "반복 문의",
+    "waiting": "대기",
+    "resolution": "해결",
+    "apology_received": "사과 받음",
+    "tone_mismatch": "말–톤 불일치",
+}
+
+
 class CxSignalDetector:
     name = "cx-signals-v0.1"
 
@@ -31,6 +44,15 @@ class CxSignalDetector:
             if pattern.search(text) and not (exclude and exclude.search(text)):
                 found[name] = True
         return found
+
+    def explain(self, text: str) -> str:
+        """CX 신호 판단 근거. 예: "repurchase_intent ← '또 시킬'"."""
+        parts = []
+        for name, (pattern, exclude) in self.signals.items():
+            m = pattern.search(text)
+            if m and not (exclude and exclude.search(text)):
+                parts.append(f"{SIGNAL_LABELS.get(name, name)} ← '{m.group(0)}'")
+        return ", ".join(parts)
 
     def predict(self, units: list[Unit]) -> list[Unit]:
         for unit in units:

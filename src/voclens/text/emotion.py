@@ -24,6 +24,17 @@ _COND_AFTER = re.compile(r"^[가-힣]{0,2}(아야|어야|았으면|었으면)")
 
 
 @dataclass
+class EmotionHit:
+    surface: str            # 원문에서 걸린 표현
+    emotion: str            # 사전상 감정
+    counted_as: str         # 실제로 더한 감정 (부정·가정이면 반전된 감정)
+    weight: float           # 더한 가중치
+    raw_weight: float       # 반전 전 가중치 (신뢰도 계산용)
+    intensified: bool
+    flip: str | None        # None | "부정" | "가정"
+
+
+@dataclass
 class EmotionResult:
     probs: dict[str, float]
     valence: float
@@ -46,25 +57,43 @@ class LexiconEmotionModel:
         self.neutral_score = float(lex["neutral_score"])
         self.circumplex = {e: tuple(v) for e, v in lex["circumplex"].items()}
 
-    def score(self, text: str) -> EmotionResult:
-        scores = {e: 0.0 for e in EMOTIONS}
-        hit_weight = 0.0
-
+    def hits(self, text: str) -> list[EmotionHit]:
+        """사전에 걸린 표현 목록 (판단 근거). score()도 이 목록으로 계산한다."""
+        out = []
         for emotion, entries in self.patterns.items():
             for pattern, weight in entries:
                 for m in pattern.finditer(text):
                     before = text[max(0, m.start() - 4) : m.start()]
                     after = text[m.end() : m.end() + 8]
-                    w = weight * (1.5 if self.intensifier.search(before) else 1.0)
+                    intensified = bool(self.intensifier.search(before))
+                    w = weight * (1.5 if intensified else 1.0)
                     negated = bool(_NEG_BEFORE.search(before) or _NEG_AFTER.search(after))
-                    if emotion in POSITIVE and (_COND_BEFORE.search(before) or _COND_AFTER.search(after)):
-                        negated = True
-                    if negated:
+                    conditional = emotion in POSITIVE and bool(_COND_BEFORE.search(before) or _COND_AFTER.search(after))
+                    if negated or conditional:
                         target, ratio = self.flip_positive_to if emotion in POSITIVE else self.flip_negative_to
-                        scores[target] += w * ratio
+                        out.append(EmotionHit(m.group(0), emotion, target, w * ratio, w, intensified, "가정" if conditional and not negated else "부정"))
                     else:
-                        scores[emotion] += w
-                    hit_weight += w
+                        out.append(EmotionHit(m.group(0), emotion, emotion, w, w, intensified, None))
+        return out
+
+    def explain(self, text: str) -> str:
+        """사람이 읽는 근거 문자열. 예: '맛있(기쁨 ×1.5 강조), 늦었(분노)'"""
+        parts = []
+        for h in self.hits(text):
+            note = []
+            if h.intensified:
+                note.append("강조")
+            if h.flip:
+                note.append(f"{h.flip} → {h.counted_as}")
+            parts.append(f"{h.surface}({h.emotion}{', ' + ', '.join(note) if note else ''})")
+        return ", ".join(parts)
+
+    def score(self, text: str) -> EmotionResult:
+        scores = {e: 0.0 for e in EMOTIONS}
+        hit_weight = 0.0
+        for h in self.hits(text):
+            scores[h.counted_as] += h.weight
+            hit_weight += h.raw_weight
 
         scores["중립"] += self.neutral_score
         total = sum(scores.values())

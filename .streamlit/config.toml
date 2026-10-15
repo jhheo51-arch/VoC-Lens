@@ -4,3 +4,7 @@ primaryColor = "#2a78d6"
 
 [browser]
 gatherUsageStats = false
+
+[server]
+# 공개 배포 업로드 한도 (MB). 리뷰 CSV·전사본·짧은 WAV 기준
+maxUploadSize = 20

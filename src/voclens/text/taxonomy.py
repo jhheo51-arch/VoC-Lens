@@ -99,6 +99,20 @@ class KeywordTaxonomyClassifier:
                     hits[label] = 0.5
         return sorted(hits.items(), key=lambda kv: -kv[1])
 
+    def explain(self, text: str, valence: float, domain: str | None = None) -> str:
+        """불만 유형 판단 근거. 예: "누락·오배송 ← '빠져 있'(불만 표현)", "가격 ← '가격'(주제 + 부정 감성)"."""
+        domain = normalize_domain(domain)
+        parts = []
+        for label, pattern in self._complaint.items():
+            if pattern and self._in_domain(label, domain) and (m := pattern.search(text)):
+                parts.append(f"{label} ← '{m.group(0)}'(불만 표현)")
+        if valence < 0:
+            found = {p.split(" ←")[0] for p in parts}
+            for label, pattern in self._topic.items():
+                if label not in found and pattern and self._in_domain(label, domain) and (m := pattern.search(text)):
+                    parts.append(f"{label} ← '{m.group(0)}'(주제 + 부정 감성)")
+        return ", ".join(parts)
+
     def find_aspect(self, text: str) -> str | None:
         for aspect, pattern in self._aspect.items():
             if pattern and pattern.search(text):

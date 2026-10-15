@@ -23,11 +23,12 @@ def _json(value: Any) -> str:
     return json.dumps(value, ensure_ascii=False, sort_keys=True)
 
 
-def connect(db_path: str | Path) -> sqlite3.Connection:
+def connect(db_path: str | Path, check_same_thread: bool = True) -> sqlite3.Connection:
+    """check_same_thread=False: Streamlit처럼 다시 실행할 때마다 스레드가 바뀌는 곳에서 메모리 DB를 계속 쓸 때."""
     path = Path(db_path)
     if str(path) != ":memory:":
         path.parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(str(path))
+    conn = sqlite3.connect(str(path), check_same_thread=check_same_thread)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     conn.executescript(resources.files(QUERIES_PACKAGE).joinpath("schema.sql").read_text(encoding="utf-8"))
