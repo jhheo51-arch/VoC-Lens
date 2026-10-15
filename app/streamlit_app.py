@@ -26,8 +26,9 @@ from voclens.dashboard.evidence import add_evidence
 from voclens.store import db
 from voclens.text.taxonomy import Taxonomy
 
-SAMPLE_PAGES = ["홈", "리뷰", "상담", "영상", "채널 비교"]
-PAGES = [*SAMPLE_PAGES, "직접 분석", "분석 기준"]
+PAGES = ["홈", "직접 분석", "분석 기준"]
+# 홈 안의 탭: 직접 분석을 하면 나오는 결과 화면을 합성 데이터로 미리 보여준다
+HOME_TABS = ["요약", "리뷰", "상담", "영상", "채널 비교"]
 EVENT_INDEX_LABELS = {"valence": "감성", "stress": "스트레스"}
 DOMAINS = {"배달": "delivery", "제품": "product"}
 DISCLAIMER = "모든 지수는 자동 추정치입니다. 의료적 진단, 채용 평가, 직원 감시, 개인 평가에 쓸 수 없습니다."
@@ -76,7 +77,7 @@ EVIDENCE_COLUMNS = {
 with st.sidebar:
     st.title("VoC Lens")
     st.caption("Voice of Customer를 하나의 기준으로 보는 렌즈")
-    page = st.radio("화면", PAGES, key="page", captions=[""] * 5 + ["내 데이터 올려서 분석", "규칙·사전·공식"])
+    page = st.radio("화면", PAGES, key="page", captions=["예시 결과 (합성 데이터)", "내 데이터 올려서 분석", "규칙·사전·공식"])
     st.divider()
     db_path = default_db
     if ADMIN:
@@ -87,7 +88,7 @@ with st.sidebar:
                 data.build_sample_db(db_path, settings)
             st.success("샘플 분석을 마쳤습니다")
     else:
-        st.caption("홈·리뷰·상담·영상·채널 비교는 합성 데이터 시연입니다 (리뷰 180건, 상담 4건, 영상 2건). 내 데이터는 **직접 분석**에서 올릴 수 있습니다.")
+        st.caption("홈은 합성 데이터(리뷰 180건, 상담 4건, 영상 2건)로 만든 예시 결과입니다. 내 데이터는 **직접 분석**에서 올리면 같은 화면으로 나옵니다.")
         st.markdown("[GitHub 저장소](https://github.com/jhheo51-arch/VoC-Lens)")
 
 st.warning(DISCLAIMER, icon="⚠️")
@@ -107,7 +108,7 @@ def sample_conn():
 # =========================== 홈 ===========================
 def page_home(conn):
     counts = data.counts(conn)
-    st.header("한눈에 보기")
+    st.subheader("한눈에 보기")
     cols = st.columns(3)
     cols[0].metric("리뷰", f"{counts.get('review', 0)}건")
     cols[1].metric("상담 통화", f"{counts.get('call', 0)}건")
@@ -683,14 +684,17 @@ def page_criteria():
         st.markdown("\n".join(f"- {r}" for r in criteria.cx_rules()))
 
 
-if page in SAMPLE_PAGES:
+if page == "홈":
     conn = sample_conn()
     if not data.counts(conn):
         st.info("분석된 데이터가 없습니다. `voclens review / call / video` 명령으로 데이터를 넣거나, VOCLENS_DASHBOARD_ADMIN=1로 실행해 사이드바의 **합성 샘플로 다시 분석**을 누르세요.")
         st.stop()
-    if page != "홈":
-        st.header(page)
-    {"홈": page_home, "리뷰": page_review, "상담": page_call, "영상": page_video, "채널 비교": page_compare}[page](conn)
+    st.header("예시 결과")
+    st.caption("합성 데이터(리뷰 180건, 상담 4건, 영상 2건)로 만든 결과입니다. **직접 분석**에서 내 리뷰·상담·영상을 올리면 리뷰·상담·영상 탭과 같은 화면으로 결과가 나옵니다.")
+    tabs = st.tabs(HOME_TABS)
+    for tab, render in zip(tabs, (page_home, page_review, page_call, page_video, page_compare)):
+        with tab:
+            render(conn)
     conn.close()
 elif page == "직접 분석":
     page_upload()

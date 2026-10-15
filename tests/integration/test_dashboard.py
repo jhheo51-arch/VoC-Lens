@@ -92,7 +92,7 @@ def test_quadrant_spreads_points_with_same_difficulty():
     assert len({round(v["x"], 3) for v in points}) == 3
 
 
-@pytest.mark.parametrize("page", ["홈", "리뷰", "상담", "영상", "채널 비교"])
+@pytest.mark.parametrize("page", ["홈", "직접 분석", "분석 기준"])
 def test_app_pages_run_without_errors(sample_db, page, monkeypatch):
     testing = pytest.importorskip("streamlit.testing.v1")
     monkeypatch.setenv("VOCLENS_DASHBOARD_ADMIN", "1")   # 테스트 DB로 바꾸려면 관리 모드가 필요하다
@@ -123,3 +123,15 @@ def test_public_mode_hides_db_controls(monkeypatch):
     assert not at.exception
     assert len(at.sidebar.text_input) == 0
     assert not any(b.label == "합성 샘플로 다시 분석" for b in at.sidebar.button)
+
+
+def test_home_shows_example_result_tabs(sample_db, monkeypatch):
+    """리뷰·상담·영상·채널 비교는 홈 안의 탭으로 보여준다 (직접 분석 결과가 어떻게 나오는지 보여주는 예시)."""
+    testing = pytest.importorskip("streamlit.testing.v1")
+    monkeypatch.setenv("VOCLENS_DASHBOARD_ADMIN", "1")
+    at = testing.AppTest.from_file(str(APP), default_timeout=120)
+    at.run()
+    at.sidebar.text_input(key="db_path").set_value(str(sample_db)).run()
+    assert not at.exception
+    assert [t.label for t in at.tabs][:5] == ["요약", "리뷰", "상담", "영상", "채널 비교"]
+    assert at.sidebar.radio(key="page").options == ["홈", "직접 분석", "분석 기준"]
