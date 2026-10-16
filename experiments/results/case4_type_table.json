@@ -1,0 +1,164 @@
+[
+  {
+    "type": "제품 불량",
+    "category": "제품·품질",
+    "difficulty": 2,
+    "reviews": 1685,
+    "share_of_negative": 0.079,
+    "one_star_among_negative": 0.445,
+    "share_in_positive_reviews": 0.068
+  },
+  {
+    "type": "품질·마감",
+    "category": "제품·품질",
+    "difficulty": 2,
+    "reviews": 1298,
+    "share_of_negative": 0.059,
+    "one_star_among_negative": 0.356,
+    "share_in_positive_reviews": 0.089
+  },
+  {
+    "type": "맛·신선도",
+    "category": "제품·품질",
+    "difficulty": 2,
+    "reviews": 1091,
+    "share_of_negative": 0.048,
+    "one_star_among_negative": 0.391,
+    "share_in_positive_reviews": 0.119
+  },
+  {
+    "type": "배송 지연",
+    "category": "배송·이행",
+    "difficulty": 2,
+    "reviews": 1001,
+    "share_of_negative": 0.043,
+    "one_star_among_negative": 0.34,
+    "share_in_positive_reviews": 0.144
+  },
+  {
+    "type": "사이즈·색상",
+    "category": "제품·품질",
+    "difficulty": 1,
+    "reviews": 862,
+    "share_of_negative": 0.037,
+    "one_star_among_negative": 0.324,
+    "share_in_positive_reviews": 0.158
+  },
+  {
+    "type": "포장·파손",
+    "category": "배송·이행",
+    "difficulty": 1,
+    "reviews": 706,
+    "share_of_negative": 0.03,
+    "one_star_among_negative": 0.359,
+    "share_in_positive_reviews": 0.143
+  },
+  {
+    "type": "사용 편의",
+    "category": "사용성",
+    "difficulty": 2,
+    "reviews": 617,
+    "share_of_negative": 0.026,
+    "one_star_among_negative": 0.329,
+    "share_in_positive_reviews": 0.162
+  },
+  {
+    "type": "가격",
+    "category": "가격·혜택",
+    "difficulty": 3,
+    "reviews": 655,
+    "share_of_negative": 0.024,
+    "one_star_among_negative": 0.405,
+    "share_in_positive_reviews": 0.284
+  },
+  {
+    "type": "냄새",
+    "category": "제품·품질",
+    "difficulty": 2,
+    "reviews": 547,
+    "share_of_negative": 0.024,
+    "one_star_among_negative": 0.388,
+    "share_in_positive_reviews": 0.133
+  },
+  {
+    "type": "오배송·누락",
+    "category": "배송·이행",
+    "difficulty": 1,
+    "reviews": 396,
+    "share_of_negative": 0.017,
+    "one_star_among_negative": 0.449,
+    "share_in_positive_reviews": 0.157
+  },
+  {
+    "type": "성능",
+    "category": "제품·품질",
+    "difficulty": 3,
+    "reviews": 268,
+    "share_of_negative": 0.012,
+    "one_star_among_negative": 0.366,
+    "share_in_positive_reviews": 0.134
+  },
+  {
+    "type": "효과 없음",
+    "category": "제품·품질",
+    "difficulty": 3,
+    "reviews": 308,
+    "share_of_negative": 0.012,
+    "one_star_among_negative": 0.379,
+    "share_in_positive_reviews": 0.237
+  },
+  {
+    "type": "문의·연락",
+    "category": "응대·서비스",
+    "difficulty": 2,
+    "reviews": 159,
+    "share_of_negative": 0.008,
+    "one_star_among_negative": 0.51,
+    "share_in_positive_reviews": 0.038
+  },
+  {
+    "type": "매장 응대",
+    "category": "응대·서비스",
+    "difficulty": 2,
+    "reviews": 113,
+    "share_of_negative": 0.006,
+    "one_star_among_negative": 0.372,
+    "share_in_positive_reviews": 0.0
+  },
+  {
+    "type": "배송비",
+    "category": "가격·혜택",
+    "difficulty": 2,
+    "reviews": 61,
+    "share_of_negative": 0.003,
+    "one_star_among_negative": 0.365,
+    "share_in_positive_reviews": 0.148
+  },
+  {
+    "type": "정보 불일치",
+    "category": "사용성",
+    "difficulty": 1,
+    "reviews": 64,
+    "share_of_negative": 0.003,
+    "one_star_among_negative": 0.327,
+    "share_in_positive_reviews": 0.141
+  },
+  {
+    "type": "품질 편차",
+    "category": "제품·품질",
+    "difficulty": 2,
+    "reviews": 66,
+    "share_of_negative": 0.003,
+    "one_star_among_negative": 0.411,
+    "share_in_positive_reviews": 0.152
+  },
+  {
+    "type": "환불·취소",
+    "category": "가격·혜택",
+    "difficulty": 2,
+    "reviews": 44,
+    "share_of_negative": 0.002,
+    "one_star_among_negative": 0.524,
+    "share_in_positive_reviews": 0.045
+  }
+]

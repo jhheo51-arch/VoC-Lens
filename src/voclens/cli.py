@@ -195,6 +195,53 @@ def cmd_label(args, settings) -> int:
     return 0
 
 
+def cmd_eval(args, settings) -> int:
+    import pandas as pd
+
+    from voclens import evaluation as ev
+    from voclens import labeling
+
+    out = Path(args.out) if args.out else None
+    if args.action == "kote":
+        df = ev.read_kote(args.input)
+        result = ev.evaluate_emotions(df["text"].tolist(), df["labels"].tolist())
+        pol = result["polarity"]
+        print(f"KOTE {result['n']:,}문장 · 감정 표현 검출 {result['coverage']:.1%}")
+        print(f"극성: AUC {pol['auc']} · 판단한 비율 {pol['called_share']:.1%} · 판단했을 때 정확도 {pol['accuracy_when_called']:.1%}"
+              f" (긍정 {pol['accuracy_positive']:.1%}, 부정 {pol['accuracy_negative']:.1%})")
+        _print_table([{"감정": k, **v} for k, v in result["per_emotion"].items()])
+        print(f"감정 macro F1 {result['macro_f1']} · '없음' 문장에 감정이 걸린 비율 {result['none_false_hit']:.1%}")
+    elif args.action == "ratings":
+        df = ev.read_shopping(args.input, args.split)
+        if args.n:
+            df = pd.concat([g.sample(min(args.n, len(g)), random_state=0) for _, g in df.groupby("rating")])
+        result = ev.evaluate_ratings(df, settings, domain=args.domain)
+        print(f"리뷰 {result['n']:,}건 ({args.split or '전체'}) · 분류 기준 v{result['taxonomy_version']}")
+        print(f"리뷰 평균 Valence로 4~5점 vs 1~2점 구분 AUC {result['auc_valence_vs_rating']}")
+        _print_table([{"별점": k, "불만 유형이 붙은 리뷰": f"{v:.1%}"} for k, v in result["complaint_rate_by_rating"].items()])
+        _print_table([{"불만 유형 (1~2점 리뷰)": k, "비율": f"{v:.1%}"} for k, v in list(result["negative_review_mix"].items())[:15]])
+    elif args.action == "prepare":
+        df = ev.sample_eval_clauses(ev.read_shopping(args.input, "test"), per_rating=args.per_rating)
+        target = out or Path("data/labeling/eval_tasks.json")
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(json.dumps(ev.to_eval_tasks(df), ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"평가용 리뷰에서 무작위로 절 {len(df)}개 → {target} (별점별 {args.per_rating}건, 모델 예측은 숨김)")
+        print("원문이 들어 있으니 저장소에 올리지 마세요 (data/ 는 .gitignore).")
+        return 0
+    else:
+        gold = labeling.read_label_studio_export(args.input)
+        shopping = ev.read_shopping(args.shopping)
+        result = ev.evaluate_gold(gold, ev.predict_units(gold["unit_id"].tolist(), shopping, settings, args.domain))
+        a, m = result["any_complaint"], result["micro"]
+        print(f"평가 절 {result['n']}개 (보류 {result['held']}개 제외)")
+        print(f"불만 여부: 정밀도 {a['precision']} · 재현율 {a['recall']} · F1 {a['f1']}")
+        print(f"불만 유형: micro F1 {m['f1']} · macro F1 {result['macro_f1']}")
+        _print_table([{"유형": k, **v} for k, v in sorted(result["per_label"].items(), key=lambda kv: -kv[1]["support"])])
+    if out:
+        print(f"결과 저장 → {ev.save_result(result, out)}")
+    return 0
+
+
 def cmd_report(args, settings) -> int:
     from voclens.cx.report import build_report
     from voclens.store import db
@@ -275,6 +322,17 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--embed", action="store_true", help="prepare: 임베딩 Zero-shot 유사도 차이로 고름 (pip install -e .[nlp])")
     p.add_argument("--with-text", action="store_true", help="import: CSV에 원문도 넣음 (외부 데이터는 넣지 말 것)")
     p.set_defaults(func=cmd_label)
+
+    p = sub.add_parser("eval", help="공개 실제 데이터로 기준선 평가: KOTE 감정, 네이버 쇼핑 별점, 직접 라벨링한 평가 세트")
+    p.add_argument("action", choices=["kote", "ratings", "prepare", "gold"])
+    p.add_argument("input", help="kote: KOTE tsv / ratings·prepare: naver_shopping.txt / gold: Label Studio 내보내기 JSON")
+    p.add_argument("--shopping", default="data/external/naver_shopping/naver_shopping.txt", help="gold: naver_shopping.txt 경로")
+    p.add_argument("--split", choices=["dev", "test"], help="ratings: 개발용(80%%) 또는 평가용(20%%)만")
+    p.add_argument("--n", type=int, help="ratings: 별점마다 무작위로 n건만")
+    p.add_argument("--per-rating", type=int, default=50, help="prepare: 별점마다 뽑을 리뷰 수 (리뷰당 절 2개까지)")
+    p.add_argument("--domain", default="product", help="ratings·gold: 분류 기준 도메인")
+    p.add_argument("--out", help="결과 JSON 경로 (원문 없이 지표만). prepare: 작업 JSON 경로")
+    p.set_defaults(func=cmd_eval)
 
     p = sub.add_parser("query", help="저장된 SQL 집계 쿼리 실행")
     p.add_argument("name", nargs="?")

@@ -104,3 +104,13 @@ def test_cli_label_flow(tmp_path, capsys):
     assert main(["label", "import", str(export), "--out", str(tmp_path / "l.csv")]) == 0
     assert main(["label", "agreement", str(export), str(export)]) == 0
     assert "macro κ 1.0" in capsys.readouterr().out
+
+
+def test_label_studio_config_has_every_taxonomy_label():
+    import re
+
+    from voclens.text.taxonomy import Taxonomy
+
+    config = (REPO_ROOT / "labeling" / "label_studio_config.xml").read_text(encoding="utf-8")
+    choices = set(re.findall(r'<Choice value="([^"]+)"', config))
+    assert set(Taxonomy.load().subcategories) <= choices

@@ -16,7 +16,6 @@
 from __future__ import annotations
 
 import numpy as np
-from scipy.stats import percentileofscore
 
 from voclens.schema import INDEX_NAMES, IndexSummary, Session, Unit
 
@@ -116,7 +115,12 @@ def assign_percentiles(sessions: list[Session]) -> None:
             values = [s.indices[name].raw for s in group if name in s.indices and s.indices[name].raw is not None]
             if not values:
                 continue
+            # percentileofscore(kind="mean")와 같은 값: (x보다 작은 수 + x 이하인 수) / 2n. 정렬해 두면 세션이 많아도 빠르다
+            ordered = np.sort(np.asarray(values, dtype=float))
+            n = len(ordered)
             for s in group:
                 summary = s.indices.get(name)
                 if summary and summary.raw is not None:
-                    summary.percentile = round(float(percentileofscore(values, summary.raw, kind="mean")), 1)
+                    below = np.searchsorted(ordered, summary.raw, side="left")
+                    at_or_below = np.searchsorted(ordered, summary.raw, side="right")
+                    summary.percentile = round(float((below + at_or_below) * 50.0 / n), 1)

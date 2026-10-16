@@ -143,7 +143,7 @@ def test_cx_explain_respects_exclude():
 # --- 분석 기준 ---
 
 def test_criteria_tables_come_from_configs():
-    assert len(criteria.taxonomy_table()) == 21
+    assert len(criteria.taxonomy_table()) == 31
     assert set(criteria.emotion_table()["감정"]) == {"기쁨", "슬픔", "분노", "불안", "놀람", "혐오", "중립"}
     assert len(criteria.signal_table()) >= 8
     assert "0.4" in " ".join(criteria.call_rules())        # repeat_similarity 설정값이 문장에 들어간다

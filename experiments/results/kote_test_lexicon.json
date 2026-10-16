@@ -1,0 +1,60 @@
+{
+  "n": 5000,
+  "coverage": 0.437,
+  "polarity": {
+    "n": 3465,
+    "positive_share": 0.344,
+    "auc": 0.71,
+    "called_share": 0.394,
+    "accuracy_when_called": 0.725,
+    "accuracy_all": 0.285,
+    "accuracy_negative": 0.565,
+    "accuracy_positive": 0.912
+  },
+  "per_emotion": {
+    "기쁨": {
+      "precision": 0.773,
+      "recall": 0.417,
+      "f1": 0.542,
+      "support": 2705,
+      "predicted": 1459
+    },
+    "슬픔": {
+      "precision": 0.818,
+      "recall": 0.123,
+      "f1": 0.213,
+      "support": 2664,
+      "predicted": 400
+    },
+    "분노": {
+      "precision": 0.922,
+      "recall": 0.061,
+      "f1": 0.115,
+      "support": 2916,
+      "predicted": 193
+    },
+    "혐오": {
+      "precision": 0.625,
+      "recall": 0.005,
+      "f1": 0.009,
+      "support": 2153,
+      "predicted": 16
+    },
+    "불안": {
+      "precision": 0.815,
+      "recall": 0.025,
+      "f1": 0.049,
+      "support": 2088,
+      "predicted": 65
+    },
+    "놀람": {
+      "precision": 0.667,
+      "recall": 0.015,
+      "f1": 0.03,
+      "support": 2215,
+      "predicted": 51
+    }
+  },
+  "macro_f1": 0.16,
+  "none_false_hit": 0.167
+}

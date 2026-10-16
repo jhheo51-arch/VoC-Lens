@@ -1,4 +1,4 @@
-<!-- Label Studio 설정: 절 단위 불만 유형 다중 라벨링
+<!-- Label Studio 설정: 절 단위 불만 유형 다중 라벨링 (배달 도메인 + 제품·쇼핑 도메인)
      가져올 데이터 형식: [{"data": {"text": "...", "review": "...", "zero_shot": "...", "margin": 0.03}}] -->
 <View>
   <Header value="리뷰 전체 (참고용)"/>
@@ -25,6 +25,21 @@
     <Choice value="요청 미반영"/>
     <Choice value="앱·결제 오류"/>
     <Choice value="정보 불일치"/>
+    <!-- 제품·온라인 쇼핑 (분류 기준 v0.3) -->
+    <Choice value="제품 불량"/>
+    <Choice value="품질·마감"/>
+    <Choice value="품질 편차"/>
+    <Choice value="성능"/>
+    <Choice value="배터리"/>
+    <Choice value="효과 없음"/>
+    <Choice value="사용 편의"/>
+    <Choice value="사이즈·색상"/>
+    <Choice value="냄새"/>
+    <Choice value="맛·신선도"/>
+    <Choice value="배송 지연"/>
+    <Choice value="오배송·누락"/>
+    <Choice value="포장·파손"/>
+    <Choice value="배송비"/>
     <Choice value="칭찬"/>
     <Choice value="해당 없음"/>
     <Choice value="분류 불가"/>

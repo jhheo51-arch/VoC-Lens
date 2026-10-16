@@ -27,6 +27,9 @@ def add_evidence(units: pd.DataFrame, domain: str | None = None, text_col: str =
     texts = df[text_col].fillna("").astype(str)
     valences = df[valence_col].fillna(0.0).astype(float) if valence_col in df else pd.Series(0.0, index=df.index)
     df["감정 근거"] = texts.map(emotion.explain)
-    df["불만 근거"] = [taxonomy.explain(t, v, domain) for t, v in zip(texts, valences)]
+    # 같은 세션의 앞 문장과 이어 볼 때만 걸리는 불만 표현("블루를 샀는데" + "블랙이 왔어요")도 근거로 보여 준다
+    sessions = df["session_id"].tolist() if "session_id" in df else [None] * len(df)
+    prevs = [texts.iloc[i - 1] if i and sessions[i] is not None and sessions[i] == sessions[i - 1] else "" for i in range(len(df))]
+    df["불만 근거"] = [taxonomy.explain(t, v, domain, p) for t, v, p in zip(texts, valences, prevs)]
     df["신호 근거"] = texts.map(cx.explain)
     return df

@@ -78,3 +78,15 @@ def test_assign_percentiles_within_channel():
     assign_percentiles(sessions)
     stress = [s.indices["stress"].percentile for s in sessions]
     assert stress[0] > stress[1] >= stress[2]
+
+
+def test_fast_percentile_matches_scipy():
+    import numpy as np
+    from scipy.stats import percentileofscore
+
+    rng = np.random.default_rng(0)
+    values = list(rng.integers(0, 20, 200).astype(float))
+    ordered = np.sort(values)
+    for x in (0.0, 5.0, 19.0, 7.5):
+        fast = (np.searchsorted(ordered, x, "left") + np.searchsorted(ordered, x, "right")) * 50.0 / len(ordered)
+        assert round(fast, 6) == round(percentileofscore(values, x, kind="mean"), 6)

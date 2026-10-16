@@ -71,6 +71,25 @@ def _compile(patterns: list[str]) -> re.Pattern | None:
     return re.compile("|".join(f"(?:{p})" for p in patterns)) if patterns else None
 
 
+# 불만 표현 바로 뒤가 부정이면 불만이 아니다: "불량이 없습니다", "벗겨지지 않고", "상한 거 없이", "새지 않게"
+_NEGATED_AFTER = re.compile(r"^\s?(이|가|은|는|도|된|난|진|한|지)?\s?(거|것|건|게|곳|데)?\s?(하나도|전혀)?\s?(없|않|안\s?(나|생기|보이|됐|되))")
+
+
+def _search(pattern: re.Pattern | None, text: str, prev: str = "") -> re.Match | None:
+    """부정되지 않은 첫 매치. prev(앞 절)를 주면 앞 절과 이어 붙였을 때 경계에 걸치는 매치도 찾는다
+    ("블루를 샀는데" + "블랙이 왔어요" → 오배송). 앞 절 안에서 끝나는 매치는 앞 절 몫이라 세지 않는다."""
+    if pattern is None:
+        return None
+    offset = len(prev) + 1 if prev else 0
+    joined = f"{prev} {text}" if prev else text
+    for m in pattern.finditer(joined):
+        if m.end() <= offset:
+            continue
+        if not _NEGATED_AFTER.search(joined[m.end() : m.end() + 12]):
+            return m
+    return None
+
+
 class KeywordTaxonomyClassifier:
     name = "keyword-v0.1"
 
@@ -84,14 +103,15 @@ class KeywordTaxonomyClassifier:
         domains = self.taxonomy.subcategories[label].get("domains")
         return domain is None or not domains or domain in domains
 
-    def classify(self, text: str, valence: float, domain: str | None = None) -> list[tuple[str, float]]:
+    def classify(self, text: str, valence: float, domain: str | None = None, prev: str = "") -> list[tuple[str, float]]:
         """(소분류, 강도) 목록. 강도 1.0 = 불만 표현, 0.5 = 주제 + 부정 감정.
 
         domain을 주면 다른 도메인 전용 소분류는 쓰지 않는다 (제품 영상의 "충전이 오래 걸려"가 배달 지연이 되지 않게).
+        prev는 같은 리뷰의 앞 절. 절 경계에 걸친 불만 표현을 이 절에 붙인다.
         """
         hits: dict[str, float] = {}
         for label, pattern in self._complaint.items():
-            if pattern and self._in_domain(label, domain) and pattern.search(text):
+            if self._in_domain(label, domain) and _search(pattern, text, prev):
                 hits[label] = 1.0
         if valence < 0:
             for label, pattern in self._topic.items():
@@ -99,12 +119,12 @@ class KeywordTaxonomyClassifier:
                     hits[label] = 0.5
         return sorted(hits.items(), key=lambda kv: -kv[1])
 
-    def explain(self, text: str, valence: float, domain: str | None = None) -> str:
+    def explain(self, text: str, valence: float, domain: str | None = None, prev: str = "") -> str:
         """불만 유형 판단 근거. 예: "누락·오배송 ← '빠져 있'(불만 표현)", "가격 ← '가격'(주제 + 부정 감성)"."""
         domain = normalize_domain(domain)
         parts = []
         for label, pattern in self._complaint.items():
-            if pattern and self._in_domain(label, domain) and (m := pattern.search(text)):
+            if self._in_domain(label, domain) and (m := _search(pattern, text, prev)):
                 parts.append(f"{label} ← '{m.group(0)}'(불만 표현)")
         if valence < 0:
             found = {p.split(" ←")[0] for p in parts}
@@ -122,10 +142,12 @@ class KeywordTaxonomyClassifier:
     def predict(self, units: list[Unit], domain: str | None = None) -> list[Unit]:
         tx = self.taxonomy
         domain = normalize_domain(domain)
+        prev, prev_session = "", None
         for unit in units:
             text = unit.clean_text or unit.text
             valence = unit.valence or 0.0
-            hits = self.classify(text, valence, domain)
+            hits = self.classify(text, valence, domain, prev if unit.session_id == prev_session else "")
+            prev, prev_session = text, unit.session_id
 
             if hits:
                 unit.complaint_categories = [label for label, _ in hits]
