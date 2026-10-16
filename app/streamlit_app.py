@@ -30,7 +30,7 @@ PAGES = ["홈", "직접 분석", "분석 기준"]
 # 홈 안의 탭: 직접 분석을 하면 나오는 결과 화면을 합성 데이터로 미리 보여준다
 HOME_TABS = ["요약", "리뷰", "상담", "영상", "채널 비교"]
 EVENT_INDEX_LABELS = {"valence": "감성", "stress": "스트레스"}
-DOMAINS = {"배달": "delivery", "제품": "product"}
+DOMAINS = {"배달": "delivery", "온라인 쇼핑·제품": "product"}
 DISCLAIMER = "모든 지수는 자동 추정치입니다. 의료적 진단, 채용 평가, 직원 감시, 개인 평가에 쓸 수 없습니다."
 
 st.set_page_config(page_title="VoC Lens", layout="wide")
@@ -491,7 +491,8 @@ def upload_review_tab():
     with c[3]:
         brand_col = pick("브랜드 열", {"brand", "브랜드", "store_name", "가게"}, "up_review_brand")
     with c[4]:
-        domain = DOMAINS[st.selectbox("도메인", list(DOMAINS), key="up_review_domain")]
+        domain = DOMAINS[st.selectbox("도메인", list(DOMAINS), key="up_review_domain",
+                                      help="배달: 배달 지연·누락·온도 등 / 온라인 쇼핑·제품: 배송 지연·오배송·품질·사이즈 등")]
     if st.button("리뷰 분석", type="primary", key="up_review_run"):
         conn = upload.new_db()
         try:
@@ -509,6 +510,7 @@ def upload_review_tab():
         conn, notes, domain = st.session_state["up_review"]
         _show_notes(notes)
         st.subheader("분석 결과")
+        st.caption(criteria.domain_reliability(domain))
         page_review(conn, k="upres_", domain=domain, show_brand_filter=len(data.brands(conn, "review")) > 1)
         units = pd.read_sql_query("SELECT u.session_id, u.text, u.valence, u.arousal, u.aspect, u.journey_stage, u.scores_json, u.cx_signals_json FROM units u", conn)
         st.download_button("절별 결과 CSV 내려받기", units.to_csv(index=False).encode("utf-8-sig"), "voclens_review_units.csv", "text/csv", key="up_review_dl")
@@ -644,7 +646,7 @@ def page_criteria():
     st.header("분석 기준")
     st.markdown("모든 판단은 아래 규칙과 사전으로 합니다. 표는 실제 설정 파일(`configs/`)에서 바로 만들어서 분석 결과와 항상 같습니다. "
                 "지금은 사전·규칙 기반 기준선이며, 라벨 데이터가 생기면 학습 모델로 바꾸고 정확도를 비교합니다.")
-    tabs = st.tabs(["감정·지수", "리뷰", "상담", "영상", "CX 지표"])
+    tabs = st.tabs(["감정·지수", "리뷰", "상담", "영상", "CX 지표", "정확도"])
     with tabs[0]:
         st.subheader("감정: 7감정 → 감성(V)·각성(A)")
         st.markdown("\n".join(f"- {r}" for r in criteria.emotion_rules()))
@@ -682,6 +684,16 @@ def page_criteria():
     with tabs[4]:
         st.subheader("CX 지표 추정과 채널 비교")
         st.markdown("\n".join(f"- {r}" for r in criteria.cx_rules()))
+    with tabs[5]:
+        st.subheader("실제 데이터로 잰 정확도")
+        st.markdown("공개 실제 데이터(네이버 쇼핑 리뷰 20만 건, KOTE 댓글 5만 문장)로 기준선이 어디까지 맞는지 쟀습니다. "
+                    "[평가 문서](https://github.com/jhheo51-arch/VoC-Lens/blob/main/docs/evaluation.md)")
+        # 작은 표라 st.table로 그린다 (숨겨진 탭 안의 st.dataframe은 처음에 폭이 0으로 잡히는 경우가 있다)
+        st.table(criteria.accuracy_summary().set_index("평가"))
+        st.subheader("불만 유형별 (온라인 쇼핑, 분류 기준 v0.3.0)")
+        by_type = criteria.accuracy_by_type().set_index("불만 유형")
+        st.table(by_type.style.format({c: lambda v: "—" if pd.isna(v) else f"{v:.2f}" for c in ("정밀도", "재현율", "F1")}))
+        st.markdown("\n".join(f"- {r}" for r in criteria.accuracy_notes()))
 
 
 if page == "홈":

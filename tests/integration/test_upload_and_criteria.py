@@ -184,3 +184,13 @@ def test_upload_page_samples_run(monkeypatch):
     at.button(key="up_video_run").click().run()
     assert not at.exception, [e.value for e in at.exception]
     assert "up_video" in at.session_state
+
+
+def test_accuracy_tables_come_from_result_files():
+    summary = criteria.accuracy_summary()
+    assert len(summary) >= 4 and summary["결과"].str.contains("정밀도").any()
+    by_type = criteria.accuracy_by_type()
+    assert (by_type["정답 절"] >= criteria.GOLD_MIN_SUPPORT).all() and "품질·마감" in set(by_type["불만 유형"])
+    assert "실제 불만 문장" in criteria.domain_reliability("product")
+    assert "아직" in criteria.domain_reliability("delivery")
+    assert any("Claude" in n for n in criteria.accuracy_notes())

@@ -156,3 +156,79 @@ def cx_rules() -> list[str]:
         f"채널 비교: 원점수 대신 불만 유형 구성비(채널 안 합계 100%). 조용한 불만 = 다른 채널 비중 10% 이상이면서 리뷰의 2배 이상, 언급 2건 이상. 채널 불만 언급이 {SMALL_CHANNEL_MENTIONS}건 미만이면 표본 적음.",
         "도메인이 다른 데이터(배달·제품)끼리는 비교하지 않는다.",
     ]
+
+
+# ---------- 실제 데이터 정확도 (experiments/results 의 평가 결과 파일에서) ----------
+
+RESULTS = "experiments/results"
+GOLD_MIN_SUPPORT = 4      # 정답 절이 이보다 적은 유형은 표에서 뺀다 (표본이 너무 작다)
+
+
+def _result(name: str) -> dict | list | None:
+    import json
+
+    from voclens.config import REPO_ROOT
+
+    path = REPO_ROOT / RESULTS / name
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
+
+
+def accuracy_summary() -> pd.DataFrame:
+    """평가별 핵심 수치 한 줄씩. 결과 파일이 없으면 빈 표."""
+    rows = []
+    old, new = _result("shopping_gold_v0.2.1.json"), _result("shopping_gold_v0.3.0.json")
+    if new:
+        a = new["any_complaint"]
+        rows.append(("불만 여부 (절 단위)", f"네이버 쇼핑 평가 세트 {new['n']}개 절",
+                     f"정밀도 {a['precision']:.2f} · 재현율 {a['recall']:.2f} · F1 {a['f1']:.2f}",
+                     f"이전 기준 v0.2.1: F1 {old['any_complaint']['f1']:.2f}" if old else ""))
+        rows.append(("불만 유형 (절 단위)", f"같은 평가 세트", f"micro F1 {new['micro']['f1']:.2f} · macro F1 {new['macro_f1']:.2f}",
+                     f"이전 기준 v0.2.1: micro F1 {old['micro']['f1']:.2f}" if old else ""))
+    r_old, r_new = _result("shopping_test_ratings_v0.2.1.json"), _result("shopping_test_ratings_v0.3.0.json")
+    if r_new:
+        neg = r_new["complaint_rate_by_rating"]
+        rows.append(("불만 검출률 (리뷰 단위, 별점 대리 지표)", f"네이버 쇼핑 평가용 {r_new['n']:,}건",
+                     f"1점 리뷰 {neg['1']:.0%} · 2점 리뷰 {neg['2']:.0%}에 불만 유형이 붙음",
+                     f"이전 기준: 1점 {r_old['complaint_rate_by_rating']['1']:.0%} · 2점 {r_old['complaint_rate_by_rating']['2']:.0%}" if r_old else ""))
+        rows.append(("감성 방향 (리뷰 단위)", "같은 데이터", f"고득점(4·5점)·저득점(1·2점) 구분 AUC {r_new['auc_valence_vs_rating']:.2f}", ""))
+    kote = _result("kote_test_lexicon.json")
+    if kote:
+        p = kote["polarity"]
+        rows.append(("감정 극성 (문장 단위)", f"KOTE 댓글 {kote['n']:,}문장",
+                     f"판단한 문장의 {p['accuracy_when_called']:.0%} 정확 (긍정 {p['accuracy_positive']:.0%}, 부정 {p['accuracy_negative']:.0%})",
+                     f"감정 표현이 걸린 문장 {kote['coverage']:.0%}"))
+    return pd.DataFrame(rows, columns=["평가", "데이터", "결과", "비교·참고"])
+
+
+def accuracy_by_type() -> pd.DataFrame:
+    """불만 유형별 정밀도·재현율 (평가 세트, 정답 절 GOLD_MIN_SUPPORT개 이상)."""
+    new = _result("shopping_gold_v0.3.0.json")
+    if not new:
+        return pd.DataFrame(columns=["불만 유형", "정답 절", "정밀도", "재현율", "F1", "읽는 법"])
+    rows = []
+    for label, m in new["per_label"].items():
+        if m["support"] < GOLD_MIN_SUPPORT:
+            continue
+        recall = m["recall"] or 0.0
+        note = "잘 잡는 편" if recall >= 0.5 else "절반 넘게 놓침" if recall >= 0.2 else "대부분 놓침 — 결과보다 실제가 많을 수 있음"
+        rows.append((label, m["support"], m["precision"], m["recall"], m["f1"], note))
+    return pd.DataFrame(rows, columns=["불만 유형", "정답 절", "정밀도", "재현율", "F1", "읽는 법"]).sort_values("정답 절", ascending=False)
+
+
+def accuracy_notes() -> list[str]:
+    return [
+        "규칙은 네이버 쇼핑 리뷰의 개발용 80%만 보고 고쳤고, 수치는 규칙을 고칠 때 보지 않은 평가용 20%에서 냈습니다.",
+        "평가 세트 정답은 규칙과 예측을 보지 못한 Claude 라벨러 두 개가 붙였습니다(일치도 κ 0.96). 같은 모델이라 사람 둘보다 일치도가 높게 나오며, 사람 검수는 진행 중입니다.",
+        "정밀도는 '불만이라고 판단한 것 중 맞은 비율', 재현율은 '실제 불만 중 잡아낸 비율'입니다. 지금 기준선은 정밀도는 높고 재현율은 낮습니다. 결과에 나온 불만은 대체로 믿을 만하지만, 나오지 않은 불만도 있을 수 있습니다.",
+        "배달 도메인은 아직 실제 데이터로 정확도를 재지 못했습니다(합성 데이터로만 확인).",
+    ]
+
+
+def domain_reliability(domain: str | None) -> str:
+    """직접 분석 결과 옆에 보여 줄 신뢰도 안내 한 줄."""
+    new = _result("shopping_gold_v0.3.0.json")
+    if domain == "product" and new:
+        a = new["any_complaint"]
+        return (f"온라인 쇼핑 리뷰 평가 기준: 불만이라고 판단한 문장의 {a['precision']:.0%}가 실제 불만이었고, 실제 불만 문장의 {a['recall']:.0%}를 잡았습니다. "
+                "불만 유형 비율은 실제보다 낮게 나올 수 있습니다. 자세한 내용은 '분석 기준 → 정확도' 탭에 있습니다.")
+    return "배달 도메인은 실제 데이터로 정확도를 아직 재지 못했습니다. 결과는 사전·규칙 기반 추정치입니다."
