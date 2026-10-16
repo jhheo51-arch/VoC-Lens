@@ -124,3 +124,34 @@ def test_cli_eval_ratings_and_prepare(tmp_path, capsys):
     assert "원문이 들어 있으니" in capsys.readouterr().out
     # prepare는 평가용(test) 분할만 쓴다. 20줄 중 평가용이 없으면 빈 목록이어도 된다
     assert isinstance(json.loads(tasks.read_text(encoding="utf-8")), list)
+
+
+def test_read_gold_plain_list_and_old_taxonomy(tmp_path):
+    import json
+
+    import yaml
+
+    from voclens.config import load_yaml
+
+    path = tmp_path / "gold.json"
+    path.write_text(json.dumps([{"unit_id": "u1", "labels": ["냄새"], "hold": False, "memo": ""},
+                                {"unit_id": "u2", "labels": ["칭찬"]}], ensure_ascii=False), encoding="utf-8")
+    gold = ev.read_gold(path)
+    assert gold["hold"].tolist() == [False, False] and gold["labels"].tolist()[0] == ["냄새"]
+
+    old = load_yaml("taxonomy.yaml")
+    old["version"] = "0.0-test"
+    old["subcategories"] = {k: v for k, v in old["subcategories"].items() if k != "냄새"}
+    tpath = tmp_path / "old.yaml"
+    tpath.write_text(yaml.safe_dump(old, allow_unicode=True), encoding="utf-8")
+    models = ev.models_with_taxonomy(tpath)
+    assert ev.taxonomy_version(models) == "0.0-test"
+    result = ev.evaluate_ratings(ev.read_shopping(_shopping(tmp_path)), load_settings(), models=models)
+    assert result["taxonomy_version"] == "0.0-test" and "냄새" not in result["negative_review_mix"]
+
+
+def test_never_predicted_label_counts_as_zero_f1():
+    gold = pd.DataFrame({"unit_id": ["a", "b"], "labels": [["성능"], ["냄새"]], "hold": [False, False]})
+    result = ev.evaluate_gold(gold, {"a": [], "b": ["냄새"]})
+    assert result["per_label"]["성능"]["f1"] == 0.0
+    assert result["macro_f1"] == 0.5

@@ -68,7 +68,8 @@ def auc(scores, positive) -> float | None:
 def prf(tp: int, fp: int, fn: int) -> dict:
     p = tp / (tp + fp) if tp + fp else None
     r = tp / (tp + fn) if tp + fn else None
-    f = 2 * p * r / (p + r) if p and r else (0.0 if p is not None and r is not None else None)
+    # 정답이 있는데 한 번도 맞히지 못하면(재현율 0) 정밀도를 못 구해도 F1은 0으로 센다 (macro 평균이 부풀지 않게)
+    f = None if r is None else (2 * p * r / (p + r) if p and r else 0.0)
     return {"precision": _r(p), "recall": _r(r), "f1": _r(f), "support": tp + fn, "predicted": tp + fp}
 
 
@@ -153,6 +154,26 @@ def read_shopping(path: str | Path, split: str | None = None) -> pd.DataFrame:
     return df[df["split"] == split].reset_index(drop=True) if split else df
 
 
+def models_with_taxonomy(path: str | Path) -> ReviewModels:
+    """분류 기준 YAML 파일을 바꿔 끼운 리뷰 모델 묶음. 이전 버전과 같은 데이터로 비교할 때 쓴다."""
+    import yaml
+
+    from voclens.text.journey import JourneyTagger
+    from voclens.text.taxonomy import KeywordTaxonomyClassifier, Taxonomy
+
+    data = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
+    tx = Taxonomy.load(data)
+    models = ReviewModels.default()
+    models.taxonomy_version = str(data.get("version"))
+    models.taxonomy = KeywordTaxonomyClassifier(tx)
+    models.journey = JourneyTagger(taxonomy=tx)
+    return models
+
+
+def taxonomy_version(models: ReviewModels | None = None) -> str:
+    return getattr(models, "taxonomy_version", None) or str(load_yaml("taxonomy.yaml").get("version"))
+
+
 def analyze_shopping(df: pd.DataFrame, settings: dict, domain: str = "product", models: ReviewModels | None = None):
     local = {**settings, "review": {**settings["review"], "domain": domain}}
     records = [ReviewRecord(source_id=f"ns{r.line}", text=r.text, rating=float(r.rating)) for r in df.itertuples()]
@@ -184,7 +205,7 @@ def evaluate_ratings(df: pd.DataFrame, settings: dict, domain: str = "product", 
     mix = Counter(l for ls in neg["labels"] for l in ls)
     return {
         "n": len(r),
-        "taxonomy_version": str(load_yaml("taxonomy.yaml").get("version")),
+        "taxonomy_version": taxonomy_version(models),
         "auc_valence_vs_rating": _r(auc(r["valence"], r["rating"] >= 4)),
         "complaint_rate_by_rating": {int(k): _r(v) for k, v in r.groupby("rating")["has"].mean().items()},
         "negative_review_mix": {k: _r(v / len(neg)) for k, v in mix.most_common()} if len(neg) else {},
@@ -229,7 +250,21 @@ def predict_units(unit_ids: list[str], shopping: pd.DataFrame, settings: dict, d
     return {uid: pred.get(uid, []) for uid in unit_ids}
 
 
-def evaluate_gold(gold: pd.DataFrame, pred: dict[str, list[str]], ignore: tuple[str, ...] = ("칭찬", "분류 불가")) -> dict:
+def read_gold(path: str | Path) -> pd.DataFrame:
+    """정답 라벨 읽기. Label Studio 내보내기 JSON 또는 [{"unit_id", "labels", "hold", "memo"}] 목록 둘 다 받는다."""
+    from voclens.labeling import read_label_studio_export
+
+    data = json.loads(Path(path).read_text(encoding="utf-8"))
+    if data and ("annotations" in data[0] or "data" in data[0]):
+        return read_label_studio_export(path)
+    df = pd.DataFrame(data)
+    df["hold"] = df.get("hold", False)
+    df["hold"] = df["hold"].fillna(False).astype(bool)
+    df["memo"] = df.get("memo", "")
+    return df[["unit_id", "labels", "hold", "memo"]]
+
+
+def evaluate_gold(gold: pd.DataFrame, pred: dict[str, list[str]], ignore: tuple[str, ...] = ("칭찬", "분류 불가", "해당 없음")) -> dict:
     """gold: read_label_studio_export 결과(unit_id, labels, hold). 보류한 절은 뺀다.
 
     불만 유형별 정밀도·재현율·F1, micro/macro 평균, '불만이 있나 없나' 이진 검출 지표를 낸다.

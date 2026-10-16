@@ -71,6 +71,8 @@ voclens label agreement labeling/export/round1.json labeling/export/round1_reche
 - 라벨링 화면의 예측 칸은 "(평가용: 숨김)"으로 나온다. 예측을 보고 라벨을 붙이지 않기 위해서다.
 - 도메인은 제품이다. 배달 전용 유형(배달 지연, 누락·오배송, 포장 상태 등)이 아니라 제품 유형(배송 지연, 오배송·누락, 포장·파손 등)을 고른다.
 - 위의 기본 규칙과 판정 사례를 그대로 따른다. 별점은 보지 않는다(Label Studio 화면에도 없다).
+- 유형 정의는 [label_definitions_product.md](label_definitions_product.md)를 쓴다. 분류 규칙의 정규식은 보지 않는다.
+- 현재 정답(`labeling/eval/naver_shopping_eval_labels_A.json`, `_B.json`)은 규칙을 보지 못한 Claude 라벨러 두 개가 붙였다. 사람이 일부를 다시 라벨링해 `voclens label agreement`로 일치도를 재는 것이 다음 검증 단계다.
 
 ```bash
 python scripts/fetch_public_data.py naver_shopping

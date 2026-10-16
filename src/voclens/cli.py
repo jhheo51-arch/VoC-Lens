@@ -199,9 +199,9 @@ def cmd_eval(args, settings) -> int:
     import pandas as pd
 
     from voclens import evaluation as ev
-    from voclens import labeling
 
     out = Path(args.out) if args.out else None
+    models = ev.models_with_taxonomy(args.taxonomy) if args.taxonomy else None
     if args.action == "kote":
         df = ev.read_kote(args.input)
         result = ev.evaluate_emotions(df["text"].tolist(), df["labels"].tolist())
@@ -215,7 +215,7 @@ def cmd_eval(args, settings) -> int:
         df = ev.read_shopping(args.input, args.split)
         if args.n:
             df = pd.concat([g.sample(min(args.n, len(g)), random_state=0) for _, g in df.groupby("rating")])
-        result = ev.evaluate_ratings(df, settings, domain=args.domain)
+        result = ev.evaluate_ratings(df, settings, domain=args.domain, models=models)
         print(f"리뷰 {result['n']:,}건 ({args.split or '전체'}) · 분류 기준 v{result['taxonomy_version']}")
         print(f"리뷰 평균 Valence로 4~5점 vs 1~2점 구분 AUC {result['auc_valence_vs_rating']}")
         _print_table([{"별점": k, "불만 유형이 붙은 리뷰": f"{v:.1%}"} for k, v in result["complaint_rate_by_rating"].items()])
@@ -229,11 +229,12 @@ def cmd_eval(args, settings) -> int:
         print("원문이 들어 있으니 저장소에 올리지 마세요 (data/ 는 .gitignore).")
         return 0
     else:
-        gold = labeling.read_label_studio_export(args.input)
+        gold = ev.read_gold(args.input)
         shopping = ev.read_shopping(args.shopping)
-        result = ev.evaluate_gold(gold, ev.predict_units(gold["unit_id"].tolist(), shopping, settings, args.domain))
+        result = ev.evaluate_gold(gold, ev.predict_units(gold["unit_id"].tolist(), shopping, settings, args.domain, models))
+        result["taxonomy_version"] = ev.taxonomy_version(models)
         a, m = result["any_complaint"], result["micro"]
-        print(f"평가 절 {result['n']}개 (보류 {result['held']}개 제외)")
+        print(f"평가 절 {result['n']}개 (보류 {result['held']}개 제외) · 분류 기준 v{result['taxonomy_version']}")
         print(f"불만 여부: 정밀도 {a['precision']} · 재현율 {a['recall']} · F1 {a['f1']}")
         print(f"불만 유형: micro F1 {m['f1']} · macro F1 {result['macro_f1']}")
         _print_table([{"유형": k, **v} for k, v in sorted(result["per_label"].items(), key=lambda kv: -kv[1]["support"])])
@@ -325,12 +326,13 @@ def build_parser() -> argparse.ArgumentParser:
 
     p = sub.add_parser("eval", help="공개 실제 데이터로 기준선 평가: KOTE 감정, 네이버 쇼핑 별점, 직접 라벨링한 평가 세트")
     p.add_argument("action", choices=["kote", "ratings", "prepare", "gold"])
-    p.add_argument("input", help="kote: KOTE tsv / ratings·prepare: naver_shopping.txt / gold: Label Studio 내보내기 JSON")
+    p.add_argument("input", help="kote: KOTE tsv / ratings·prepare: naver_shopping.txt / gold: Label Studio 내보내기 JSON 또는 라벨 목록 JSON")
     p.add_argument("--shopping", default="data/external/naver_shopping/naver_shopping.txt", help="gold: naver_shopping.txt 경로")
     p.add_argument("--split", choices=["dev", "test"], help="ratings: 개발용(80%%) 또는 평가용(20%%)만")
     p.add_argument("--n", type=int, help="ratings: 별점마다 무작위로 n건만")
     p.add_argument("--per-rating", type=int, default=50, help="prepare: 별점마다 뽑을 리뷰 수 (리뷰당 절 2개까지)")
     p.add_argument("--domain", default="product", help="ratings·gold: 분류 기준 도메인")
+    p.add_argument("--taxonomy", help="ratings·gold: 다른 버전의 분류 기준 YAML로 평가 (예: git show v0.2.1 파일)")
     p.add_argument("--out", help="결과 JSON 경로 (원문 없이 지표만). prepare: 작업 JSON 경로")
     p.set_defaults(func=cmd_eval)
 
