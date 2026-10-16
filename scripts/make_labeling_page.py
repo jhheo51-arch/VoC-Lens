@@ -30,7 +30,7 @@ def labels_for(domain: str) -> dict[str, list[str]]:
     return groups
 
 
-def build(tasks: list[dict], groups: dict[str, list[str]], title: str) -> str:
+def build(tasks: list[dict], groups: dict[str, list[str]], title: str, preload: dict[str, dict] | None = None) -> str:
     items = [{"unit_id": t["data"]["unit_id"], "text": t["data"]["text"], "review": t["data"]["review"]} for t in tasks]
     choices = '<fieldset><legend>불만 아님</legend>' + "".join(
         f'<label><input type="checkbox" value="{n}"> {n}</label>' for n in NON_COMPLAINT) + "</fieldset>"
@@ -42,8 +42,16 @@ def build(tasks: list[dict], groups: dict[str, list[str]], title: str) -> str:
         + "</fieldset>"
         for cat, names in groups.items()
     )
-    return TEMPLATE.replace("__TITLE__", html.escape(title)).replace("__CHOICES__", choices).replace(
-        "__ITEMS__", json.dumps(items, ensure_ascii=False).replace("</", "<\\/"))
+    preload = {k: v for k, v in (preload or {}).items() if k in {i["unit_id"] for i in items}}
+    return (TEMPLATE.replace("__TITLE__", html.escape(title)).replace("__CHOICES__", choices)
+            .replace("__ITEMS__", json.dumps(items, ensure_ascii=False).replace("</", "<\\/"))
+            .replace("__PRELOAD__", json.dumps(preload, ensure_ascii=False).replace("</", "<\\/")))
+
+
+def needs_review(labels: list[str]) -> bool:
+    """불만 아님(칭찬·해당 없음·분류 불가)과 불만 유형이 함께 있거나, 라벨이 3개 이상이면 다시 본다."""
+    non = [l for l in labels if l in NON_COMPLAINT]
+    return len(labels) >= 3 or bool(non and len(non) < len(labels)) or len(non) > 1
 
 
 TEMPLATE = """<!doctype html>
@@ -90,14 +98,24 @@ button.primary { background:var(--blue); border-color:var(--blue); color:#fff; }
   <button id="prev">← 이전</button><button id="next" class="primary">다음 →</button>
   <button id="download">결과 내려받기</button>
 </nav>
-<p class="small">진행 상황은 이 브라우저에 자동 저장됩니다. 단축키: ← → 이동. 기준은 labeling/guidelines.md와 label_definitions_product.md를 따릅니다.</p>
+<p class="small">진행 상황은 이 브라우저에 저장됩니다(앱 안 미리보기 창에서는 저장되지 않을 수 있으니 창을 닫기 전에 결과를 내려받으세요). 단축키: ← → 이동. 기준은 labeling/guidelines.md와 label_definitions_product.md를 따릅니다.</p>
 </main>
 <script>
 const ITEMS = __ITEMS__;
 const KEY = "voclens-label-" + ITEMS.length + "-" + ITEMS[0].unit_id;
-let state = {}; let i = 0;
-try { const s = JSON.parse(localStorage.getItem(KEY) || "{}"); state = s.state || {}; i = s.i || 0; } catch (e) {}
+const PRELOAD = __PRELOAD__;
+let state = Object.assign({}, PRELOAD); let i = 0;
+try { const s = JSON.parse(localStorage.getItem(KEY) || "{}"); Object.assign(state, s.state || {}); i = s.i || 0; } catch (e) {}
 const boxes = [...document.querySelectorAll('#choices fieldset input')];
+const NON = ["칭찬", "해당 없음", "분류 불가"];
+// 실수 방지: 불만 아님 하나를 고르면 나머지가 모두 풀리고, 불만 유형을 고르면 불만 아님이 풀린다
+boxes.forEach(b => b.addEventListener('change', () => {
+  if (!b.checked) return;
+  if (NON.includes(b.value)) boxes.forEach(o => { if (o !== b) o.checked = false; });
+  else boxes.forEach(o => { if (NON.includes(o.value)) o.checked = false; });
+  const n = boxes.filter(o => o.checked).length;
+  document.getElementById('warn').textContent = n >= 3 ? `라벨이 ${n}개입니다. 보통 1개, 많아야 2개예요. 맞는지 확인해 주세요.` : "";
+}));
 const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
 function save() { try { localStorage.setItem(KEY, JSON.stringify({state, i})); } catch (e) {} }
 function collect() {
@@ -148,13 +166,21 @@ def main() -> None:
     ap.add_argument("--domain", default="product")
     ap.add_argument("--title", default="VoC Lens 라벨링")
     ap.add_argument("--out", default="data/labeling/labeling_page.html")
+    ap.add_argument("--preload", help="이전 라벨 JSON([{unit_id, labels, hold, memo}]). 체크된 상태로 시작한다")
+    ap.add_argument("--only-flagged", action="store_true", help="--preload 중 다시 볼 항목(불만 아님과 유형이 섞임, 3개 이상)만")
     args = ap.parse_args()
     tasks = json.loads(Path(args.tasks).read_text(encoding="utf-8"))
     if args.n:
         tasks = random.Random(args.seed).sample(tasks, min(args.n, len(tasks)))
+    preload = {}
+    if args.preload:
+        preload = {r["unit_id"]: {"labels": r["labels"], "hold": bool(r.get("hold")), "memo": r.get("memo", "")}
+                   for r in json.loads(Path(args.preload).read_text(encoding="utf-8"))}
+        if args.only_flagged:
+            tasks = [t for t in tasks if t["data"]["unit_id"] in preload and needs_review(preload[t["data"]["unit_id"]]["labels"])]
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(build(tasks, labels_for(args.domain), args.title), encoding="utf-8")
+    out.write_text(build(tasks, labels_for(args.domain), args.title, preload), encoding="utf-8")
     print(f"{len(tasks)}개 → {out}")
 
 
