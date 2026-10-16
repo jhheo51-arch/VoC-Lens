@@ -185,8 +185,9 @@ def cmd_label(args, settings) -> int:
         print(f"라벨 {len(df)}개 (보류 {int(df['hold'].sum())}개) → {out}")
         return 0
 
-    first = labeling.read_label_studio_export(args.input)
-    second = labeling.read_label_studio_export(args.second)
+    from voclens.evaluation import read_gold
+
+    first, second = read_gold(args.input), read_gold(args.second)   # Label Studio 내보내기 또는 라벨 목록 JSON
     result = labeling.agreement(first, second)
     print(f"공통 절 {result['n_common']}개 · 완전 일치 {result['exact_match']:.1%} · macro κ {result['macro_kappa']}")
     _print_table([{"유형": k, "κ": v} for k, v in sorted(result["per_label"].items(), key=lambda kv: (kv[1] is None, kv[1]))])
@@ -313,7 +314,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     p = sub.add_parser("label", help="라벨링 준비·가져오기·자기 일치도 (2주차)")
     p.add_argument("action", choices=["prepare", "import", "agreement"])
-    p.add_argument("input", help="prepare: 리뷰 CSV / import·agreement: Label Studio 내보내기 JSON")
+    p.add_argument("input", help="prepare: 리뷰 CSV / import: Label Studio 내보내기 JSON / agreement: 내보내기 또는 라벨 목록 JSON")
     p.add_argument("second", nargs="?", help="agreement: 두 번째 라벨링 내보내기 JSON")
     p.add_argument("--out", default="labeling/tasks.json", help="prepare: 작업 JSON, import: 라벨 CSV 경로")
     p.add_argument("--n", type=int, default=500, help="prepare: 고를 절 수")

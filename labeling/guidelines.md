@@ -80,3 +80,13 @@ voclens eval prepare data/external/naver_shopping/naver_shopping.txt        # �
 # Label Studio에서 labeling/label_studio_config.xml로 프로젝트를 만들고 가져와 라벨링 → data/labeling/eval_export.json으로 내보내기
 voclens eval gold data/labeling/eval_export.json --out experiments/results/shopping_gold_v0.3.0.json
 ```
+
+### 사람 검수 (Claude 라벨 확인)
+
+Label Studio 없이 브라우저에서 라벨링하는 페이지를 쓴다. Claude 라벨은 페이지에 나오지 않는다.
+
+```bash
+python scripts/make_labeling_page.py data/labeling/eval_tasks.json --n 50 --out data/labeling/human_check.html
+# 브라우저로 열어 라벨링 → "결과 내려받기"로 human_labels.json 저장
+voclens label agreement data/labeling/human_labels.json labeling/eval/naver_shopping_eval_labels_A.json
+```
