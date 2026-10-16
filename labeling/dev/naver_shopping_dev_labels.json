@@ -1,0 +1,2315 @@
+[
+{
+"unit_id": "review:ns154757#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns154757#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns193127#0",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns129777#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns31369#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns31369#2",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns89408#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns89408#4",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns131701#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns131701#1",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns7839#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns7839#1",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns116657#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns116657#2",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns13324#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns138963#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns178684#5",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns178684#7",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns141723#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns65573#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns65573#1",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns177979#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns31659#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns31659#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns29352#0",
+"labels": [
+"가격"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns4092#1",
+"labels": [
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns4092#2",
+"labels": [
+"환불·취소"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns52985#0",
+"labels": [
+"효과 없음",
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns107755#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns107755#1",
+"labels": [
+"냄새",
+"품질 편차"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns37857#1",
+"labels": [
+"품질 편차"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns37857#4",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns171070#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns171070#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns110768#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns91599#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns91599#2",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns121348#0",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns121348#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns5610#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns5610#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns21377#0",
+"labels": [
+"정보 불일치"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns61137#1",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns61137#2",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns34335#1",
+"labels": [
+"품질·마감",
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns34335#2",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns14341#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns154826#2",
+"labels": [
+"맛·신선도",
+"품질 편차"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns154826#3",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns55078#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns8268#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns8268#2",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns120059#0",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns120059#1",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns140340#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns140340#2",
+"labels": [
+"가격"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns183519#1",
+"labels": [
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns183519#2",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns175942#0",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns140692#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns140692#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns106134#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns106134#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns54482#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns13345#0",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns21060#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns21060#2",
+"labels": [
+"제품 불량",
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns114711#0",
+"labels": [
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns114711#1",
+"labels": [
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns27848#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns27848#2",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns177487#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns152846#2",
+"labels": [
+"문의·연락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns152846#3",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns181071#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns181071#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns121473#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns121473#2",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns141887#0",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns141887#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns39552#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns39552#1",
+"labels": [
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns26206#0",
+"labels": [
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns68980#0",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns68980#1",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns89609#2",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns89609#3",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns2676#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns2676#3",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns195014#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns18851#0",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns19214#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns19214#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns121152#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns121152#1",
+"labels": [
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns70806#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns107263#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns107263#1",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns68024#0",
+"labels": [
+"맛·신선도",
+"품질 편차"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns152373#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns152373#4",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns99902#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns99902#3",
+"labels": [
+"맛·신선도"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns34358#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns114928#0",
+"labels": [
+"포장·파손"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns176249#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns176249#1",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns114132#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns114132#1",
+"labels": [
+"품질·마감",
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns148900#0",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns114250#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns114250#2",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns18950#0",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns102018#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns148571#0",
+"labels": [
+"맛·신선도"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns148571#1",
+"labels": [
+"해당 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns52788#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns112070#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns112070#1",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns120607#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns120607#4",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns35885#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns35885#1",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns14#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns186492#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns85795#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns190906#0",
+"labels": [
+"품질·마감",
+"가격"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns137956#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns193803#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns193803#1",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns62323#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns155475#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns104329#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns102294#0",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns44908#0",
+"labels": [
+"품질·마감",
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns118342#1",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns118342#6",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns148601#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns117889#0",
+"labels": [
+"품질·마감",
+"포장·파손"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns47075#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns47075#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns109288#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns109288#1",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns169721#2",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns169721#3",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns132594#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns34843#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns34843#2",
+"labels": [
+"가격"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns115706#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns115706#3",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns40729#0",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns40729#4",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns197285#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns47161#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns47161#2",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns125746#0",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns45243#0",
+"labels": [
+"배터리"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns45243#1",
+"labels": [
+"배터리"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns118839#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns87072#1",
+"labels": [
+"사이즈·색상"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns87072#5",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns180258#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns24724#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns24724#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns188405#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns102153#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns102153#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns95885#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns95885#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns89866#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns89866#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns61344#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns61344#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns183250#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns183250#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns53080#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns53080#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns133223#2",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns133223#3",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns188907#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns188907#3",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns55256#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns55256#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns112257#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns112257#3",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns146650#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns118263#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns118263#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns131505#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns131505#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns67171#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns67171#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns173417#3",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns173417#4",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns50447#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns68284#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns168583#0",
+"labels": [
+"해당 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns199054#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns182992#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns182992#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns21406#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns21406#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns80012#2",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns80012#3",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns163854#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns163854#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns79755#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns79755#1",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns146698#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns187772#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns187772#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns193830#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns193830#3",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns31783#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns39757#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns156661#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns156661#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns162574#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns162574#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns77586#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns77586#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns58437#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns58437#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns53427#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns53427#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns41630#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns13064#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns13064#2",
+"labels": [
+"사이즈·색상"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns78623#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns78623#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns155674#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns61661#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns61661#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns140469#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns140469#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns188909#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns188909#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns154439#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns66598#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns66598#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns48784#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns48784#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns83413#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns83413#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns123110#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns123110#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns86921#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns184345#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns184345#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns66498#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns66498#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns183193#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns183193#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns75823#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns171775#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns171775#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns164585#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns164585#3",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns145796#1",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns145796#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns23391#3",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns23391#4",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns186830#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns186830#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns169818#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns169818#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns197180#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns197180#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns71034#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns129429#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns153395#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns153395#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns156808#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns156808#1",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns181167#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns151592#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns151592#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns67814#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns94743#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns94743#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns71290#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns71290#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns46414#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns46414#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns106850#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns122527#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns122527#3",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns182221#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns151625#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns151625#3",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns188654#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns188654#4",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns54139#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns112520#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns112520#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns156785#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns158890#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns79150#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns79150#3",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns64385#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns64385#1",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns123903#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns123903#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns88123#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns88123#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns15294#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns10933#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns10933#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns118598#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns118598#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns3193#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns3193#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns103134#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns103134#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns192746#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns192746#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns56085#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns22442#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns172684#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns172684#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns107657#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns107657#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns119624#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns43885#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns43885#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns132077#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns132077#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns76610#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns76610#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+}
+]

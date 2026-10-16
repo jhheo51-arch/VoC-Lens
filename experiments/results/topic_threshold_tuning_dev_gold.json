@@ -1,0 +1,122 @@
+{
+  "emotion_model": "transformer:emotion-kote-small",
+  "split": "dev",
+  "gold": "labeling/dev/naver_shopping_dev_labels.json",
+  "n": 294,
+  "lexicon": {
+    "precision": 0.862,
+    "recall": 0.309,
+    "f1": 0.455
+  },
+  "grid": [
+    {
+      "topic_max_valence": 0.2,
+      "precision": 0.746,
+      "recall": 0.543,
+      "f1": 0.629
+    },
+    {
+      "topic_max_valence": 0.15,
+      "precision": 0.764,
+      "recall": 0.519,
+      "f1": 0.618
+    },
+    {
+      "topic_max_valence": 0.1,
+      "precision": 0.778,
+      "recall": 0.519,
+      "f1": 0.622
+    },
+    {
+      "topic_max_valence": 0.05,
+      "precision": 0.778,
+      "recall": 0.519,
+      "f1": 0.622
+    },
+    {
+      "topic_max_valence": 0.0,
+      "precision": 0.778,
+      "recall": 0.519,
+      "f1": 0.622
+    },
+    {
+      "topic_max_valence": -0.05,
+      "precision": 0.778,
+      "recall": 0.519,
+      "f1": 0.622
+    },
+    {
+      "topic_max_valence": -0.1,
+      "precision": 0.774,
+      "recall": 0.506,
+      "f1": 0.612
+    },
+    {
+      "topic_max_valence": -0.15,
+      "precision": 0.774,
+      "recall": 0.506,
+      "f1": 0.612
+    },
+    {
+      "topic_max_valence": -0.2,
+      "precision": 0.796,
+      "recall": 0.481,
+      "f1": 0.6
+    },
+    {
+      "topic_max_valence": -0.25,
+      "precision": 0.812,
+      "recall": 0.481,
+      "f1": 0.605
+    },
+    {
+      "topic_max_valence": -0.3,
+      "precision": 0.864,
+      "recall": 0.469,
+      "f1": 0.608
+    },
+    {
+      "topic_max_valence": -0.35,
+      "precision": 0.857,
+      "recall": 0.444,
+      "f1": 0.585
+    },
+    {
+      "topic_max_valence": -0.4,
+      "precision": 0.854,
+      "recall": 0.432,
+      "f1": 0.574
+    },
+    {
+      "topic_max_valence": -0.45,
+      "precision": 0.861,
+      "recall": 0.383,
+      "f1": 0.53
+    },
+    {
+      "topic_max_valence": -0.5,
+      "precision": 0.867,
+      "recall": 0.321,
+      "f1": 0.468
+    },
+    {
+      "topic_max_valence": -0.55,
+      "precision": 0.88,
+      "recall": 0.272,
+      "f1": 0.415
+    },
+    {
+      "topic_max_valence": -0.6,
+      "precision": 0.87,
+      "recall": 0.247,
+      "f1": 0.385
+    }
+  ],
+  "chosen": {
+    "topic_max_valence": 0.2,
+    "precision": 0.746,
+    "recall": 0.543,
+    "f1": 0.629
+  },
+  "rule": "개발용 절 정답에서 불만 여부 F1이 가장 높은 값 (같으면 0에 가까운 값)"
+}

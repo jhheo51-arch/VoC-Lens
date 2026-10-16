@@ -1,0 +1,96 @@
+{
+  "emotion_model": "transformer:emotion-kote-small",
+  "split": "dev",
+  "per_rating": 1000,
+  "lexicon": {
+    "neg_rate": 0.353,
+    "five_star_rate": 0.051
+  },
+  "grid": [
+    {
+      "topic_max_valence": 0.0,
+      "neg_rate": 0.5325,
+      "five_star_rate": 0.123,
+      "four_star_rate": 0.211
+    },
+    {
+      "topic_max_valence": -0.05,
+      "neg_rate": 0.5245,
+      "five_star_rate": 0.112,
+      "four_star_rate": 0.199
+    },
+    {
+      "topic_max_valence": -0.1,
+      "neg_rate": 0.5205,
+      "five_star_rate": 0.101,
+      "four_star_rate": 0.186
+    },
+    {
+      "topic_max_valence": -0.15,
+      "neg_rate": 0.513,
+      "five_star_rate": 0.096,
+      "four_star_rate": 0.172
+    },
+    {
+      "topic_max_valence": -0.2,
+      "neg_rate": 0.5065,
+      "five_star_rate": 0.09,
+      "four_star_rate": 0.163
+    },
+    {
+      "topic_max_valence": -0.25,
+      "neg_rate": 0.4975,
+      "five_star_rate": 0.082,
+      "four_star_rate": 0.155
+    },
+    {
+      "topic_max_valence": -0.3,
+      "neg_rate": 0.487,
+      "five_star_rate": 0.077,
+      "four_star_rate": 0.146
+    },
+    {
+      "topic_max_valence": -0.35,
+      "neg_rate": 0.4745,
+      "five_star_rate": 0.073,
+      "four_star_rate": 0.139
+    },
+    {
+      "topic_max_valence": -0.4,
+      "neg_rate": 0.456,
+      "five_star_rate": 0.063,
+      "four_star_rate": 0.123
+    },
+    {
+      "topic_max_valence": -0.45,
+      "neg_rate": 0.428,
+      "five_star_rate": 0.051,
+      "four_star_rate": 0.109
+    },
+    {
+      "topic_max_valence": -0.5,
+      "neg_rate": 0.388,
+      "five_star_rate": 0.048,
+      "four_star_rate": 0.096
+    },
+    {
+      "topic_max_valence": -0.55,
+      "neg_rate": 0.3415,
+      "five_star_rate": 0.045,
+      "four_star_rate": 0.08
+    },
+    {
+      "topic_max_valence": -0.6,
+      "neg_rate": 0.3015,
+      "five_star_rate": 0.044,
+      "four_star_rate": 0.078
+    }
+  ],
+  "chosen": {
+    "topic_max_valence": -0.45,
+    "neg_rate": 0.428,
+    "five_star_rate": 0.051,
+    "four_star_rate": 0.109
+  },
+  "rule": "5점 리뷰 불만 비율이 감정 사전 이하인 값 중 1·2점 리뷰 불만 비율이 가장 높은 값"
+}

@@ -93,8 +93,11 @@ def _search(pattern: re.Pattern | None, text: str, prev: str = "") -> re.Match |
 class KeywordTaxonomyClassifier:
     name = "keyword-v0.1"
 
-    def __init__(self, taxonomy: Taxonomy | None = None):
+    def __init__(self, taxonomy: Taxonomy | None = None, topic_max_valence: float = 0.0):
         self.taxonomy = taxonomy or Taxonomy.load()
+        # 주제 표현(topic)은 절의 Valence가 이 값보다 낮을 때만 불만으로 본다. 감정 사전은 0,
+        # 학습 감정 모델은 부정 감성을 더 자주 내서 더 낮은 값을 쓴다 (configs/default.yaml의 models)
+        self.topic_max_valence = topic_max_valence
         self._complaint = {k: _compile(v.get("complaint", [])) for k, v in self.taxonomy.subcategories.items()}
         self._topic = {k: _compile(v.get("topic", [])) for k, v in self.taxonomy.subcategories.items()}
         self._aspect = {a: _compile(kws) for a, kws in self.taxonomy.aspect_keywords.items()}
@@ -113,7 +116,7 @@ class KeywordTaxonomyClassifier:
         for label, pattern in self._complaint.items():
             if self._in_domain(label, domain) and _search(pattern, text, prev):
                 hits[label] = 1.0
-        if valence < 0:
+        if valence < self.topic_max_valence:
             for label, pattern in self._topic.items():
                 if label not in hits and pattern and self._in_domain(label, domain) and pattern.search(text):
                     hits[label] = 0.5
@@ -126,7 +129,7 @@ class KeywordTaxonomyClassifier:
         for label, pattern in self._complaint.items():
             if self._in_domain(label, domain) and (m := _search(pattern, text, prev)):
                 parts.append(f"{label} ← '{m.group(0)}'(불만 표현)")
-        if valence < 0:
+        if valence < self.topic_max_valence:
             found = {p.split(" ←")[0] for p in parts}
             for label, pattern in self._topic.items():
                 if label not in found and pattern and self._in_domain(label, domain) and (m := pattern.search(text)):

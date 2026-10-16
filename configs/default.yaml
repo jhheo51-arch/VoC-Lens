@@ -48,3 +48,10 @@ report:
   shrinkage_k: 10
   bootstrap_iterations: 2000
   seed: 42
+
+models:
+  # 학습 감정 모델(--emotion-model)을 쓸 때 주제 표현을 불만으로 보는 Valence 기준. 감정 사전은 0.
+  # 2026-10-16 조정 실험: 별점 대리 지표로 고른 -0.45는 평가 세트에서 F1이 떨어졌고, 개발용 절 정답에서는
+  # +0.15~-0.05 구간이 F1 0.62로 평평했다(+0.20이 1문장 차이로 최대). 평가 세트에서도 0과 +0.20의 차이가 없어 0을 쓴다.
+  # (docs/evaluation.md 4절, experiments/results/topic_threshold_tuning_*.json)
+  transformer_topic_max_valence: 0.0

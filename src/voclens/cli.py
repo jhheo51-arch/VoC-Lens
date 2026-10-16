@@ -204,12 +204,20 @@ def cmd_eval(args, settings) -> int:
     out = Path(args.out) if args.out else None
     models = ev.models_with_taxonomy(args.taxonomy) if args.taxonomy else None
     emotion = ev.load_emotion_model(args.emotion_model) if args.emotion_model else None
-    if emotion is not None and args.action != "kote":
+    topic = args.topic_max_valence
+    if topic is None and emotion is not None:
+        topic = settings.get("models", {}).get("transformer_topic_max_valence")
+    if (emotion is not None or topic is not None) and args.action != "kote":
         if models is None:
             from voclens.pipelines.review import ReviewModels
 
             models = ReviewModels.default()
-        models.emotion = emotion
+        if emotion is not None:
+            models.emotion = emotion
+        if topic is not None:
+            from voclens.text.taxonomy import KeywordTaxonomyClassifier
+
+            models.taxonomy = KeywordTaxonomyClassifier(models.taxonomy.taxonomy, topic_max_valence=topic)
     if args.action == "kote":
         df = ev.read_kote(args.input)
         result = ev.evaluate_emotions(df["text"].tolist(), df["labels"].tolist(), emotion)
@@ -243,6 +251,7 @@ def cmd_eval(args, settings) -> int:
         result = ev.evaluate_gold(gold, ev.predict_units(gold["unit_id"].tolist(), shopping, settings, args.domain, models))
         result["taxonomy_version"] = ev.taxonomy_version(models)
         result["emotion_model"] = ev.emotion_name(models)
+        result["topic_max_valence"] = models.taxonomy.topic_max_valence if models else 0.0
         a, m = result["any_complaint"], result["micro"]
         print(f"평가 절 {result['n']}개 (보류 {result['held']}개 제외) · 분류 기준 v{result['taxonomy_version']}")
         print(f"불만 여부: 정밀도 {a['precision']} · 재현율 {a['recall']} · F1 {a['f1']}")
@@ -344,6 +353,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--domain", default="product", help="ratings·gold: 분류 기준 도메인")
     p.add_argument("--taxonomy", help="ratings·gold: 다른 버전의 분류 기준 YAML로 평가 (예: git show v0.2.1 파일)")
     p.add_argument("--emotion-model", help="학습한 감정 모델 폴더 (예: models/emotion-kote-small). 없으면 감정 사전")
+    p.add_argument("--topic-max-valence", type=float, help="주제 표현을 불만으로 보는 Valence 기준 (기본: 감정 사전 0, 학습 모델은 설정값)")
     p.add_argument("--out", help="결과 JSON 경로 (원문 없이 지표만). prepare: 작업 JSON 경로")
     p.set_defaults(func=cmd_eval)
 
