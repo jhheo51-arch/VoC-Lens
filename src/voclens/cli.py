@@ -207,6 +207,13 @@ def cmd_eval(args, settings) -> int:
     topic = args.topic_max_valence
     if topic is None and emotion is not None:
         topic = settings.get("models", {}).get("transformer_topic_max_valence")
+    if args.complaint_model and args.action != "kote":
+        from voclens.pipelines.review import ReviewModels
+        from voclens.text.complaint_model import TransformerComplaintClassifier
+
+        models = models or ReviewModels.default()
+        models.taxonomy = TransformerComplaintClassifier(args.complaint_model, threshold=args.complaint_threshold,
+                                                         mode=args.complaint_mode, taxonomy=models.taxonomy.taxonomy)
     if (emotion is not None or topic is not None) and args.action != "kote":
         if models is None:
             from voclens.pipelines.review import ReviewModels
@@ -215,9 +222,7 @@ def cmd_eval(args, settings) -> int:
         if emotion is not None:
             models.emotion = emotion
         if topic is not None:
-            from voclens.text.taxonomy import KeywordTaxonomyClassifier
-
-            models.taxonomy = KeywordTaxonomyClassifier(models.taxonomy.taxonomy, topic_max_valence=topic)
+            models.taxonomy.topic_max_valence = topic
     if args.action == "kote":
         df = ev.read_kote(args.input)
         result = ev.evaluate_emotions(df["text"].tolist(), df["labels"].tolist(), emotion)
@@ -251,6 +256,7 @@ def cmd_eval(args, settings) -> int:
         result = ev.evaluate_gold(gold, ev.predict_units(gold["unit_id"].tolist(), shopping, settings, args.domain, models))
         result["taxonomy_version"] = ev.taxonomy_version(models)
         result["emotion_model"] = ev.emotion_name(models)
+        result["complaint_model"] = getattr(models.taxonomy, "name", "keyword") if models else "keyword"
         result["topic_max_valence"] = models.taxonomy.topic_max_valence if models else 0.0
         a, m = result["any_complaint"], result["micro"]
         print(f"평가 절 {result['n']}개 (보류 {result['held']}개 제외) · 분류 기준 v{result['taxonomy_version']}")
@@ -353,6 +359,9 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--domain", default="product", help="ratings·gold: 분류 기준 도메인")
     p.add_argument("--taxonomy", help="ratings·gold: 다른 버전의 분류 기준 YAML로 평가 (예: git show v0.2.1 파일)")
     p.add_argument("--emotion-model", help="학습한 감정 모델 폴더 (예: models/emotion-kote-small). 없으면 감정 사전")
+    p.add_argument("--complaint-model", help="학습한 불만 유형 분류기 폴더 (예: models/complaint-weak-small)")
+    p.add_argument("--complaint-mode", choices=["union", "model"], default="union", help="규칙 ∪ 모델 또는 모델만")
+    p.add_argument("--complaint-threshold", type=float, default=0.5)
     p.add_argument("--topic-max-valence", type=float, help="주제 표현을 불만으로 보는 Valence 기준 (기본: 감정 사전 0, 학습 모델은 설정값)")
     p.add_argument("--out", help="결과 JSON 경로 (원문 없이 지표만). prepare: 작업 JSON 경로")
     p.set_defaults(func=cmd_eval)

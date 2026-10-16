@@ -690,7 +690,7 @@ def page_criteria():
                     "[평가 문서](https://github.com/jhheo51-arch/VoC-Lens/blob/main/docs/evaluation.md)")
         # 작은 표라 st.table로 그린다 (숨겨진 탭 안의 st.dataframe은 처음에 폭이 0으로 잡히는 경우가 있다)
         st.table(criteria.accuracy_summary().set_index("평가"))
-        st.subheader("불만 유형별 (온라인 쇼핑, 분류 기준 v0.3.0)")
+        st.subheader("불만 유형별 (온라인 쇼핑, 분류 기준 v0.3.1)")
         by_type = criteria.accuracy_by_type().set_index("불만 유형")
         st.table(by_type.style.format({c: lambda v: "—" if pd.isna(v) else f"{v:.2f}" for c in ("정밀도", "재현율", "F1")}))
         st.markdown("\n".join(f"- {r}" for r in criteria.accuracy_notes()))

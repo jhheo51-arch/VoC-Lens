@@ -82,6 +82,8 @@ def analyze_records(records: list[ReviewRecord], settings: dict, models: ReviewM
     batched = hasattr(models.emotion, "score_many")
     if batched:
         models.emotion.predict([u for s in sessions for u in s.units])
+    if hasattr(models.taxonomy, "prepare"):          # 학습한 불만 분류기도 한 번에 추론해 둔다
+        models.taxonomy.prepare([u for s in sessions for u in s.units])
     for session in sessions:
         units = session.units
         # 순서가 중요하다: 불만 분류는 Valence를 쓰고, 명시적 불만이면 Valence를 낮춘다

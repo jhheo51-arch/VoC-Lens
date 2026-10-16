@@ -1,0 +1,40 @@
+{
+  "base": "monologg/koelectra-small-v3-discriminator",
+  "args": {
+    "base": "monologg/koelectra-small-v3-discriminator",
+    "out": "C:\\STA Track\\Claude\\VoC-Lens\\models\\complaint-weak-small",
+    "reviews": 60000,
+    "neg_ratio": 1.5,
+    "epochs": 3,
+    "batch_size": 32,
+    "lr": 0.0001,
+    "max_length": 96
+  },
+  "positives": 12115,
+  "negatives": 13778,
+  "label_counts": {
+    "불만 없음": 13778,
+    "가격": 759,
+    "냄새": 649,
+    "맛·신선도": 1458,
+    "매장 응대": 70,
+    "문의·연락": 108,
+    "배송 지연": 1001,
+    "배송비": 40,
+    "배터리": 13,
+    "사용 편의": 68,
+    "사이즈·색상": 1120,
+    "성능": 333,
+    "앱·결제 오류": 33,
+    "오배송·누락": 726,
+    "정보 불일치": 28,
+    "제품 불량": 2597,
+    "쿠폰·할인": 2,
+    "포장·파손": 896,
+    "품질 편차": 54,
+    "품질·마감": 1737,
+    "환불·취소": 15,
+    "효과 없음": 408
+  },
+  "seconds": 3395
+}

@@ -1,0 +1,137 @@
+{
+  "n": 288,
+  "held": 49,
+  "any_complaint": {
+    "precision": 0.882,
+    "recall": 0.333,
+    "f1": 0.484,
+    "support": 90,
+    "predicted": 34
+  },
+  "micro": {
+    "precision": 0.718,
+    "recall": 0.286,
+    "f1": 0.409,
+    "support": 98,
+    "predicted": 39
+  },
+  "macro_f1": 0.389,
+  "per_label": {
+    "가격": {
+      "precision": 0.5,
+      "recall": 0.2,
+      "f1": 0.286,
+      "support": 5,
+      "predicted": 2
+    },
+    "냄새": {
+      "precision": 0.667,
+      "recall": 0.667,
+      "f1": 0.667,
+      "support": 3,
+      "predicted": 3
+    },
+    "맛·신선도": {
+      "precision": 0.875,
+      "recall": 0.538,
+      "f1": 0.667,
+      "support": 13,
+      "predicted": 8
+    },
+    "문의·연락": {
+      "precision": 1.0,
+      "recall": 0.333,
+      "f1": 0.5,
+      "support": 3,
+      "predicted": 1
+    },
+    "배송 지연": {
+      "precision": 0.75,
+      "recall": 0.6,
+      "f1": 0.667,
+      "support": 5,
+      "predicted": 4
+    },
+    "사용 편의": {
+      "precision": 0.5,
+      "recall": 0.125,
+      "f1": 0.2,
+      "support": 8,
+      "predicted": 2
+    },
+    "사이즈·색상": {
+      "precision": 0.4,
+      "recall": 0.143,
+      "f1": 0.211,
+      "support": 14,
+      "predicted": 5
+    },
+    "성능": {
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 6,
+      "predicted": 0
+    },
+    "오배송·누락": {
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 4,
+      "predicted": 0
+    },
+    "정보 불일치": {
+      "precision": 1.0,
+      "recall": 0.4,
+      "f1": 0.571,
+      "support": 5,
+      "predicted": 2
+    },
+    "제품 불량": {
+      "precision": 1.0,
+      "recall": 0.667,
+      "f1": 0.8,
+      "support": 3,
+      "predicted": 2
+    },
+    "포장·파손": {
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "support": 2,
+      "predicted": 2
+    },
+    "품질 편차": {
+      "precision": 1.0,
+      "recall": 0.667,
+      "f1": 0.8,
+      "support": 3,
+      "predicted": 2
+    },
+    "품질·마감": {
+      "precision": 0.8,
+      "recall": 0.222,
+      "f1": 0.348,
+      "support": 18,
+      "predicted": 5
+    },
+    "환불·취소": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 1,
+      "predicted": 1
+    },
+    "효과 없음": {
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 5,
+      "predicted": 0
+    }
+  },
+  "taxonomy_version": "0.3.1",
+  "emotion_model": "lexicon-v0.1",
+  "complaint_model": "keyword",
+  "topic_max_valence": 0.0
+}

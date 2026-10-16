@@ -176,7 +176,7 @@ def _result(name: str) -> dict | list | None:
 def accuracy_summary() -> pd.DataFrame:
     """평가별 핵심 수치 한 줄씩. 결과 파일이 없으면 빈 표."""
     rows = []
-    old, new = _result("shopping_gold_v0.2.1.json"), _result("shopping_gold_v0.3.0.json")
+    old, new = _result("shopping_gold_v0.2.1.json"), _result("shopping_gold_v0.3.1.json")
     if new:
         a = new["any_complaint"]
         rows.append(("불만 여부 (절 단위)", f"네이버 쇼핑 평가 세트 {new['n']}개 절",
@@ -184,19 +184,19 @@ def accuracy_summary() -> pd.DataFrame:
                      f"이전 기준 v0.2.1: F1 {old['any_complaint']['f1']:.2f}" if old else ""))
         rows.append(("불만 유형 (절 단위)", f"같은 평가 세트", f"micro F1 {new['micro']['f1']:.2f} · macro F1 {new['macro_f1']:.2f}",
                      f"이전 기준 v0.2.1: micro F1 {old['micro']['f1']:.2f}" if old else ""))
-    r_old, r_new = _result("shopping_test_ratings_v0.2.1.json"), _result("shopping_test_ratings_v0.3.0.json")
+    r_old, r_new = _result("shopping_test_ratings_v0.2.1.json"), _result("shopping_test_ratings_v0.3.1.json")
     if r_new:
         neg = r_new["complaint_rate_by_rating"]
         rows.append(("불만 검출률 (리뷰 단위, 별점 대리 지표)", f"네이버 쇼핑 평가용 {r_new['n']:,}건",
                      f"1점 리뷰 {neg['1']:.0%} · 2점 리뷰 {neg['2']:.0%}에 불만 유형이 붙음",
                      f"이전 기준: 1점 {r_old['complaint_rate_by_rating']['1']:.0%} · 2점 {r_old['complaint_rate_by_rating']['2']:.0%}" if r_old else ""))
         rows.append(("감성 방향 (리뷰 단위)", "같은 데이터", f"고득점(4·5점)·저득점(1·2점) 구분 AUC {r_new['auc_valence_vs_rating']:.2f}", ""))
-    model_gold = _result("shopping_gold_v0.3.0_koelectra_small.json")
+    model_gold = _result("shopping_gold_v0.3.1_models.json")
     if model_gold:
         a = model_gold["any_complaint"]
-        rows.append(("불만 여부 — 학습 감정 모델 사용 (실험)", "같은 평가 세트",
+        rows.append(("불만 여부 — 학습 모델 사용 (실험)", "같은 평가 세트",
                      f"정밀도 {a['precision']:.2f} · 재현율 {a['recall']:.2f} · F1 {a['f1']:.2f}",
-                     "감성 점수만 학습 모델(KOTE로 학습한 koelectra-small)로 바꿈. 배포 화면은 아직 감정 사전"))
+                     "학습 감정 모델(KOTE) + 규칙 ∪ 약지도 불만 분류기. 배포 화면은 아직 규칙·감정 사전"))
     kote = _result("kote_test_lexicon.json")
     if kote:
         p = kote["polarity"]
@@ -214,7 +214,7 @@ def accuracy_summary() -> pd.DataFrame:
 
 def accuracy_by_type() -> pd.DataFrame:
     """불만 유형별 정밀도·재현율 (평가 세트, 정답 절 GOLD_MIN_SUPPORT개 이상)."""
-    new = _result("shopping_gold_v0.3.0.json")
+    new = _result("shopping_gold_v0.3.1.json")
     if not new:
         return pd.DataFrame(columns=["불만 유형", "정답 절", "정밀도", "재현율", "F1", "읽는 법"])
     rows = []
@@ -238,7 +238,7 @@ def accuracy_notes() -> list[str]:
 
 def domain_reliability(domain: str | None) -> str:
     """직접 분석 결과 옆에 보여 줄 신뢰도 안내 한 줄."""
-    new = _result("shopping_gold_v0.3.0.json")
+    new = _result("shopping_gold_v0.3.1.json")
     if domain == "product" and new:
         a = new["any_complaint"]
         return (f"온라인 쇼핑 리뷰 평가 기준: 불만이라고 판단한 문장의 {a['precision']:.0%}가 실제 불만이었고, 실제 불만 문장의 {a['recall']:.0%}를 잡았습니다. "

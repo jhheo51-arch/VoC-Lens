@@ -208,9 +208,10 @@ footer { padding-block: 32px 48px; border-top: 1px solid var(--rule); font-size:
       <a href="#cases">케이스 스터디</a>
       <a href="#dashboard">대시보드</a>
       <a href="#upload">직접 분석</a>
+      <a href="#eval">실제 데이터 평가</a>
       <a href="#limits">검증과 한계</a>
     </nav>
-    <span class="chip">합성 데이터 시연</span>
+    <span class="chip">합성 데이터 + 공개 실제 데이터</span>
   </header>
 
   <main id="top">
@@ -218,13 +219,13 @@ footer { padding-block: 32px 48px; border-top: 1px solid var(--rule); font-size:
       <div>
         <p class="eyebrow">CX · VoC 데이터 분석 포트폴리오</p>
         <h1>흩어진 고객의 소리를 <em>하나의 기준</em>으로</h1>
-        <p class="lead">배달 리뷰, 고객센터 상담, YouTube 영상과 댓글을 같은 감정 지수와 불만 분류로 분석해서 "무엇부터 고칠지"를 우선순위로 정리하는 분석 도구입니다.</p>
+        <p class="lead">배달·쇼핑 리뷰, 고객센터 상담, YouTube 영상과 댓글을 같은 감정 지수와 불만 분류로 분석해서 "무엇부터 고칠지"를 우선순위로 정리하는 분석 도구입니다. 공개 실제 데이터로 정확도를 재고, 그 결과를 서비스 화면에 함께 보여 줍니다.</p>
         <p class="cta"><a class="cta-primary" href="https://voc-lens.streamlit.app/">라이브 대시보드 열기</a><a class="cta-secondary" href="https://github.com/jhheo51-arch/VoC-Lens">GitHub 저장소</a></p>
         <dl class="facts">
           <div><dt>채널</dt><dd>3</dd></div>
           <div><dt>지수</dt><dd>6</dd></div>
-          <div><dt>불만 소분류</dt><dd>21</dd></div>
-          <div><dt>자동 테스트</dt><dd>262</dd></div>
+          <div><dt>불만 소분류</dt><dd>31</dd></div>
+          <div><dt>자동 테스트</dt><dd>295</dd></div>
         </dl>
       </div>
 
@@ -316,7 +317,7 @@ footer { padding-block: 32px 48px; border-top: 1px solid var(--rule); font-size:
       <ol class="steps">
         <li><strong>수집</strong><span>리뷰 CSV, 상담 전사본·WAV, YouTube 자막·댓글 (공개 데이터, 크롤링 없음)</span></li>
         <li><strong>정제·분리</strong><span>개인정보 마스킹, 이모티콘 → 감정 토큰, 대조 표현에서 절 분리, 상투 문구 제거</span></li>
-        <li><strong>감정·불만</strong><span>7감정 → 감성·각성, 불만 21개 소분류(배달·제품 도메인), 속성, 고객 여정 단계</span></li>
+        <li><strong>감정·불만</strong><span>7감정 → 감성·각성, 불만 31개 소분류(배달·온라인 쇼핑 도메인), 속성, 고객 여정 단계. 학습한 감정 모델로 교체 가능</span></li>
         <li><strong>대화 흐름·음향</strong><span>역할 판정, 끼어들기·침묵·반복, 피치·에너지를 화자 기준으로 정규화해 융합</span></li>
         <li><strong>지수·이벤트</strong><span>6개 지수, Peak-End, 채널 내 백분위, 감정 급변과 직전 상담원 발화</span></li>
         <li><strong>CX 해석</strong><span>CSAT 회귀(별점 대리 정답), CES·NPS 성향, 채널 비교와 조용한 불만</span></li>
@@ -327,7 +328,7 @@ footer { padding-block: 32px 48px; border-top: 1px solid var(--rule); font-size:
     <section id="cases" aria-labelledby="cases-title">
       <div class="section-head">
         <h2 id="cases-title">케이스 스터디</h2>
-        <p>합성 데이터에 일부러 넣은 패턴을 도구가 찾아내는지, 그리고 그 결과를 어떤 실행안으로 바꾸는지 보여줍니다. 실제 고객 데이터의 결론이 아닙니다.</p>
+        <p>아래 세 사례는 합성 데이터에 일부러 넣은 패턴을 도구가 찾아내는지, 그리고 그 결과를 어떤 실행안으로 바꾸는지 보여줍니다. 실제 공개 데이터로 만든 네 번째 사례는 <a href="#eval">실제 데이터 평가</a>에 있습니다.</p>
       </div>
       <div class="cases">
         <article class="case">
@@ -420,7 +421,58 @@ footer { padding-block: 32px 48px; border-top: 1px solid var(--rule); font-size:
           <figcaption><b>직접 분석</b> · 올린 데이터는 방문자마다 따로 만든 메모리 공간에서만 분석하고 저장하지 않습니다.</figcaption>
         </figure>
       </div>
-      <p class="note" style="margin-top: 16px">분석 기준 화면에는 감정 사전, 지수 공식, 불만 분류표 21개 유형, 상담·영상 규칙, CSAT·CES·NPS 계산식이 실제 설정 파일에서 바로 만들어져 나옵니다. 규칙을 바꾸면 화면도 함께 바뀝니다.</p>
+      <p class="note" style="margin-top: 16px">분석 기준 화면에는 감정 사전, 지수 공식, 불만 분류표 31개 유형, 실제 데이터로 잰 정확도, 상담·영상 규칙, CSAT·CES·NPS 계산식이 실제 설정 파일에서 바로 만들어져 나옵니다. 규칙을 바꾸면 화면도 함께 바뀝니다.</p>
+    </section>
+
+    <section id="eval" aria-labelledby="eval-title">
+      <div class="section-head">
+        <h2 id="eval-title">실제 데이터 평가</h2>
+        <p>공개 실제 데이터(네이버 쇼핑 리뷰 20만 건, KOTE 댓글 5만 문장)로 정확도를 쟀습니다. 규칙과 모델은 개발용 80%만 보고 만들었고, 숫자는 그때 보지 않은 평가용 20%에서 냈습니다. 평가 세트(무작위 337개 절)의 정답은 규칙을 보지 못한 Claude 라벨러 둘이 붙였습니다.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>불만 찾기 (온라인 쇼핑, 절 단위)</th><th>정밀도</th><th>재현율</th><th>F1</th></tr></thead>
+          <tbody>
+            <tr><td>규칙 v0.2.1 (배달용 규칙 그대로)</td><td class="num">0.58</td><td class="num">0.08</td><td class="num">0.14</td></tr>
+            <tr><td>규칙 v0.3.0 (쇼핑 유형 10개 추가)</td><td class="num">0.80</td><td class="num">0.32</td><td class="num">0.46</td></tr>
+            <tr><td>규칙 v0.3.1 (오탐 정리) · <b>배포 화면</b></td><td class="num"><b>0.88</b></td><td class="num">0.32</td><td class="num">0.47</td></tr>
+            <tr><td>규칙 ∪ 약지도 불만 분류기 + 학습 감정 모델</td><td class="num">0.64</td><td class="num"><b>0.55</b></td><td class="num"><b>0.59</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top: 8px">정밀도 = 불만이라고 판단한 것 중 맞은 비율, 재현율 = 실제 불만 중 잡아낸 비율. 감정 극성(KOTE)은 감정 사전 AUC 0.71에서 학습 감정 모델 0.98로 올랐습니다.</p>
+      <div class="cases" style="margin-top: 24px">
+        <article class="case">
+          <p class="eyebrow">실제 데이터 · 쇼핑 리뷰 39,807건</p>
+          <p class="q">온라인 쇼핑 리뷰에서 무엇을 먼저 고쳐야 하나?</p>
+          <div class="figure-row">
+            <div><b>44.9%</b><small>오배송·누락 리뷰의 1점 비율</small></div>
+            <div><b>51.9%</b><small>재구매 고객이 실망하면 1점</small></div>
+          </div>
+          <p>양은 제품 품질 불만(1~2점 리뷰의 24.7%)이 가장 많지만, 오배송·누락은 한 번 겪으면 1점이 많고 출고 검수로 바로 줄일 수 있습니다. 재구매 고객의 실망은 신선식품의 "지난번과 달라졌다"에 몰립니다.</p>
+          <p class="action"><b>제안</b> · 출고 바코드 검수와 구성품 체크리스트(Quick Win), 재구매 고객 1~2점 리뷰 주간 모니터링.</p>
+        </article>
+        <article class="case">
+          <p class="eyebrow">실패에서 배운 것</p>
+          <p class="q">별점으로 기준값을 맞추면 되지 않나?</p>
+          <div class="figure-row">
+            <div><b>0.54 → 0.44</b><small>별점 기준으로 조정한 뒤 F1</small></div>
+            <div><b>5점</b><small>리뷰에도 실제 불만 문장</small></div>
+          </div>
+          <p>"5점 리뷰에 붙은 불만은 오탐"이라고 가정하고 기준값을 맞췄더니 평가 세트에서 오히려 나빠졌습니다. "배송은 늦었지만 만족"처럼 고득점 리뷰에도 불만이 있어서입니다. 그래서 개발용 데이터에도 문장 단위 정답을 따로 만들어 선택에 썼습니다.</p>
+          <p class="action"><b>교훈</b> · 대리 지표는 방향 확인용. 기준값 선택은 같은 단위의 정답으로, 평가 세트는 마지막에 한 번만.</p>
+        </article>
+        <article class="case">
+          <p class="eyebrow">남은 과제</p>
+          <p class="q">어디를 아직 못 잡나?</p>
+          <div class="figure-row">
+            <div><b>0.15 → 0.54</b><small>사이즈·색상 재현율</small></div>
+            <div><b>0</b><small>성능·오배송·효과 없음</small></div>
+          </div>
+          <p>약지도 분류기는 규칙이 놓치던 사이즈·색상, 가격, 품질·마감을 더 잡았습니다. 하지만 약지도 라벨이 규칙에서 나와서, 규칙이 거의 못 잡는 유형은 분류기도 배우지 못했습니다.</p>
+          <p class="action"><b>다음</b> · 이 유형의 학습 예시를 직접 라벨로 늘리고, 사람 검수로 Claude 정답의 신뢰도를 확인.</p>
+        </article>
+      </div>
     </section>
 
     <section id="limits" aria-labelledby="limits-title">
@@ -447,8 +499,8 @@ footer { padding-block: 32px 48px; border-top: 1px solid var(--rule); font-size:
         <div>
           <h3>지금의 한계</h3>
           <ul class="limits" style="margin-top: 14px">
-            <li>모든 수치는 합성 데이터 결과입니다. 상담 4건, 영상 2건은 방법을 보여주는 규모입니다.</li>
-            <li>감정·불만 분류는 사전·규칙 기반 기준선입니다. 라벨 400~500개를 만들어 파인튜닝하고 정확도를 재는 일이 다음 단계입니다.</li>
+            <li>상담·영상과 배달 리뷰 수치는 합성 데이터 결과입니다(상담 4건, 영상 2건은 방법을 보여주는 규모). 실제 데이터 평가는 온라인 쇼핑 리뷰와 댓글 감정에만 했습니다.</li>
+            <li>평가 세트 정답은 사람이 아니라 규칙을 보지 못한 Claude 라벨러가 붙였습니다(두 라벨러 일치도 κ 0.96, 같은 모델이라 사람 간보다 높게 나옴). 사람 검수는 진행 중입니다.</li>
             <li>목소리 분석은 사인파 합성 음성으로만 테스트했습니다. AI Hub 상담 음성으로 검증할 예정입니다.</li>
             <li>리뷰로 학습한 CSAT 모델을 영상에 적용하면 과대 추정됩니다 (말투와 길이 차이). 그래서 사례에서 영상 CSAT는 쓰지 않았습니다.</li>
             <li>지수는 상담 프로세스 개선용입니다. 채용 평가, 직원 감시, 개인 진단에 쓰지 않도록 설계했습니다.</li>
@@ -475,7 +527,7 @@ footer { padding-block: 32px 48px; border-top: 1px solid var(--rule); font-size:
         </div>
         <div class="link-card">
           <h3>사용 기술</h3>
-          <div class="stack"><span>Python</span><span>pandas</span><span>SciPy</span><span>SQLite</span><span>Streamlit</span><span>Altair</span><span>pydantic</span><span>pytest</span><span>GitHub Actions</span></div>
+          <div class="stack"><span>Python</span><span>pandas</span><span>SciPy</span><span>SQLite</span><span>Streamlit</span><span>Altair</span><span>pydantic</span><span>PyTorch</span><span>Transformers</span><span>pytest</span><span>GitHub Actions</span></div>
         </div>
       </div>
     </section>

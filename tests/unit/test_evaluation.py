@@ -172,3 +172,31 @@ def test_transformer_result_maps_group_probs_to_valence():
     assert joy.valence > 0.25 and anger.valence < -0.2               # 분류 기준의 칭찬·분류 불가 임계치와 맞물린다
     assert flat.hit_weight == 0.0 and abs(flat.valence) < 0.1 and flat.probs["중립"] > 0.5
     assert abs(sum(joy.probs.values()) - 1) < 1e-9
+
+
+def test_complaint_model_union_and_model_modes():
+    """학습 불만 분류기의 합치기 로직 (모델 확률은 가짜로 넣는다)."""
+    import numpy as np
+
+    from voclens.schema import SourceType, Unit
+    from voclens.text.complaint_model import TransformerComplaintClassifier, model_input
+    from voclens.text.taxonomy import KeywordTaxonomyClassifier
+
+    def make(mode):
+        clf = object.__new__(TransformerComplaintClassifier)
+        KeywordTaxonomyClassifier.__init__(clf)
+        clf.labels, clf.threshold, clf.mode = ["사이즈·색상", "제품 불량"], 0.5, mode
+        clf._cache = {"s#0": np.array([0.9, 0.1]), "s#1": np.array([0.1, 0.2])}
+        clf.prepare = lambda units: None
+        return clf
+
+    def units():
+        return [Unit(unit_id=f"s#{i}", session_id="s", source_type=SourceType.REVIEW, order=i, text=t, clean_text=t, valence=v)
+                for i, (t, v) in enumerate([("바지가 생각보다 껴요", 0.1), ("불량이에요", 0.0)])]
+
+    u = make("union").predict(units(), "product")
+    assert u[0].complaint_categories == ["사이즈·색상"] and u[0].valence <= -0.3      # 규칙이 놓친 불만을 보충
+    assert u[1].complaint_categories == ["제품 불량"]                                   # 규칙이 잡은 불만은 유지
+    m = make("model").predict(units(), "product")
+    assert m[1].complaint_categories == [] and m[1].valence == 0.0                     # 모델만: 규칙 결과를 버리고 Valence 복원
+    assert model_input("블랙이 왔어요", "블루를 샀는데") == "블루를 샀는데 [SEP] 블랙이 왔어요"
