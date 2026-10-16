@@ -24,6 +24,8 @@ nlp = ["kss>=6.0", "sentence-transformers>=3.0"]
 audio = ["faster-whisper>=1.0", "pyannote.audio>=3.1", "opensmile>=2.5"]
 video = ["yt-dlp>=2025.1.1"]
 app = ["streamlit>=1.36"]
+# 2단계: 감정 모델 파인튜닝·추론 (scripts/train_emotion.py, voclens eval --emotion-model)
+train = ["torch>=2.9", "transformers>=5.0", "accelerate>=1.0"]
 dev = ["pytest>=8.0"]
 
 [project.scripts]

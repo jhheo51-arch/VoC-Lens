@@ -92,9 +92,10 @@ def evaluate_emotions(texts: list[str], gold: list[list[str]], model: LexiconEmo
     감정별: 감정 표현이 걸린 문장의 대표 감정(중립 제외 최댓값)이 KOTE 라벨 묶음에 있는지.
     """
     model = model or LexiconEmotionModel()
+    cleaned = [preprocess(t).text for t in texts]
+    results = model.score_many(cleaned) if hasattr(model, "score_many") else [model.score(t) for t in cleaned]
     rows = []
-    for text, labels in zip(texts, gold):
-        res = model.score(preprocess(text).text)
+    for res, labels in zip(results, gold):
         non_neutral = {e: p for e, p in res.probs.items() if e != "중립"}
         top = max(non_neutral, key=non_neutral.get) if res.hit_weight > 0 else "중립"
         groups = {e for e, ls in KOTE_TO_EMOTION.items() if set(labels) & set(ls)}
@@ -154,6 +155,13 @@ def read_shopping(path: str | Path, split: str | None = None) -> pd.DataFrame:
     return df[df["split"] == split].reset_index(drop=True) if split else df
 
 
+def load_emotion_model(path: str | Path):
+    """학습한 감정 모델 폴더 → TransformerEmotionModel (pip install -e .[train] 필요)."""
+    from voclens.text.emotion_model import TransformerEmotionModel
+
+    return TransformerEmotionModel(path)
+
+
 def models_with_taxonomy(path: str | Path) -> ReviewModels:
     """분류 기준 YAML 파일을 바꿔 끼운 리뷰 모델 묶음. 이전 버전과 같은 데이터로 비교할 때 쓴다."""
     import yaml
@@ -168,6 +176,10 @@ def models_with_taxonomy(path: str | Path) -> ReviewModels:
     models.taxonomy = KeywordTaxonomyClassifier(tx)
     models.journey = JourneyTagger(taxonomy=tx)
     return models
+
+
+def emotion_name(models: ReviewModels | None = None) -> str:
+    return (models.emotion if models else LexiconEmotionModel()).name
 
 
 def taxonomy_version(models: ReviewModels | None = None) -> str:
@@ -206,6 +218,7 @@ def evaluate_ratings(df: pd.DataFrame, settings: dict, domain: str = "product", 
     return {
         "n": len(r),
         "taxonomy_version": taxonomy_version(models),
+        "emotion_model": emotion_name(models),
         "auc_valence_vs_rating": _r(auc(r["valence"], r["rating"] >= 4)),
         "complaint_rate_by_rating": {int(k): _r(v) for k, v in r.groupby("rating")["has"].mean().items()},
         "negative_review_mix": {k: _r(v / len(neg)) for k, v in mix.most_common()} if len(neg) else {},

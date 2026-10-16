@@ -136,6 +136,61 @@ git show 3516934:configs/taxonomy.yaml > taxonomy_v0.2.1.yaml
 voclens eval gold labeling/eval/naver_shopping_eval_labels_A.json --taxonomy taxonomy_v0.2.1.yaml
 ```
 
+## 4. 학습한 감정 모델 (2단계, 실험)
+
+감정 사전은 걸리면 맞지만 놓치는 문장이 많았습니다. 그래서 KOTE train 4만 문장으로 한국어 감정 모델을 파인튜닝하고, 같은 평가 데이터로 비교했습니다.
+
+| 항목 | 내용 |
+|---|---|
+| 모델 | `monologg/koelectra-small-v3-discriminator` (1,400만 파라미터, CPU 학습) |
+| 학습 | KOTE train 40,000문장, 44감정 → 6감정 다중 라벨, 2 epoch, 최대 64토큰, CPU 67분 |
+| 검증 | KOTE val 5,000문장 macro F1 0.72 (`experiments/results/emotion_kote_small_training.json`) |
+| 평가 | KOTE test와 쇼핑 평가 세트는 학습에 쓰지 않음 |
+| 출력 | 6감정 확률 → 중립 = Π(1 − p) → 7감정 정규화 → Valence·Arousal. 분류 기준의 Valence 임계치를 그대로 쓴다 |
+
+**감정 극성 (KOTE test 3,465문장)**
+
+| 지표 | 감정 사전 | 학습 모델 |
+|---|---|---|
+| 극성 AUC | 0.71 | **0.98** |
+| 극성을 판단한 비율 | 39% | **97%** |
+| 판단했을 때 정확도 | 72.5% | **94.1%** |
+| 부정 문장 정확도 | 56.5% | **98.6%** |
+| 긍정 문장 정확도 | **91.2%** | 84.9% |
+| 전체 문장 기준 정확도 (판단 안 함 = 오답) | 28.5% | **90.8%** |
+
+감정별 macro F1(대표 감정 하나가 맞는지)은 0.16 → 0.33입니다. 혐오·불안·놀람은 분노·슬픔과 함께 나오는 경우가 많아 대표 감정으로 거의 뽑히지 않습니다. KOTE 라벨이 합집합이라 감정마다 문장 절반 가까이가 양성이어서, 모델은 "부정이냐 긍정이냐"는 잘 배우지만 세부 감정 구분은 약합니다.
+
+**쇼핑 리뷰에 적용 (분류 규칙 v0.3.0 그대로, 감성 점수만 교체)**
+
+| 지표 | 감정 사전 | 학습 모델 |
+|---|---|---|
+| 평가 세트: 불만 여부 정밀도 | **0.80** | 0.70 |
+| 평가 세트: 불만 여부 재현율 | 0.32 | **0.44** |
+| 평가 세트: 불만 여부 F1 | 0.46 | **0.54** |
+| 평가 세트: 불만 유형 micro F1 | 0.41 | **0.48** |
+| 평가용 39,807건: 고득점·저득점 구분 AUC | 0.856 | **0.944** |
+| 평가용: 1점 리뷰에 불만 유형이 붙은 비율 | 37% | **54%** |
+| 평가용: 5점 리뷰에 불만 유형이 붙은 비율 | **5%** | 11% |
+
+라벨러 B를 정답으로 써도 불만 여부 F1 0.54, micro F1 0.46으로 같은 결론입니다.
+
+**읽는 법**
+- 감성 점수가 정확해지자, "주제 표현 + 부정 감성"으로 잡는 불만(예: "배송이 좀…")이 늘어서 재현율이 올랐습니다. 대신 부정 감성을 더 자주 내서 정밀도는 내려갔습니다.
+- 서비스에서 무엇을 우선하느냐에 따라 선택이 갈립니다. **놓치지 않는 것**(위험 신호 모니터링)이 중요하면 학습 모델, **잡은 것을 믿는 것**(경영 보고용 수치)이 중요하면 감정 사전이 맞습니다.
+- 배포된 대시보드는 아직 감정 사전을 씁니다. 학습 모델은 torch가 필요해서 무료 배포 환경에 올리기 무겁고, 정밀도 하락을 어떻게 다룰지 정한 뒤 바꿉니다. CLI에서는 `--emotion-model`로 쓸 수 있습니다.
+- 다음 단계: 더 큰 모델(KcELECTRA-base, [Colab 노트북](../notebooks/train_emotion_colab.ipynb)), 정밀도를 지키는 임계치 조정, 불만 유형 분류기 학습.
+
+```bash
+pip install -e ".[train]"
+python scripts/fetch_public_data.py kote
+python scripts/train_emotion.py                                   # → models/emotion-kote-small (git에 올리지 않음)
+voclens eval kote data/external/kote/test.tsv --emotion-model models/emotion-kote-small
+voclens eval gold labeling/eval/naver_shopping_eval_labels_A.json --emotion-model models/emotion-kote-small
+```
+
+결과 파일: `experiments/results/kote_test_koelectra_small.json`, `shopping_gold_v0.3.0_koelectra_small.json`, `shopping_test_ratings_v0.3.0_koelectra_small.json`
+
 ## 다시 만들기
 
 ```bash

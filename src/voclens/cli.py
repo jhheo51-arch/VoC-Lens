@@ -203,9 +203,17 @@ def cmd_eval(args, settings) -> int:
 
     out = Path(args.out) if args.out else None
     models = ev.models_with_taxonomy(args.taxonomy) if args.taxonomy else None
+    emotion = ev.load_emotion_model(args.emotion_model) if args.emotion_model else None
+    if emotion is not None and args.action != "kote":
+        if models is None:
+            from voclens.pipelines.review import ReviewModels
+
+            models = ReviewModels.default()
+        models.emotion = emotion
     if args.action == "kote":
         df = ev.read_kote(args.input)
-        result = ev.evaluate_emotions(df["text"].tolist(), df["labels"].tolist())
+        result = ev.evaluate_emotions(df["text"].tolist(), df["labels"].tolist(), emotion)
+        result["emotion_model"] = (emotion.name if emotion else "lexicon-v0.1")
         pol = result["polarity"]
         print(f"KOTE {result['n']:,}문장 · 감정 표현 검출 {result['coverage']:.1%}")
         print(f"극성: AUC {pol['auc']} · 판단한 비율 {pol['called_share']:.1%} · 판단했을 때 정확도 {pol['accuracy_when_called']:.1%}"
@@ -234,6 +242,7 @@ def cmd_eval(args, settings) -> int:
         shopping = ev.read_shopping(args.shopping)
         result = ev.evaluate_gold(gold, ev.predict_units(gold["unit_id"].tolist(), shopping, settings, args.domain, models))
         result["taxonomy_version"] = ev.taxonomy_version(models)
+        result["emotion_model"] = ev.emotion_name(models)
         a, m = result["any_complaint"], result["micro"]
         print(f"평가 절 {result['n']}개 (보류 {result['held']}개 제외) · 분류 기준 v{result['taxonomy_version']}")
         print(f"불만 여부: 정밀도 {a['precision']} · 재현율 {a['recall']} · F1 {a['f1']}")
@@ -334,6 +343,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--per-rating", type=int, default=50, help="prepare: 별점마다 뽑을 리뷰 수 (리뷰당 절 2개까지)")
     p.add_argument("--domain", default="product", help="ratings·gold: 분류 기준 도메인")
     p.add_argument("--taxonomy", help="ratings·gold: 다른 버전의 분류 기준 YAML로 평가 (예: git show v0.2.1 파일)")
+    p.add_argument("--emotion-model", help="학습한 감정 모델 폴더 (예: models/emotion-kote-small). 없으면 감정 사전")
     p.add_argument("--out", help="결과 JSON 경로 (원문 없이 지표만). prepare: 작업 JSON 경로")
     p.set_defaults(func=cmd_eval)
 

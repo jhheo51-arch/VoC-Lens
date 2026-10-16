@@ -1,0 +1,36 @@
+{
+  "base": "monologg/koelectra-small-v3-discriminator",
+  "args": {
+    "base": "monologg/koelectra-small-v3-discriminator",
+    "out": "C:\\STA Track\\Claude\\VoC-Lens\\models\\emotion-kote-small",
+    "epochs": 2,
+    "batch_size": 32,
+    "lr": 5e-05,
+    "max_length": 64,
+    "limit": null
+  },
+  "train_size": 40000,
+  "seconds": 4048,
+  "val": [
+    {
+      "epoch": 1,
+      "기쁨": 0.817,
+      "슬픔": 0.767,
+      "분노": 0.845,
+      "혐오": 0.731,
+      "불안": 0.605,
+      "놀람": 0.539,
+      "macro_f1": 0.717
+    },
+    {
+      "epoch": 2,
+      "기쁨": 0.834,
+      "슬픔": 0.765,
+      "분노": 0.843,
+      "혐오": 0.711,
+      "불안": 0.617,
+      "놀람": 0.554,
+      "macro_f1": 0.721
+    }
+  ]
+}

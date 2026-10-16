@@ -155,3 +155,20 @@ def test_never_predicted_label_counts_as_zero_f1():
     result = ev.evaluate_gold(gold, {"a": [], "b": ["냄새"]})
     assert result["per_label"]["성능"]["f1"] == 0.0
     assert result["macro_f1"] == 0.5
+
+
+def test_transformer_result_maps_group_probs_to_valence():
+    """학습 모델의 6감정 확률 → 7감정·Valence 변환 (torch 없이 변환 로직만)."""
+    import numpy as np
+
+    from voclens.config import load_yaml
+    from voclens.text.emotion_model import TransformerEmotionModel
+
+    m = object.__new__(TransformerEmotionModel)
+    m.circumplex = {e: tuple(v) for e, v in load_yaml("lexicons/emotion.yaml")["circumplex"].items()}
+    joy = m._result(np.array([0.95, 0.02, 0.02, 0.01, 0.01, 0.05]))
+    anger = m._result(np.array([0.03, 0.30, 0.92, 0.40, 0.05, 0.05]))
+    flat = m._result(np.array([0.05, 0.05, 0.05, 0.05, 0.05, 0.05]))
+    assert joy.valence > 0.25 and anger.valence < -0.2               # 분류 기준의 칭찬·분류 불가 임계치와 맞물린다
+    assert flat.hit_weight == 0.0 and abs(flat.valence) < 0.1 and flat.probs["중립"] > 0.5
+    assert abs(sum(joy.probs.values()) - 1) < 1e-9

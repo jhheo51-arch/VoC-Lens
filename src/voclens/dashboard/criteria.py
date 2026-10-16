@@ -191,12 +191,24 @@ def accuracy_summary() -> pd.DataFrame:
                      f"1점 리뷰 {neg['1']:.0%} · 2점 리뷰 {neg['2']:.0%}에 불만 유형이 붙음",
                      f"이전 기준: 1점 {r_old['complaint_rate_by_rating']['1']:.0%} · 2점 {r_old['complaint_rate_by_rating']['2']:.0%}" if r_old else ""))
         rows.append(("감성 방향 (리뷰 단위)", "같은 데이터", f"고득점(4·5점)·저득점(1·2점) 구분 AUC {r_new['auc_valence_vs_rating']:.2f}", ""))
+    model_gold = _result("shopping_gold_v0.3.0_koelectra_small.json")
+    if model_gold:
+        a = model_gold["any_complaint"]
+        rows.append(("불만 여부 — 학습 감정 모델 사용 (실험)", "같은 평가 세트",
+                     f"정밀도 {a['precision']:.2f} · 재현율 {a['recall']:.2f} · F1 {a['f1']:.2f}",
+                     "감성 점수만 학습 모델(KOTE로 학습한 koelectra-small)로 바꿈. 배포 화면은 아직 감정 사전"))
     kote = _result("kote_test_lexicon.json")
     if kote:
         p = kote["polarity"]
         rows.append(("감정 극성 (문장 단위)", f"KOTE 댓글 {kote['n']:,}문장",
                      f"판단한 문장의 {p['accuracy_when_called']:.0%} 정확 (긍정 {p['accuracy_positive']:.0%}, 부정 {p['accuracy_negative']:.0%})",
                      f"감정 표현이 걸린 문장 {kote['coverage']:.0%}"))
+    kote_model = _result("kote_test_koelectra_small.json")
+    if kote_model:
+        p = kote_model["polarity"]
+        rows.append(("감정 극성 — 학습 감정 모델 (실험)", f"같은 KOTE {kote_model['n']:,}문장 (학습에 안 씀)",
+                     f"판단한 문장의 {p['accuracy_when_called']:.0%} 정확 (긍정 {p['accuracy_positive']:.0%}, 부정 {p['accuracy_negative']:.0%}), AUC {p['auc']:.2f}",
+                     f"판단한 문장 {p['called_share']:.0%} (감정 사전 {kote['polarity']['called_share']:.0%})" if kote else ""))
     return pd.DataFrame(rows, columns=["평가", "데이터", "결과", "비교·참고"])
 
 

@@ -78,10 +78,15 @@ def analyze_records(records: list[ReviewRecord], settings: dict, models: ReviewM
     models = models or ReviewModels.default()
     idx = settings["indices"]
     sessions = [build_session(r) for r in records]
+    # 학습 모델은 한 번에 묶어서 추론해야 빠르다 (세션마다 부르면 문장 몇 개짜리 배치가 수만 번 돈다)
+    batched = hasattr(models.emotion, "score_many")
+    if batched:
+        models.emotion.predict([u for s in sessions for u in s.units])
     for session in sessions:
         units = session.units
         # 순서가 중요하다: 불만 분류는 Valence를 쓰고, 명시적 불만이면 Valence를 낮춘다
-        models.emotion.predict(units)
+        if not batched:
+            models.emotion.predict(units)
         models.taxonomy.predict(units, domain=settings["review"].get("domain"))
         models.cx.predict(units)
         models.journey.predict(units)
