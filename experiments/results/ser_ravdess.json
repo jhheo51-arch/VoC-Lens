@@ -1,0 +1,108 @@
+{
+  "data": {
+    "clips": 1440,
+    "actors": 24,
+    "high_arousal": 768,
+    "low_arousal": 480,
+    "excluded_disgust": 192,
+    "reliable_share": 1.0
+  },
+  "model": {
+    "name": "acoustic-arousal-v0.1",
+    "weights": {
+      "pitch_mean": 0.35,
+      "pitch_std": 0.2,
+      "energy_db": 0.35,
+      "speech_rate": 0.2,
+      "pause_ratio": -0.15
+    },
+    "note": "가중치를 바꾸지 않고 평가만 함. 말 속도는 영어라 0으로 고정"
+  },
+  "normalization": {
+    "neutral_calm": {
+      "auc_high_vs_low": 0.8759,
+      "auc_strong_vs_normal": 0.731,
+      "by_gender": {
+        "female": 0.878,
+        "male": 0.8741
+      },
+      "mean_arousal_by_emotion": {
+        "neutral": 0.445,
+        "calm": 0.387,
+        "happy": 0.848,
+        "sad": 0.634,
+        "angry": 0.888,
+        "fearful": 0.853,
+        "disgust": 0.692,
+        "surprised": 0.88
+      },
+      "per_actor_auc": {
+        "min": 0.75,
+        "median": 0.8812,
+        "max": 1.0,
+        "below_0.7": 0,
+        "actors": 24
+      }
+    },
+    "all": {
+      "auc_high_vs_low": 0.8629,
+      "auc_strong_vs_normal": 0.7825,
+      "by_gender": {
+        "female": 0.8805,
+        "male": 0.8423
+      },
+      "mean_arousal_by_emotion": {
+        "neutral": 0.258,
+        "calm": 0.252,
+        "happy": 0.457,
+        "sad": 0.358,
+        "angry": 0.531,
+        "fearful": 0.497,
+        "disgust": 0.369,
+        "surprised": 0.454
+      },
+      "per_actor_auc": {
+        "min": 0.7016,
+        "median": 0.8617,
+        "max": 0.9969,
+        "below_0.7": 0,
+        "actors": 24
+      }
+    },
+    "none": {
+      "auc_high_vs_low": 0.8214,
+      "auc_strong_vs_normal": 0.7612,
+      "by_gender": {
+        "female": 0.8662,
+        "male": 0.8333
+      },
+      "mean_arousal_by_emotion": {
+        "neutral": 0.287,
+        "calm": 0.287,
+        "happy": 0.44,
+        "sad": 0.36,
+        "angry": 0.507,
+        "fearful": 0.482,
+        "disgust": 0.378,
+        "surprised": 0.428
+      },
+      "per_actor_auc": {
+        "min": 0.6734,
+        "median": 0.8711,
+        "max": 1.0,
+        "below_0.7": 1,
+        "actors": 24
+      }
+    }
+  },
+  "feature_auc_high_vs_low": {
+    "energy_db": 0.9214,
+    "energy_std": 0.4914,
+    "pitch_mean": 0.8297,
+    "pitch_std": 0.6377,
+    "pitch_range": 0.6868,
+    "voiced_ratio": 0.3866,
+    "pause_ratio": 0.6701,
+    "speech_rate": 0.5
+  }
+}
