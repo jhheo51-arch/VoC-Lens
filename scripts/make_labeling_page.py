@@ -4,6 +4,8 @@ Label Studio 없이 라벨링할 때 쓴다. 진행 상황은 브라우저에 �
 [{"unit_id", "labels", "hold", "memo"}] JSON을 받는다. 이 JSON은 voclens eval gold / label agreement에 그대로 넣는다.
 
     python scripts/make_labeling_page.py data/labeling/eval_tasks.json --n 50 --out data/labeling/human_check.html
+    # 이미 검수한 절은 빼고 30절 더 (다른 seed)
+    python scripts/make_labeling_page.py data/labeling/eval_tasks.json --n 30 --seed 3030         --exclude data/labeling/human_labels_20.json --out data/labeling/human_check_30.html
 
 원문이 들어 있으므로 data/ 아래에 만들고 저장소에 올리지 않는다.
 """
@@ -46,6 +48,21 @@ def build(tasks: list[dict], groups: dict[str, list[str]], title: str, preload: 
     return (TEMPLATE.replace("__TITLE__", html.escape(title)).replace("__CHOICES__", choices)
             .replace("__ITEMS__", json.dumps(items, ensure_ascii=False).replace("</", "<\\/"))
             .replace("__PRELOAD__", json.dumps(preload, ensure_ascii=False).replace("</", "<\\/")))
+
+
+def excluded_ids(paths: list[str]) -> set[str]:
+    """제외할 절 ID. 라벨 JSON([{unit_id, ...}]), 작업 JSON([{data: {unit_id}}]), ID 목록(["...", ...]) 모두 받는다."""
+    ids: set[str] = set()
+    for path in paths:
+        for r in json.loads(Path(path).read_text(encoding="utf-8")):
+            ids.add(r if isinstance(r, str) else r["data"]["unit_id"] if "data" in r else r["unit_id"])
+    return ids
+
+
+def pick_tasks(tasks: list[dict], n: int | None, seed: int, exclude: set[str] | None = None) -> list[dict]:
+    """exclude에 있는 절을 먼저 빼고, n을 주면 남은 것에서 무작위로 n개 고른다."""
+    tasks = [t for t in tasks if t["data"]["unit_id"] not in (exclude or set())]
+    return random.Random(seed).sample(tasks, min(n, len(tasks))) if n else tasks
 
 
 def needs_review(labels: list[str]) -> bool:
@@ -174,11 +191,11 @@ def main() -> None:
     ap.add_argument("--title", default="VoC Lens 라벨링")
     ap.add_argument("--out", default="data/labeling/labeling_page.html")
     ap.add_argument("--preload", help="이전 라벨 JSON([{unit_id, labels, hold, memo}]). 체크된 상태로 시작한다")
+    ap.add_argument("--exclude", nargs="*", default=[], help="뺄 절 ID가 든 JSON (이미 검수한 사람 라벨 등). 무작위 추출 전에 뺀다")
     ap.add_argument("--only-flagged", action="store_true", help="--preload 중 다시 볼 항목(불만 아님과 유형이 섞임, 3개 이상)만")
     args = ap.parse_args()
     tasks = json.loads(Path(args.tasks).read_text(encoding="utf-8"))
-    if args.n:
-        tasks = random.Random(args.seed).sample(tasks, min(args.n, len(tasks)))
+    tasks = pick_tasks(tasks, args.n, args.seed, excluded_ids(args.exclude))
     preload = {}
     if args.preload:
         preload = {r["unit_id"]: {"labels": r["labels"], "hold": bool(r.get("hold")), "memo": r.get("memo", "")}

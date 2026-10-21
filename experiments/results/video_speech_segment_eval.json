@@ -1,0 +1,595 @@
+{
+  "note": "정답 라벨 없음. 미리 정한 구조 점검 지표로 변경 전후 비교 (원문 미포함)",
+  "split": "eval",
+  "before": {
+    "emotion": "lexicon-v0.1",
+    "taxonomy": "keyword-v0.1",
+    "cx": "cx-signals-v0.1",
+    "journey": "journey-keyword-v0.1",
+    "ser": "acoustic-arousal-v0.1",
+    "video_type": "video-type-keyword-v0.1",
+    "segmenter": "texttiling-bigram-v0.1"
+  },
+  "after": {
+    "emotion": "transformer:emotion-kote-small",
+    "taxonomy": "keyword-v0.1",
+    "cx": "cx-signals-v0.1",
+    "journey": "journey-keyword-v0.1",
+    "ser": "acoustic-arousal-v0.1",
+    "video_type": "video-type-keyword-v0.1",
+    "segmenter": "texttiling-bigram-position-v0.2"
+  },
+  "totals": {
+    "texttiling_v0.1": {
+      "n_segments": 72,
+      "intro_outside_front20": 1,
+      "verdict_outside_tail30": 1,
+      "videos_with_verdict_in_tail30": 1,
+      "misfit_labels": 0,
+      "default_share_mean": 0.55
+    },
+    "position_v0.2": {
+      "n_segments": 31,
+      "intro_outside_front20": 0,
+      "verdict_outside_tail30": 0,
+      "videos_with_verdict_in_tail30": 1,
+      "misfit_labels": 0,
+      "default_share_mean": 0.574
+    },
+    "creator_lexicon": {
+      "units": 448,
+      "zero_share": 0.73,
+      "uncalled_share": 0.741
+    },
+    "creator_model": {
+      "units": 448,
+      "zero_share": 0.0,
+      "uncalled_share": 0.0
+    }
+  },
+  "videos": [
+    {
+      "video_id": "crOa9gsD9tE",
+      "channel": "에어프라이어 한 끼, 도히쓰",
+      "duration_sec": 501.3,
+      "transcript_source": "manual_subtitles",
+      "sentences": 98,
+      "comments": 26,
+      "emotion": {
+        "creator": {
+          "lexicon": {
+            "units": 98,
+            "zero_share": 0.673,
+            "uncalled_share": 0.694,
+            "dist": {
+              "neg_below_-0.2": 0.133,
+              "neg_-0.2_0": 0.01,
+              "zero": 0.673,
+              "pos_0_0.25": 0.051,
+              "pos_0.25_up": 0.133
+            },
+            "valence_mean": 0.0191,
+            "valence_sd": 0.19
+          },
+          "model": {
+            "units": 98,
+            "zero_share": 0.0,
+            "uncalled_share": 0.0,
+            "dist": {
+              "neg_below_-0.2": 0.286,
+              "neg_-0.2_0": 0.143,
+              "zero": 0.0,
+              "pos_0_0.25": 0.296,
+              "pos_0.25_up": 0.276
+            },
+            "valence_mean": 0.0213,
+            "valence_sd": 0.3117
+          },
+          "sign_agreement": {
+            "both_called": 30,
+            "same_sign": 0.8
+          }
+        },
+        "audience": {
+          "lexicon": {
+            "units": 26,
+            "zero_share": 0.538,
+            "uncalled_share": 0.538,
+            "dist": {
+              "neg_below_-0.2": 0.154,
+              "neg_-0.2_0": 0.038,
+              "zero": 0.538,
+              "pos_0_0.25": 0.115,
+              "pos_0.25_up": 0.154
+            },
+            "valence_mean": 0.0153,
+            "valence_sd": 0.2133
+          },
+          "model": {
+            "units": 26,
+            "zero_share": 0.0,
+            "uncalled_share": 0.0,
+            "dist": {
+              "neg_below_-0.2": 0.654,
+              "neg_-0.2_0": 0.115,
+              "zero": 0.0,
+              "pos_0_0.25": 0.115,
+              "pos_0.25_up": 0.115
+            },
+            "valence_mean": -0.2216,
+            "valence_sd": 0.3222
+          },
+          "sign_agreement": {
+            "both_called": 12,
+            "same_sign": 0.5
+          }
+        },
+        "creator_vs_audience": {
+          "lexicon": {
+            "creator_valence": 0.0191,
+            "audience_valence": 0.0153,
+            "audience_minus_creator": -0.0038,
+            "n_creator": 98,
+            "n_audience": 26
+          },
+          "model": {
+            "creator_valence": 0.0213,
+            "audience_valence": -0.2216,
+            "audience_minus_creator": -0.2428,
+            "n_creator": 98,
+            "n_audience": 26
+          }
+        }
+      },
+      "segmentation": {
+        "texttiling_v0.1": {
+          "n_segments": 15,
+          "labels": [
+            "도입",
+            "사용",
+            "본문",
+            "본문",
+            "본문",
+            "장단점",
+            "본문",
+            "총평",
+            "본문",
+            "본문",
+            "사용",
+            "사용",
+            "본문",
+            "장단점",
+            "장단점"
+          ],
+          "label_counts": {
+            "도입": 1,
+            "사용": 3,
+            "본문": 7,
+            "장단점": 3,
+            "총평": 1
+          },
+          "intro_count": 1,
+          "intro_outside_front20": 0,
+          "verdict_count": 1,
+          "verdict_outside_tail30": 1,
+          "has_verdict_in_tail30": false,
+          "product_group": null,
+          "misfit_labels": 0,
+          "default_share": 0.378,
+          "chapters": {
+            "n_chapter_boundaries": 7,
+            "n_predicted_boundaries": 14,
+            "precision": 0.214,
+            "recall": 0.429
+          }
+        },
+        "position_v0.2": {
+          "n_segments": 8,
+          "labels": [
+            "도입",
+            "사용",
+            "본문",
+            "장단점",
+            "본문",
+            "사용",
+            "본문",
+            "장단점"
+          ],
+          "label_counts": {
+            "도입": 1,
+            "사용": 2,
+            "본문": 3,
+            "장단점": 2
+          },
+          "intro_count": 1,
+          "intro_outside_front20": 0,
+          "verdict_count": 0,
+          "verdict_outside_tail30": 0,
+          "has_verdict_in_tail30": false,
+          "product_group": null,
+          "misfit_labels": 0,
+          "default_share": 0.418,
+          "chapters": {
+            "n_chapter_boundaries": 7,
+            "n_predicted_boundaries": 7,
+            "precision": 0.286,
+            "recall": 0.286
+          }
+        }
+      }
+    },
+    {
+      "video_id": "hNwemeKKNGs",
+      "channel": "Lumapic",
+      "duration_sec": 572.2,
+      "transcript_source": "manual_subtitles",
+      "sentences": 124,
+      "comments": 81,
+      "emotion": {
+        "creator": {
+          "lexicon": {
+            "units": 124,
+            "zero_share": 0.645,
+            "uncalled_share": 0.669,
+            "dist": {
+              "neg_below_-0.2": 0.137,
+              "neg_-0.2_0": 0.008,
+              "zero": 0.645,
+              "pos_0_0.25": 0.024,
+              "pos_0.25_up": 0.185
+            },
+            "valence_mean": 0.0382,
+            "valence_sd": 0.2088
+          },
+          "model": {
+            "units": 124,
+            "zero_share": 0.0,
+            "uncalled_share": 0.0,
+            "dist": {
+              "neg_below_-0.2": 0.379,
+              "neg_-0.2_0": 0.25,
+              "zero": 0.0,
+              "pos_0_0.25": 0.161,
+              "pos_0.25_up": 0.21
+            },
+            "valence_mean": -0.0927,
+            "valence_sd": 0.3064
+          },
+          "sign_agreement": {
+            "both_called": 41,
+            "same_sign": 0.683
+          }
+        },
+        "audience": {
+          "lexicon": {
+            "units": 81,
+            "zero_share": 0.444,
+            "uncalled_share": 0.457,
+            "dist": {
+              "neg_below_-0.2": 0.136,
+              "neg_-0.2_0": 0.0,
+              "zero": 0.444,
+              "pos_0_0.25": 0.136,
+              "pos_0.25_up": 0.284
+            },
+            "valence_mean": 0.1111,
+            "valence_sd": 0.2557
+          },
+          "model": {
+            "units": 81,
+            "zero_share": 0.0,
+            "uncalled_share": 0.0,
+            "dist": {
+              "neg_below_-0.2": 0.383,
+              "neg_-0.2_0": 0.173,
+              "zero": 0.0,
+              "pos_0_0.25": 0.21,
+              "pos_0.25_up": 0.235
+            },
+            "valence_mean": -0.0516,
+            "valence_sd": 0.3334
+          },
+          "sign_agreement": {
+            "both_called": 44,
+            "same_sign": 0.705
+          }
+        },
+        "creator_vs_audience": {
+          "lexicon": {
+            "creator_valence": 0.0382,
+            "audience_valence": 0.1111,
+            "audience_minus_creator": 0.0729,
+            "n_creator": 124,
+            "n_audience": 81
+          },
+          "model": {
+            "creator_valence": -0.0927,
+            "audience_valence": -0.0516,
+            "audience_minus_creator": 0.0411,
+            "n_creator": 124,
+            "n_audience": 81
+          }
+        }
+      },
+      "segmentation": {
+        "texttiling_v0.1": {
+          "n_segments": 22,
+          "labels": [
+            "도입",
+            "본문",
+            "본문",
+            "본문",
+            "장단점",
+            "본문",
+            "본문",
+            "본문",
+            "본문",
+            "본문",
+            "본문",
+            "본문",
+            "본문",
+            "본문",
+            "본문",
+            "사용",
+            "사용",
+            "본문",
+            "본문",
+            "총평",
+            "장단점",
+            "장단점"
+          ],
+          "label_counts": {
+            "도입": 1,
+            "본문": 15,
+            "장단점": 3,
+            "사용": 2,
+            "총평": 1
+          },
+          "intro_count": 1,
+          "intro_outside_front20": 0,
+          "verdict_count": 1,
+          "verdict_outside_tail30": 0,
+          "has_verdict_in_tail30": true,
+          "product_group": null,
+          "misfit_labels": 0,
+          "default_share": 0.645,
+          "chapters": {
+            "n_chapter_boundaries": 8,
+            "n_predicted_boundaries": 21,
+            "precision": 0.286,
+            "recall": 0.875
+          }
+        },
+        "position_v0.2": {
+          "n_segments": 8,
+          "labels": [
+            "도입",
+            "본문",
+            "장단점",
+            "본문",
+            "사용",
+            "본문",
+            "총평",
+            "장단점"
+          ],
+          "label_counts": {
+            "도입": 1,
+            "본문": 3,
+            "장단점": 2,
+            "사용": 1,
+            "총평": 1
+          },
+          "intro_count": 1,
+          "intro_outside_front20": 0,
+          "verdict_count": 1,
+          "verdict_outside_tail30": 0,
+          "has_verdict_in_tail30": true,
+          "product_group": null,
+          "misfit_labels": 0,
+          "default_share": 0.645,
+          "chapters": {
+            "n_chapter_boundaries": 8,
+            "n_predicted_boundaries": 7,
+            "precision": 0.143,
+            "recall": 0.125
+          }
+        }
+      }
+    },
+    {
+      "video_id": "AWmjVAoC_zE",
+      "channel": "MOVE by Autocast",
+      "duration_sec": 1236.1,
+      "transcript_source": "manual_subtitles",
+      "sentences": 226,
+      "comments": 25,
+      "emotion": {
+        "creator": {
+          "lexicon": {
+            "units": 226,
+            "zero_share": 0.801,
+            "uncalled_share": 0.801,
+            "dist": {
+              "neg_below_-0.2": 0.018,
+              "neg_-0.2_0": 0.0,
+              "zero": 0.801,
+              "pos_0_0.25": 0.031,
+              "pos_0.25_up": 0.15
+            },
+            "valence_mean": 0.0606,
+            "valence_sd": 0.1532
+          },
+          "model": {
+            "units": 226,
+            "zero_share": 0.0,
+            "uncalled_share": 0.0,
+            "dist": {
+              "neg_below_-0.2": 0.257,
+              "neg_-0.2_0": 0.226,
+              "zero": 0.0,
+              "pos_0_0.25": 0.274,
+              "pos_0.25_up": 0.243
+            },
+            "valence_mean": 0.0066,
+            "valence_sd": 0.2822
+          },
+          "sign_agreement": {
+            "both_called": 45,
+            "same_sign": 0.578
+          }
+        },
+        "audience": {
+          "lexicon": {
+            "units": 25,
+            "zero_share": 0.6,
+            "uncalled_share": 0.64,
+            "dist": {
+              "neg_below_-0.2": 0.12,
+              "neg_-0.2_0": 0.0,
+              "zero": 0.6,
+              "pos_0_0.25": 0.04,
+              "pos_0.25_up": 0.24
+            },
+            "valence_mean": 0.0645,
+            "valence_sd": 0.2111
+          },
+          "model": {
+            "units": 25,
+            "zero_share": 0.0,
+            "uncalled_share": 0.0,
+            "dist": {
+              "neg_below_-0.2": 0.6,
+              "neg_-0.2_0": 0.12,
+              "zero": 0.0,
+              "pos_0_0.25": 0.08,
+              "pos_0.25_up": 0.2
+            },
+            "valence_mean": -0.1737,
+            "valence_sd": 0.3541
+          },
+          "sign_agreement": {
+            "both_called": 9,
+            "same_sign": 0.556
+          }
+        },
+        "creator_vs_audience": {
+          "lexicon": {
+            "creator_valence": 0.0606,
+            "audience_valence": 0.0645,
+            "audience_minus_creator": 0.0039,
+            "n_creator": 226,
+            "n_audience": 25
+          },
+          "model": {
+            "creator_valence": 0.0066,
+            "audience_valence": -0.1737,
+            "audience_minus_creator": -0.1803,
+            "n_creator": 226,
+            "n_audience": 25
+          }
+        }
+      },
+      "segmentation": {
+        "texttiling_v0.1": {
+          "n_segments": 35,
+          "labels": [
+            "본문",
+            "본문",
+            "본문",
+            "본문",
+            "본문",
+            "본문",
+            "본문",
+            "본문",
+            "본문",
+            "본문",
+            "본문",
+            "사용",
+            "본문",
+            "본문",
+            "본문",
+            "본문",
+            "사용",
+            "본문",
+            "사용",
+            "사용",
+            "본문",
+            "장단점",
+            "본문",
+            "본문",
+            "본문",
+            "사용",
+            "본문",
+            "본문",
+            "사용",
+            "본문",
+            "장단점",
+            "본문",
+            "본문",
+            "본문",
+            "도입"
+          ],
+          "label_counts": {
+            "본문": 26,
+            "사용": 6,
+            "장단점": 2,
+            "도입": 1
+          },
+          "intro_count": 1,
+          "intro_outside_front20": 1,
+          "verdict_count": 0,
+          "verdict_outside_tail30": 0,
+          "has_verdict_in_tail30": false,
+          "product_group": "자동차",
+          "misfit_labels": 0,
+          "default_share": 0.628,
+          "chapters": {
+            "n_chapter_boundaries": 15,
+            "n_predicted_boundaries": 34,
+            "precision": 0.382,
+            "recall": 0.8
+          }
+        },
+        "position_v0.2": {
+          "n_segments": 15,
+          "labels": [
+            "본문",
+            "사용",
+            "본문",
+            "사용",
+            "본문",
+            "사용",
+            "본문",
+            "장단점",
+            "본문",
+            "사용",
+            "본문",
+            "사용",
+            "본문",
+            "장단점",
+            "본문"
+          ],
+          "label_counts": {
+            "본문": 8,
+            "사용": 5,
+            "장단점": 2
+          },
+          "intro_count": 0,
+          "intro_outside_front20": 0,
+          "verdict_count": 0,
+          "verdict_outside_tail30": 0,
+          "has_verdict_in_tail30": false,
+          "product_group": "자동차",
+          "misfit_labels": 0,
+          "default_share": 0.659,
+          "chapters": {
+            "n_chapter_boundaries": 15,
+            "n_predicted_boundaries": 14,
+            "precision": 0.429,
+            "recall": 0.4
+          }
+        }
+      }
+    }
+  ]
+}

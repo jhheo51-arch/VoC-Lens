@@ -33,7 +33,7 @@ from voclens.text.segment import split_sentences
 from voclens.text.taxonomy import KeywordTaxonomyClassifier
 from voclens.video.classify import VideoTypeClassifier
 from voclens.video.comments import compare_creator_audience, extract_timestamps, find_segment
-from voclens.video.segment import TextTilingSegmenter
+from voclens.video.segment import TextTilingSegmenter, make_segmenter
 
 SPEAKER_ROLES = ("creator", "guest")
 
@@ -49,16 +49,30 @@ class VideoModels:
     segmenter: TextTilingSegmenter
 
     @classmethod
-    def default(cls) -> VideoModels:
+    def default(cls, emotion_model: str | None = None, segmenter: str | None = None, settings: dict | None = None) -> VideoModels:
+        """기본은 감정 사전과 configs/video.yaml의 구간 분할 방식(texttiling).
+
+        emotion_model: 학습한 감정 모델 폴더(예: models/emotion-kote-small). 리뷰의 --emotion-model과 같고
+        torch·transformers가 필요하다. 이때 주제 표현의 Valence 기준은 설정의 models.transformer_topic_max_valence를 따른다.
+        segmenter: texttiling | position (없으면 설정값).
+        """
         taxonomy = KeywordTaxonomyClassifier()
+        emotion = LexiconEmotionModel()
+        if emotion_model:
+            from voclens.evaluation import load_emotion_model
+
+            emotion = load_emotion_model(emotion_model)
+            topic = ((settings or {}).get("models") or {}).get("transformer_topic_max_valence")
+            if topic is not None:
+                taxonomy.topic_max_valence = topic
         return cls(
-            emotion=LexiconEmotionModel(),
+            emotion=emotion,
             taxonomy=taxonomy,
             cx=CxSignalDetector(),
             journey=JourneyTagger(taxonomy=taxonomy.taxonomy),
             ser=AcousticArousalBaseline(),
             video_type=VideoTypeClassifier(),
-            segmenter=TextTilingSegmenter(),
+            segmenter=make_segmenter(segmenter),
         )
 
     def versions(self) -> dict[str, str]:
@@ -185,14 +199,16 @@ def build_video_session(bundle: VideoBundle, models: VideoModels, settings: dict
     models.cx.predict(units)
     models.journey.predict(units)
 
-    segments = models.segmenter.segment([u.text for u in units])
+    duration = max(s.end for s in spans)
+    # 구간 분할: 문장 가운데 시각의 영상 안 상대 위치(0~1)를 함께 넘긴다 (texttiling은 쓰지 않고 position이 쓴다)
+    positions = [((u.start_sec + u.end_sec) / 2) / duration if duration else 0.0 for u in units]
+    segments = models.segmenter.segment([u.text for u in units], positions=positions, meta=bundle.meta)
     for seg in segments:
         for u in units[seg.start : seg.end]:
             u.segment, u.segment_index = seg.label, seg.index
     segment_times = [(units[s.start].start_sec, units[s.end - 1].end_sec) for s in segments]
 
     # 댓글: 발화 뒤에 이어서 저장 (speaker_role = commenter)
-    duration = max(s.end for s in spans)
     comments = []
     ccfg = vcfg["comments"]
     for j, c in enumerate(bundle.comments[: ccfg["max_comments"]]):
@@ -274,8 +290,11 @@ def expand_sources(sources: list[str]) -> list[str]:
     return out
 
 
-def run_video_pipeline(sources: list[str], settings: dict, db_path=None, allow_stt: bool = False) -> tuple[str, list[Session]]:
-    models = VideoModels.default()
+def run_video_pipeline(
+    sources: list[str], settings: dict, db_path=None, allow_stt: bool = False,
+    emotion_model: str | None = None, segmenter: str | None = None,
+) -> tuple[str, list[Session]]:
+    models = VideoModels.default(emotion_model=emotion_model, segmenter=segmenter, settings=settings)
     vcfg = load_yaml("video.yaml")
     items = expand_sources(sources)
     conn = db.connect(db_path or settings["db_path"])

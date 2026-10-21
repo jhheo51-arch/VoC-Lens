@@ -1,0 +1,6475 @@
+[
+{
+"unit_id": "review:ns157439#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns40727#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns139738#1",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns151037#4",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns22515#2",
+"labels": [
+"품질·마감",
+"품질 편차"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns98207#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns161364#0",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns93560#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns68752#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns24378#1",
+"labels": [
+"문의·연락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns3815#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns113409#3",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns93959#1",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns188949#2",
+"labels": [
+"품질 편차"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns119976#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns82955#1",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns78552#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns157958#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns109565#2",
+"labels": [
+"칭찬",
+"오배송·누락"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns100030#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns23054#1",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns87569#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns39218#1",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns166402#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns97997#0",
+"labels": [
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns65532#1",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns106613#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns60129#0",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns179788#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns9316#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns34231#7",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns86244#2",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns89617#1",
+"labels": [
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns107240#1",
+"labels": [
+"사용 편의",
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns176802#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns58371#3",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns192550#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns56259#0",
+"labels": [
+"냄새",
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns150327#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns44182#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns171193#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns18431#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns91435#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns126684#3",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns111803#3",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns118250#3",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns19645#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns159197#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns36231#0",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns180984#0",
+"labels": [
+"포장·파손",
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns63303#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns177498#1",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns28110#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns30003#0",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns104697#1",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns178546#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns130150#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns132401#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns123996#1",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns143958#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns168312#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns94282#0",
+"labels": [
+"포장·파손"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns5246#4",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns123350#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns86096#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns187210#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns156409#1",
+"labels": [
+"포장·파손"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns10988#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns49952#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns134916#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns71005#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns39145#0",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns185510#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns131022#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns144023#0",
+"labels": [
+"포장·파손"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns175304#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns149241#1",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns66580#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns177138#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns164663#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns11315#4",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns103048#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns85640#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns4098#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns100579#1",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns125537#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns16341#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns856#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns56773#1",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns167516#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns197281#1",
+"labels": [
+"칭찬"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns173060#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns58035#3",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns174757#0",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns186232#4",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns123464#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns94829#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns193179#4",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns84005#0",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns186832#0",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns55989#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns71264#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns181295#0",
+"labels": [
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns162097#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns49655#1",
+"labels": [
+"배송 지연",
+"매장 응대"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns14364#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns2807#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns54811#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns81502#0",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns87679#2",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns106351#0",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns115746#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns160205#0",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns38162#1",
+"labels": [
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns87313#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns110026#1",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns114640#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns177589#1",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns8320#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns180600#0",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns35652#2",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns120006#4",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns199170#2",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns193936#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns25955#1",
+"labels": [
+"매장 응대"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns44011#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns177611#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns98925#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns167216#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns33479#3",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns171303#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns102368#0",
+"labels": [
+"배송 지연",
+"문의·연락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns113593#2",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns121367#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns160131#1",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns171456#1",
+"labels": [
+"품질·마감",
+"가격"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns183450#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns117269#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns75699#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns63069#2",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns119319#2",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns128243#2",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns27370#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns181013#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns14394#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns115896#1",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns186778#1",
+"labels": [
+"포장·파손"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns36138#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns61106#0",
+"labels": [
+"품질·마감",
+"가격"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns135567#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns132803#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns136605#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns126249#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns95443#3",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns168569#1",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns50643#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns78655#0",
+"labels": [
+"배송 지연",
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns123565#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns163750#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns2585#4",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns180188#0",
+"labels": [
+"포장·파손",
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns26802#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns110996#0",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns169244#3",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns159080#0",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns122639#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns1684#4",
+"labels": [
+"오배송·누락"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns74654#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns151376#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns75469#2",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns196095#1",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns29417#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns77761#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns93239#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns140756#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns69626#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns8880#3",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns50637#2",
+"labels": [
+"배송 지연",
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns99240#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns116952#1",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns38592#2",
+"labels": [
+"냄새",
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns160476#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns56762#0",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns87508#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns58623#3",
+"labels": [
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns11049#2",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns177138#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns93331#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns168103#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns135555#2",
+"labels": [
+"칭찬",
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns28272#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns93318#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns144448#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns85330#0",
+"labels": [
+"맛·신선도"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns66648#3",
+"labels": [
+"해당 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns92442#1",
+"labels": [
+"품질 편차",
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns47542#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns74628#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns84100#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns97271#1",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns64368#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns61258#1",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns71031#1",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns145404#2",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns80033#1",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns195234#0",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns106835#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns7015#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns97129#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns195872#3",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns132874#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns25537#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns195070#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns26700#2",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns151453#2",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns40081#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns15945#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns3702#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns198530#2",
+"labels": [
+"성능",
+"가격"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns152297#0",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns188385#1",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns172782#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns139738#0",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns114799#0",
+"labels": [
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns154730#5",
+"labels": [
+"해당 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns117686#0",
+"labels": [
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns97372#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns22159#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns160034#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns49251#0",
+"labels": [
+"가격"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns13876#1",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns7835#1",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns187047#4",
+"labels": [
+"배송 지연",
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns104114#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns88807#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns164518#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns95556#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns124361#2",
+"labels": [
+"가격"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns45147#0",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns10494#1",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns152210#2",
+"labels": [
+"포장·파손"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns150452#1",
+"labels": [
+"정보 불일치"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns133009#1",
+"labels": [
+"사이즈·색상"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns166780#1",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns199486#0",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns127355#0",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns36415#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns164154#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns172253#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns66257#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns18292#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns66339#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns113249#0",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns191690#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns72206#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns3192#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns154137#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns196590#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns144476#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns97566#3",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns63818#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns4904#1",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns199933#1",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns141480#0",
+"labels": [
+"오배송·누락"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns161967#3",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns10200#0",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns65782#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns175972#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns184427#0",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns4715#3",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns195558#0",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns184860#1",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns182328#0",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns64330#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns40138#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns7555#1",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns142062#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns173579#1",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns144221#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns87470#0",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns62119#2",
+"labels": [
+"사이즈·색상"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns22286#1",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns159411#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns157879#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns30585#3",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns43162#0",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns110036#0",
+"labels": [
+"오배송·누락"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns67899#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns87664#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns152157#0",
+"labels": [
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns144177#1",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns51643#1",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns115972#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns6859#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns50460#0",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns155337#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns151143#0",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns90698#0",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns72849#2",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns189389#3",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns151165#1",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns88533#1",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns117798#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns64976#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns102751#3",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns33727#3",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns132634#0",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns160363#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns151087#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns107010#3",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns126515#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns156129#0",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns24709#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns149981#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns59589#2",
+"labels": [
+"가격"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns128141#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns172798#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns60582#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns86553#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns176720#0",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns4316#3",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns126453#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns65595#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns2619#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns118915#1",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns24936#2",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns144087#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns195827#2",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns182256#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns84019#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns63888#2",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns32773#3",
+"labels": [
+"정보 불일치"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns58479#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns6382#0",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns148169#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns59930#0",
+"labels": [
+"품질·마감",
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns15496#0",
+"labels": [
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns114303#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns84750#3",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns33395#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns171152#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns58031#2",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns176500#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns1109#3",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns74641#3",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns91998#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns54862#3",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns178313#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns113132#3",
+"labels": [
+"문의·연락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns14607#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns38108#1",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns169366#1",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns37054#3",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns54009#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns70#0",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns4433#4",
+"labels": [
+"가격"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns65376#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns31356#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns45089#0",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns5204#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns28733#0",
+"labels": [
+"포장·파손",
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns82509#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns77533#5",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns15168#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns129893#1",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns40970#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns148608#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns184125#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns115302#2",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns58086#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns62938#1",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns138733#3",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns71890#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns153065#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns95561#3",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns138162#1",
+"labels": [
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns172570#1",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns90708#3",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns127392#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns109763#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns143008#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns172632#0",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns90006#0",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns163332#0",
+"labels": [
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns98492#1",
+"labels": [
+"효과 없음",
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns59077#1",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns154824#0",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns134479#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns161822#3",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns26358#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns28039#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns34427#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns41250#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns120686#1",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns5055#1",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns72494#1",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns72729#3",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns159796#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns190919#1",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns45994#3",
+"labels": [
+"포장·파손"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns48168#0",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns43871#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns1310#3",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns166189#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns86044#0",
+"labels": [
+"가격"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns39407#0",
+"labels": [
+"해당 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns143477#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns60883#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns177988#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns36853#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns3620#1",
+"labels": [
+"맛·신선도"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns75747#0",
+"labels": [
+"해당 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns107944#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns119637#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns146112#0",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns193891#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns1772#1",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns50319#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns178927#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns167361#1",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns84379#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns115122#0",
+"labels": [
+"쿠폰·할인"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns13259#1",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns1362#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns195769#2",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns106618#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns176662#0",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns108874#0",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns161119#0",
+"labels": [
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns79932#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns161945#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns33035#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns99491#3",
+"labels": [
+"문의·연락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns54985#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns156963#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns9469#2",
+"labels": [
+"해당 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns115044#4",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns96592#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns67315#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns63247#2",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns31776#0",
+"labels": [
+"포장·파손"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns169712#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns179310#0",
+"labels": [
+"배송 지연",
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns70591#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns189325#1",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns132409#1",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns18431#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns101309#1",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns165899#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns165166#1",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns171875#2",
+"labels": [
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns41514#0",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns150345#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns68045#1",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns7193#0",
+"labels": [
+"오배송·누락",
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns30897#0",
+"labels": [
+"사이즈·색상",
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns77385#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns177021#2",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns137020#3",
+"labels": [
+"환불·취소"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns35926#2",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns161190#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns87515#1",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns106976#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns63364#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns146935#1",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns197075#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns20323#3",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns47948#1",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns91917#1",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns12555#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns79460#2",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns61385#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns52212#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns132038#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns31124#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns84995#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns132117#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns31217#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns154599#1",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns42044#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns47755#1",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns106808#3",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns163543#2",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns85035#2",
+"labels": [
+"해당 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns27152#3",
+"labels": [
+"배터리",
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns129025#0",
+"labels": [
+"배송 지연",
+"문의·연락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns5017#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns84829#1",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns82137#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns59755#2",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns93804#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns108259#4",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns195060#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns57529#3",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns181987#6",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns193346#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns87004#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns130663#0",
+"labels": [
+"해당 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns188516#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns42135#1",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns30382#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns44553#1",
+"labels": [
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns14564#1",
+"labels": [
+"문의·연락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns193589#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns177739#3",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns137559#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns12029#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns188476#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns83281#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns38798#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns161967#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns55357#2",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns57526#2",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns80117#1",
+"labels": [
+"사이즈·색상",
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns96000#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns84297#3",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns55611#0",
+"labels": [
+"배송 지연",
+"포장·파손"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns87529#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns161755#2",
+"labels": [
+"품질·마감",
+"오배송·누락"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns185440#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns182557#1",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns90563#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns22911#3",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns35137#1",
+"labels": [
+"오배송·누락",
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns65028#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns193901#2",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns168970#4",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns27878#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns71842#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns158858#1",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns153101#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns131854#3",
+"labels": [
+"사이즈·색상"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns23630#1",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns18829#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns64882#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns180440#1",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns183332#0",
+"labels": [
+"사이즈·색상",
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns133157#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns46497#2",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns172582#1",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns148962#2",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns79172#0",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns174498#1",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns115720#0",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns195728#1",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns82854#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns125161#2",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns162647#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns165029#1",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns57324#1",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns54198#2",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns140938#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns13843#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns45963#5",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns151793#0",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns75478#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns34510#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns72681#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns27613#0",
+"labels": [
+"배송 지연"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns31446#1",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns46055#3",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns9502#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns195381#3",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns138978#0",
+"labels": [
+"오배송·누락",
+"포장·파손"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns50698#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns102299#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns149102#3",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns100081#1",
+"labels": [
+"배송 지연",
+"포장·파손"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns96701#1",
+"labels": [
+"포장·파손"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns167342#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns148384#1",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns73311#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns30134#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns104579#0",
+"labels": [
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns193265#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns178987#0",
+"labels": [
+"배송 지연",
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns193004#0",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns163223#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns30828#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns146856#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns53713#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns75582#2",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns198510#1",
+"labels": [
+"품질·마감",
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns126924#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns134501#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns128441#2",
+"labels": [
+"포장·파손"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns103579#0",
+"labels": [
+"오배송·누락",
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns137760#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns151044#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns168183#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns89714#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns171447#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns43067#0",
+"labels": [
+"품질 편차"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns154492#0",
+"labels": [
+"오배송·누락",
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns179202#1",
+"labels": [
+"정보 불일치"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns7494#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns195404#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns41603#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns29614#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns193477#1",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns18542#0",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns88076#1",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns48154#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns35708#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns31690#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns73524#1",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns198398#2",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns62626#1",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns125156#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns173032#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns78454#4",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns174123#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns45690#2",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns46014#0",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns193231#3",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns193046#0",
+"labels": [
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns68254#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns9169#0",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns67599#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns125733#1",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns7016#0",
+"labels": [
+"배송 지연",
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns148654#1",
+"labels": [
+"오배송·누락",
+"배송 지연"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns112190#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns57839#1",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns90302#3",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns34519#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns4058#1",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns101514#1",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns135200#4",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns193624#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns90035#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns94003#3",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns170638#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns183561#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns127050#0",
+"labels": [
+"품질·마감",
+"오배송·누락"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns19381#1",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns158045#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns176086#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns110561#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns2009#2",
+"labels": [
+"칭찬"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns195257#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns33175#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns60946#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns99763#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns10286#1",
+"labels": [
+"오배송·누락",
+"매장 응대"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns156175#1",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns148453#3",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns102763#3",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns128294#0",
+"labels": [
+"정보 불일치"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns170790#2",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns155398#4",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns115643#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns191201#3",
+"labels": [
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns86524#1",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns68800#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns168457#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns125528#4",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns149727#3",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns25068#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns195397#1",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns155134#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns136325#0",
+"labels": [
+"품질 편차"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns118255#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns199157#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns183856#3",
+"labels": [
+"해당 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns189932#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns36686#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns6697#2",
+"labels": [
+"정보 불일치"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns175864#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns73466#4",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns134649#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns161660#1",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns794#0",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns164414#2",
+"labels": [
+"사이즈·색상"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns103339#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns118173#0",
+"labels": [
+"사이즈·색상",
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns164470#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns124981#4",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns186119#1",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns77532#1",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns36901#4",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns144612#0",
+"labels": [
+"배송 지연",
+"문의·연락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns121575#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns161718#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns154506#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns89995#2",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns168864#4",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns140887#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns28029#0",
+"labels": [
+"성능",
+"가격"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns172359#3",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns178467#0",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns44846#3",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns51806#4",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns43783#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns423#0",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns10904#1",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns47030#0",
+"labels": [
+"쿠폰·할인"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns145313#2",
+"labels": [
+"환불·취소"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns96223#3",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns111954#1",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns65399#1",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns23869#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns77064#1",
+"labels": [
+"오배송·누락",
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns10507#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns12462#0",
+"labels": [
+"포장·파손"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns139914#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns111406#1",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns35201#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns118981#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns161122#2",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns184645#1",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns77747#4",
+"labels": [
+"오배송·누락"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns269#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns143584#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns58790#1",
+"labels": [
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns38199#0",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns191742#1",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns31436#5",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns96960#0",
+"labels": [
+"해당 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns198680#1",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns80762#3",
+"labels": [
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns185669#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns156366#4",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns170906#4",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns39610#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns129689#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns104413#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns185571#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns100725#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns199278#1",
+"labels": [
+"가격"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns8164#1",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns58680#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns144130#0",
+"labels": [
+"정보 불일치"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns36108#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns144516#0",
+"labels": [
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns7770#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns171089#0",
+"labels": [
+"가격",
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns33761#0",
+"labels": [
+"사이즈·색상",
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns166345#3",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns44596#1",
+"labels": [
+"오배송·누락",
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns125866#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns36124#0",
+"labels": [
+"효과 없음",
+"가격"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns124509#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns54172#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns4579#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns59764#0",
+"labels": [
+"오배송·누락",
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns187678#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns84886#4",
+"labels": [
+"해당 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns77435#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns197420#0",
+"labels": [
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns163217#0",
+"labels": [
+"정보 불일치"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns83754#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns293#1",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns161565#4",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns180061#0",
+"labels": [
+"오배송·누락"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns162858#2",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns154187#3",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns22170#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns187699#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns43038#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns156428#2",
+"labels": [
+"사이즈·색상"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns164778#0",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns7697#4",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns4966#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns108350#1",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns121858#0",
+"labels": [
+"환불·취소",
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns57646#1",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns165314#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns179856#1",
+"labels": [
+"품질·마감",
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns96748#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns112164#0",
+"labels": [
+"오배송·누락"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns178682#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns51786#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns59424#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns137243#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns30763#0",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns129080#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns130971#3",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns2731#1",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns6355#0",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns81456#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns47067#2",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns116434#1",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns73756#2",
+"labels": [
+"매장 응대",
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns137618#0",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns19975#0",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns51933#0",
+"labels": [
+"배터리"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns136197#1",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns29172#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns51899#0",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns164854#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns11877#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns73428#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns134059#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns134260#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns61787#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns136662#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns132552#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns96014#1",
+"labels": [
+"오배송·누락",
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns3213#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns80186#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns152084#3",
+"labels": [
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns59123#1",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns74574#1",
+"labels": [
+"가격"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns48225#1",
+"labels": [
+"오배송·누락",
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns99374#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns60730#0",
+"labels": [
+"배송 지연",
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns160050#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns136858#0",
+"labels": [
+"성능"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns156293#0",
+"labels": [
+"포장·파손",
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns29245#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns98308#4",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns92519#0",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns100685#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns84491#2",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns194271#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns110448#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns42517#1",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns108036#2",
+"labels": [
+"사용 편의",
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns176682#2",
+"labels": [
+"포장·파손"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns198094#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns126225#1",
+"labels": [
+"맛·신선도"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns76420#1",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns96677#0",
+"labels": [
+"분류 불가"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns43074#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns188441#0",
+"labels": [
+"해당 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns104482#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns36535#0",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns30548#1",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns149480#1",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns197234#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns162729#4",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns49227#0",
+"labels": [
+"사용 편의"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns113551#1",
+"labels": [
+"해당 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns188889#1",
+"labels": [
+"오배송·누락"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns89373#1",
+"labels": [
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns193311#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns82846#0",
+"labels": [
+"오배송·누락",
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns1385#1",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns142283#1",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns189335#0",
+"labels": [
+"냄새"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns27335#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns187227#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns158972#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns65796#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns177010#4",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns192551#0",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns144714#0",
+"labels": [
+"성능",
+"가격"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns87097#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns179775#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns131188#2",
+"labels": [
+"칭찬"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns29425#2",
+"labels": [
+"품질 편차"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns191122#0",
+"labels": [
+"배송 지연",
+"문의·연락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns187175#0",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns125091#1",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns168351#0",
+"labels": [
+"오배송·누락",
+"문의·연락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns37430#2",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns79700#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns49564#0",
+"labels": [
+"배터리"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns89195#1",
+"labels": [
+"배송 지연",
+"문의·연락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns45953#1",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns83959#1",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns150613#0",
+"labels": [
+"포장·파손",
+"맛·신선도"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns186120#1",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns28279#2",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns16111#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns83970#0",
+"labels": [
+"배송 지연",
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns118167#2",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns9894#2",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns61150#0",
+"labels": [
+"효과 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns80809#1",
+"labels": [
+"효과 없음",
+"정보 불일치"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns75369#2",
+"labels": [
+"해당 없음"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns111420#1",
+"labels": [
+"배송 지연",
+"오배송·누락"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns24964#1",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns47457#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns93667#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns145367#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns95816#0",
+"labels": [
+"가격"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns105348#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns94173#0",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns77789#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns109366#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns50800#3",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns8553#1",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns123823#0",
+"labels": [
+"사용 편의"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns152277#0",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns195083#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns8282#1",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns95990#0",
+"labels": [
+"성능",
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns182313#1",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns617#1",
+"labels": [
+"성능"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns75844#1",
+"labels": [
+"포장·파손"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns64190#2",
+"labels": [
+"제품 불량"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns160722#1",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns93381#0",
+"labels": [
+"정보 불일치"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns54914#1",
+"labels": [
+"오배송·누락"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns200#0",
+"labels": [
+"오배송·누락",
+"제품 불량"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns64596#2",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns150856#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns44969#2",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns19790#0",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns136693#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns13999#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns59913#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns24872#1",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns45689#0",
+"labels": [
+"배송 지연"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns31762#0",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns2014#0",
+"labels": [
+"품질·마감"
+],
+"hold": true
+},
+{
+"unit_id": "review:ns97899#2",
+"labels": [
+"칭찬"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns30421#0",
+"labels": [
+"사이즈·색상"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns84032#3",
+"labels": [
+"해당 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns149544#1",
+"labels": [
+"효과 없음"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns48059#0",
+"labels": [
+"분류 불가"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns100869#0",
+"labels": [
+"품질·마감"
+],
+"hold": false
+},
+{
+"unit_id": "review:ns111158#1",
+"labels": [
+"맛·신선도"
+],
+"hold": false
+}
+]

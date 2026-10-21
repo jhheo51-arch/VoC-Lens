@@ -1,0 +1,430 @@
+{
+  "gold": "labeling\\dev\\naver_shopping_dev_labels.json",
+  "n": 294,
+  "grid": [
+    {
+      "emotion": "lexicon",
+      "mode": "rules",
+      "threshold": null,
+      "f1": 0.467,
+      "precision": 0.962,
+      "recall": 0.309,
+      "micro_f1": 0.393
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "union",
+      "threshold": 0.3,
+      "f1": 0.723,
+      "precision": 0.636,
+      "recall": 0.84,
+      "micro_f1": 0.476
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "union",
+      "threshold": 0.4,
+      "f1": 0.707,
+      "precision": 0.64,
+      "recall": 0.79,
+      "micro_f1": 0.5
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "union",
+      "threshold": 0.5,
+      "f1": 0.705,
+      "precision": 0.663,
+      "recall": 0.753,
+      "micro_f1": 0.513
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "union",
+      "threshold": 0.6,
+      "f1": 0.698,
+      "precision": 0.67,
+      "recall": 0.728,
+      "micro_f1": 0.503
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "union",
+      "threshold": 0.7,
+      "f1": 0.683,
+      "precision": 0.688,
+      "recall": 0.679,
+      "micro_f1": 0.526
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "union",
+      "threshold": 0.8,
+      "f1": 0.671,
+      "precision": 0.718,
+      "recall": 0.63,
+      "micro_f1": 0.561
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "union",
+      "threshold": 0.9,
+      "f1": 0.623,
+      "precision": 0.754,
+      "recall": 0.531,
+      "micro_f1": 0.523
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "union",
+      "threshold": 0.93,
+      "f1": 0.58,
+      "precision": 0.76,
+      "recall": 0.469,
+      "micro_f1": 0.482
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "union",
+      "threshold": 0.95,
+      "f1": 0.521,
+      "precision": 0.816,
+      "recall": 0.383,
+      "micro_f1": 0.419
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "union",
+      "threshold": 0.97,
+      "f1": 0.467,
+      "precision": 0.962,
+      "recall": 0.309,
+      "micro_f1": 0.393
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "union",
+      "threshold": 0.99,
+      "f1": 0.467,
+      "precision": 0.962,
+      "recall": 0.309,
+      "micro_f1": 0.393
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "model",
+      "threshold": 0.3,
+      "f1": 0.707,
+      "precision": 0.631,
+      "recall": 0.802,
+      "micro_f1": 0.426
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "model",
+      "threshold": 0.4,
+      "f1": 0.689,
+      "precision": 0.635,
+      "recall": 0.753,
+      "micro_f1": 0.441
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "model",
+      "threshold": 0.5,
+      "f1": 0.686,
+      "precision": 0.659,
+      "recall": 0.716,
+      "micro_f1": 0.452
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "model",
+      "threshold": 0.6,
+      "f1": 0.671,
+      "precision": 0.663,
+      "recall": 0.679,
+      "micro_f1": 0.442
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "model",
+      "threshold": 0.7,
+      "f1": 0.654,
+      "precision": 0.68,
+      "recall": 0.63,
+      "micro_f1": 0.463
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "model",
+      "threshold": 0.8,
+      "f1": 0.611,
+      "precision": 0.698,
+      "recall": 0.543,
+      "micro_f1": 0.487
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "model",
+      "threshold": 0.9,
+      "f1": 0.52,
+      "precision": 0.717,
+      "recall": 0.407,
+      "micro_f1": 0.43
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "model",
+      "threshold": 0.93,
+      "f1": 0.441,
+      "precision": 0.703,
+      "recall": 0.321,
+      "micro_f1": 0.365
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "model",
+      "threshold": 0.95,
+      "f1": 0.26,
+      "precision": 0.684,
+      "recall": 0.16,
+      "micro_f1": 0.204
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "model",
+      "threshold": 0.97,
+      "f1": 0.0,
+      "precision": null,
+      "recall": 0.0,
+      "micro_f1": 0.0
+    },
+    {
+      "emotion": "lexicon",
+      "mode": "model",
+      "threshold": 0.99,
+      "f1": 0.0,
+      "precision": null,
+      "recall": 0.0,
+      "micro_f1": 0.0
+    },
+    {
+      "emotion": "transformer",
+      "mode": "rules",
+      "threshold": null,
+      "f1": 0.632,
+      "precision": 0.808,
+      "recall": 0.519,
+      "micro_f1": 0.486
+    },
+    {
+      "emotion": "transformer",
+      "mode": "union",
+      "threshold": 0.3,
+      "f1": 0.727,
+      "precision": 0.615,
+      "recall": 0.889,
+      "micro_f1": 0.478
+    },
+    {
+      "emotion": "transformer",
+      "mode": "union",
+      "threshold": 0.4,
+      "f1": 0.719,
+      "precision": 0.622,
+      "recall": 0.852,
+      "micro_f1": 0.5
+    },
+    {
+      "emotion": "transformer",
+      "mode": "union",
+      "threshold": 0.5,
+      "f1": 0.717,
+      "precision": 0.641,
+      "recall": 0.815,
+      "micro_f1": 0.512
+    },
+    {
+      "emotion": "transformer",
+      "mode": "union",
+      "threshold": 0.6,
+      "f1": 0.711,
+      "precision": 0.646,
+      "recall": 0.79,
+      "micro_f1": 0.502
+    },
+    {
+      "emotion": "transformer",
+      "mode": "union",
+      "threshold": 0.7,
+      "f1": 0.697,
+      "precision": 0.649,
+      "recall": 0.753,
+      "micro_f1": 0.52
+    },
+    {
+      "emotion": "transformer",
+      "mode": "union",
+      "threshold": 0.8,
+      "f1": 0.695,
+      "precision": 0.674,
+      "recall": 0.716,
+      "micro_f1": 0.548
+    },
+    {
+      "emotion": "transformer",
+      "mode": "union",
+      "threshold": 0.9,
+      "f1": 0.671,
+      "precision": 0.703,
+      "recall": 0.642,
+      "micro_f1": 0.515
+    },
+    {
+      "emotion": "transformer",
+      "mode": "union",
+      "threshold": 0.93,
+      "f1": 0.649,
+      "precision": 0.7,
+      "recall": 0.605,
+      "micro_f1": 0.494
+    },
+    {
+      "emotion": "transformer",
+      "mode": "union",
+      "threshold": 0.95,
+      "f1": 0.662,
+      "precision": 0.75,
+      "recall": 0.593,
+      "micro_f1": 0.5
+    },
+    {
+      "emotion": "transformer",
+      "mode": "union",
+      "threshold": 0.97,
+      "f1": 0.632,
+      "precision": 0.808,
+      "recall": 0.519,
+      "micro_f1": 0.486
+    },
+    {
+      "emotion": "transformer",
+      "mode": "union",
+      "threshold": 0.99,
+      "f1": 0.632,
+      "precision": 0.808,
+      "recall": 0.519,
+      "micro_f1": 0.486
+    },
+    {
+      "emotion": "transformer",
+      "mode": "model",
+      "threshold": 0.3,
+      "f1": 0.707,
+      "precision": 0.631,
+      "recall": 0.802,
+      "micro_f1": 0.426
+    },
+    {
+      "emotion": "transformer",
+      "mode": "model",
+      "threshold": 0.4,
+      "f1": 0.689,
+      "precision": 0.635,
+      "recall": 0.753,
+      "micro_f1": 0.441
+    },
+    {
+      "emotion": "transformer",
+      "mode": "model",
+      "threshold": 0.5,
+      "f1": 0.686,
+      "precision": 0.659,
+      "recall": 0.716,
+      "micro_f1": 0.452
+    },
+    {
+      "emotion": "transformer",
+      "mode": "model",
+      "threshold": 0.6,
+      "f1": 0.671,
+      "precision": 0.663,
+      "recall": 0.679,
+      "micro_f1": 0.442
+    },
+    {
+      "emotion": "transformer",
+      "mode": "model",
+      "threshold": 0.7,
+      "f1": 0.654,
+      "precision": 0.68,
+      "recall": 0.63,
+      "micro_f1": 0.463
+    },
+    {
+      "emotion": "transformer",
+      "mode": "model",
+      "threshold": 0.8,
+      "f1": 0.611,
+      "precision": 0.698,
+      "recall": 0.543,
+      "micro_f1": 0.487
+    },
+    {
+      "emotion": "transformer",
+      "mode": "model",
+      "threshold": 0.9,
+      "f1": 0.52,
+      "precision": 0.717,
+      "recall": 0.407,
+      "micro_f1": 0.43
+    },
+    {
+      "emotion": "transformer",
+      "mode": "model",
+      "threshold": 0.93,
+      "f1": 0.441,
+      "precision": 0.703,
+      "recall": 0.321,
+      "micro_f1": 0.365
+    },
+    {
+      "emotion": "transformer",
+      "mode": "model",
+      "threshold": 0.95,
+      "f1": 0.26,
+      "precision": 0.684,
+      "recall": 0.16,
+      "micro_f1": 0.204
+    },
+    {
+      "emotion": "transformer",
+      "mode": "model",
+      "threshold": 0.97,
+      "f1": 0.0,
+      "precision": null,
+      "recall": 0.0,
+      "micro_f1": 0.0
+    },
+    {
+      "emotion": "transformer",
+      "mode": "model",
+      "threshold": 0.99,
+      "f1": 0.0,
+      "precision": null,
+      "recall": 0.0,
+      "micro_f1": 0.0
+    }
+  ],
+  "chosen": {
+    "emotion": "transformer",
+    "mode": "union",
+    "threshold": 0.3,
+    "f1": 0.727,
+    "precision": 0.615,
+    "recall": 0.889,
+    "micro_f1": 0.478
+  },
+  "rule": "개발용 절 정답에서 불만 여부 F1 최대, 같으면 유형 micro F1 최대"
+}

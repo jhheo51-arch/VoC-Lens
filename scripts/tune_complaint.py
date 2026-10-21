@@ -15,13 +15,15 @@ from voclens.text.complaint_model import TransformerComplaintClassifier
 
 SRC = REPO_ROOT / "data" / "external" / "naver_shopping" / "naver_shopping.txt"
 GOLD = REPO_ROOT / "labeling" / "dev" / "naver_shopping_dev_labels.json"
-THRESHOLDS = [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+# 0.9가 탐색 범위 끝이었으므로(평가 문서 5절) 0.99까지 넓혔다
+THRESHOLDS = [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.93, 0.95, 0.97, 0.99]
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--complaint-model", required=True)
     ap.add_argument("--emotion-model")
+    ap.add_argument("--thresholds", type=float, nargs="+", default=THRESHOLDS)
     ap.add_argument("--out", default=str(REPO_ROOT / "experiments" / "results" / "complaint_model_tuning_dev_gold.json"))
     args = ap.parse_args()
     gold = read_gold(GOLD)
@@ -41,7 +43,7 @@ def main() -> None:
         rows.append({"emotion": ename, "mode": "rules", "threshold": None, "f1": r["any_complaint"]["f1"],
                      "precision": r["any_complaint"]["precision"], "recall": r["any_complaint"]["recall"], "micro_f1": r["micro"]["f1"]})
         for mode in ("union", "model"):
-            for t in THRESHOLDS:
+            for t in args.thresholds:
                 clf.mode, clf.threshold = mode, t
                 models = ReviewModels.default()
                 models.taxonomy = clf

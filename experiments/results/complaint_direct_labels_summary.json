@@ -1,0 +1,342 @@
+{
+  "note": "집계 수치만 담는다. 리뷰 원문 없음. 평가 세트는 이전에도 여러 번 본 세트다.",
+  "direct_labels": {
+    "file": "labeling/dev/naver_shopping_dev_direct_labels.json",
+    "units": 915,
+    "held": 227,
+    "label_counts_non_held": {
+      "칭찬": 138,
+      "품질·마감": 109,
+      "해당 없음": 94,
+      "오배송·누락": 64,
+      "배송 지연": 63,
+      "사이즈·색상": 47,
+      "효과 없음": 43,
+      "분류 불가": 30,
+      "성능": 29,
+      "사용 편의": 23,
+      "맛·신선도": 22,
+      "포장·파손": 14,
+      "제품 불량": 13,
+      "냄새": 12,
+      "문의·연락": 10,
+      "가격": 10,
+      "매장 응대": 4,
+      "정보 불일치": 4,
+      "배터리": 2,
+      "환불·취소": 1
+    },
+    "split": "dev only, dev gold 리뷰와 겹침 0",
+    "labeler": "Claude 하위 에이전트 5개(1차 2개, 2차 3개). guidelines.md와 label_definitions_product.md, 절·리뷰 원문만 보고 라벨. 규칙·모델 예측·별점·후보 출처는 숨김. 후보 검색 패턴은 오케스트레이터(Claude)가 설계.",
+    "candidate_yield_positive": {
+      "round1": {
+        "성능": 8,
+        "오배송·누락": 7,
+        "효과 없음": 24,
+        "emb": "1/120",
+        "model": "5/60",
+        "kw_high": "1"
+      },
+      "round2": {
+        "성능": {
+          "kw_low": "16/150",
+          "kw_mid": "3/40"
+        },
+        "오배송·누락": {
+          "kw_low": "50/150",
+          "kw_mid": "4/40"
+        },
+        "효과 없음": {
+          "kw_low": "16/80",
+          "kw_mid": "1/20"
+        }
+      }
+    }
+  },
+  "training": {
+    "old_model": "models/complaint-weak-small",
+    "old_weak_positives": 12115,
+    "old_weak_negatives": 13778,
+    "new_model": "models/complaint-weak-direct-small",
+    "new_weak_positives": 10837,
+    "new_weak_negatives": 13770,
+    "direct_examples": 731,
+    "direct_repeat": 5,
+    "epochs": 3,
+    "cpu_seconds": 18515,
+    "confound": "약한 양성 수가 다름(규칙 버전 차이로 추정). 직접 라벨 효과와 분리되지 않음."
+  },
+  "threshold_selection_dev_gold": {
+    "rule": "dev gold에서 불만 F1 최대, 동점이면 micro F1",
+    "old_model_wide_grid": "union@0.93 (F1 0.711), 기존 채택값 0.9 (F1 0.709)",
+    "new_model": "union@0.3 (F1 0.727)",
+    "old_model_union_0.3_dev_f1": 0.639,
+    "files": [
+      "complaint_model_tuning_dev_gold_wide.json",
+      "complaint_model_tuning_dev_gold_direct.json"
+    ]
+  },
+  "eval": {
+    "A": {
+      "before_old_union0.9": {
+        "n": 284,
+        "complaint": {
+          "precision": 0.64,
+          "recall": 0.545,
+          "f1": 0.589,
+          "support": 88,
+          "predicted": 75
+        },
+        "type_micro_f1": 0.481,
+        "type_macro_f1": 0.425,
+        "target_types": {
+          "성능": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 7,
+            "predicted": 1
+          },
+          "오배송·누락": {
+            "precision": null,
+            "recall": 0.0,
+            "support": 4,
+            "predicted": 0
+          },
+          "효과 없음": {
+            "precision": null,
+            "recall": 0.0,
+            "support": 4,
+            "predicted": 0
+          }
+        }
+      },
+      "after_new_union0.3": {
+        "n": 284,
+        "complaint": {
+          "precision": 0.6,
+          "recall": 0.818,
+          "f1": 0.692,
+          "support": 88,
+          "predicted": 120
+        },
+        "type_micro_f1": 0.465,
+        "type_macro_f1": 0.442,
+        "target_types": {
+          "성능": {
+            "precision": 0.5,
+            "recall": 0.143,
+            "support": 7,
+            "predicted": 2
+          },
+          "오배송·누락": {
+            "precision": 0.105,
+            "recall": 0.5,
+            "support": 4,
+            "predicted": 19
+          },
+          "효과 없음": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 4,
+            "predicted": 5
+          }
+        }
+      },
+      "old_union0.93_wide_grid_choice": {
+        "n": 284,
+        "complaint": {
+          "precision": 0.657,
+          "recall": 0.523,
+          "f1": 0.582,
+          "support": 88,
+          "predicted": 70
+        },
+        "type_micro_f1": 0.483,
+        "type_macro_f1": 0.425,
+        "target_types": {
+          "성능": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 7,
+            "predicted": 1
+          },
+          "오배송·누락": {
+            "precision": null,
+            "recall": 0.0,
+            "support": 4,
+            "predicted": 0
+          },
+          "효과 없음": {
+            "precision": null,
+            "recall": 0.0,
+            "support": 4,
+            "predicted": 0
+          }
+        }
+      },
+      "posthoc_old_union0.3": {
+        "n": 284,
+        "complaint": {
+          "precision": 0.51,
+          "recall": 0.841,
+          "f1": 0.635,
+          "support": 88,
+          "predicted": 145
+        },
+        "type_micro_f1": 0.391,
+        "type_macro_f1": 0.403,
+        "target_types": {
+          "성능": {
+            "precision": 0.5,
+            "recall": 0.143,
+            "support": 7,
+            "predicted": 2
+          },
+          "오배송·누락": {
+            "precision": 0.049,
+            "recall": 0.5,
+            "support": 4,
+            "predicted": 41
+          },
+          "효과 없음": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 4,
+            "predicted": 3
+          }
+        }
+      }
+    },
+    "B": {
+      "before_old_union0.9": {
+        "n": 288,
+        "complaint": {
+          "precision": 0.649,
+          "recall": 0.556,
+          "f1": 0.599,
+          "support": 90,
+          "predicted": 77
+        },
+        "type_micro_f1": 0.466,
+        "type_macro_f1": 0.411,
+        "target_types": {
+          "성능": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 6,
+            "predicted": 1
+          },
+          "오배송·누락": {
+            "precision": null,
+            "recall": 0.0,
+            "support": 4,
+            "predicted": 0
+          },
+          "효과 없음": {
+            "precision": null,
+            "recall": 0.0,
+            "support": 5,
+            "predicted": 0
+          }
+        }
+      },
+      "after_new_union0.3": {
+        "n": 288,
+        "complaint": {
+          "precision": 0.607,
+          "recall": 0.822,
+          "f1": 0.698,
+          "support": 90,
+          "predicted": 122
+        },
+        "type_micro_f1": 0.445,
+        "type_macro_f1": 0.427,
+        "target_types": {
+          "성능": {
+            "precision": 0.5,
+            "recall": 0.167,
+            "support": 6,
+            "predicted": 2
+          },
+          "오배송·누락": {
+            "precision": 0.105,
+            "recall": 0.5,
+            "support": 4,
+            "predicted": 19
+          },
+          "효과 없음": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 5,
+            "predicted": 5
+          }
+        }
+      },
+      "old_union0.93_wide_grid_choice": {
+        "n": 288,
+        "complaint": {
+          "precision": 0.667,
+          "recall": 0.533,
+          "f1": 0.593,
+          "support": 90,
+          "predicted": 72
+        },
+        "type_micro_f1": 0.467,
+        "type_macro_f1": 0.413,
+        "target_types": {
+          "성능": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 6,
+            "predicted": 1
+          },
+          "오배송·누락": {
+            "precision": null,
+            "recall": 0.0,
+            "support": 4,
+            "predicted": 0
+          },
+          "효과 없음": {
+            "precision": null,
+            "recall": 0.0,
+            "support": 5,
+            "predicted": 0
+          }
+        }
+      },
+      "posthoc_old_union0.3": {
+        "n": 288,
+        "complaint": {
+          "precision": 0.514,
+          "recall": 0.844,
+          "f1": 0.639,
+          "support": 90,
+          "predicted": 148
+        },
+        "type_micro_f1": 0.393,
+        "type_macro_f1": 0.401,
+        "target_types": {
+          "성능": {
+            "precision": 0.5,
+            "recall": 0.167,
+            "support": 6,
+            "predicted": 2
+          },
+          "오배송·누락": {
+            "precision": 0.049,
+            "recall": 0.5,
+            "support": 4,
+            "predicted": 41
+          },
+          "효과 없음": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 5,
+            "predicted": 3
+          }
+        }
+      }
+    }
+  },
+  "posthoc_note": "old_union0.3은 결과를 본 뒤 임계값 효과를 분리하려고 돌린 진단용이다. 설정 선택에는 쓰지 않았다."
+}

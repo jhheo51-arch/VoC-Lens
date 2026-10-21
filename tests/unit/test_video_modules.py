@@ -1,5 +1,6 @@
 import pytest
 
+from voclens.config import load_yaml
 from voclens.ingest.subtitles import Cue, cues_to_sentences, dedupe_rolling, parse_subtitles, parse_timestamp
 from voclens.ingest.youtube import parse_comment_threads, video_id_from_url
 from voclens.pipelines.video import audience_engagement
@@ -196,3 +197,67 @@ def test_conditional_positive_is_not_praise(text):
 
 def test_conditional_does_not_flip_negative_emotion():
     assert LexiconEmotionModel().score("아이가 자고 있으면 깜짝 놀라요").valence < 0.2
+
+
+def _position_sentences():
+    # 0~3 도입, 4~7 사용, 8~11 또 '오늘은'(중간 도입 키워드), 12~15 사용, 16~19 총평
+    return [
+        "안녕하세요 오늘은 청소기를 소개해요.", "오늘 준비했습니다.", "오늘은 이걸 볼게요.", "시작합니다.",
+        "이제 써 볼게요.", "흡입력 테스트를 해요.", "소리가 조금 커요.", "모드를 바꿔 써보면 달라요.",
+        "오늘은 날씨가 좋네요.", "안녕하세요 다시 왔어요.", "오늘은 정말 덥네요.", "준비했던 걸 꺼냈어요.",
+        "다시 써 볼게요.", "화면 모드를 테스트해요.", "소리는 괜찮아요.", "쓰면 편해요.",
+        "총평을 하자면 추천해요.", "결론은 살 만해요.", "정리하면 만족해요.", "별점은 4점이에요.",
+    ]
+
+
+def test_position_segmenter_keeps_intro_front_and_verdict_back():
+    from voclens.video.segment import PositionalSegmenter
+
+    sentences = _position_sentences()
+    segments = PositionalSegmenter().segment(sentences)
+    labels = [s.label for s in segments]
+    n = len(sentences)
+    assert labels[0] == "도입" and labels[-1] == "총평"
+    assert all(s.start / n <= 0.2 for s in segments if s.label == "도입")
+    assert all((s.start + s.end) / 2 / n >= 0.7 for s in segments if s.label == "총평")
+    assert all(a != b for a, b in zip(labels, labels[1:]))          # 같은 이름 이웃은 합친다
+    assert segments[0].start == 0 and segments[-1].end == n
+    assert all(b.start == a.end for a, b in zip(segments, segments[1:]))
+
+
+def test_position_segmenter_uses_time_positions():
+    from voclens.video.segment import PositionalSegmenter
+
+    sentences = _position_sentences()
+    # 마지막 네 문장이 영상 중간(0.4~0.5)에 있다고 하면 총평으로 보지 않는다
+    positions = [i / 40 for i in range(len(sentences))]
+    labels = [s.label for s in PositionalSegmenter().segment(sentences, positions=positions)]
+    assert "총평" not in labels
+
+
+def test_position_segmenter_suppresses_label_by_product_group():
+    from voclens.video.segment import PositionalSegmenter, product_group
+
+    cfg = load_yaml("video.yaml")
+    groups = cfg["position_segmentation"]["product_groups"]
+    assert product_group({"title": "신형 세단 시승기"}, groups) == "자동차"
+    assert product_group({"title": "무선 청소기 리뷰"}, groups) is None
+    sentences = [
+        "안녕하세요 오늘은 차를 소개해요.", "준비했습니다.", "시작할게요.",
+        "박스 개봉해 볼게요.", "구성품이 많아요.", "포장도 봐요.",
+        "주행해 볼게요.", "소리가 조용해요.", "모드를 바꿔요.",
+        "총평은 추천이에요.", "결론은 살 만해요.", "정리하면 만족이에요.",
+    ]
+    car = [s.label for s in PositionalSegmenter().segment(sentences, meta={"title": "신형 세단 시승기"})]
+    other = [s.label for s in PositionalSegmenter().segment(sentences, meta={"title": "청소기 리뷰"})]
+    assert "언박싱" not in car
+    assert "언박싱" in other
+
+
+def test_make_segmenter_default_is_texttiling():
+    from voclens.video.segment import PositionalSegmenter, TextTilingSegmenter, make_segmenter
+
+    assert type(make_segmenter()) is TextTilingSegmenter
+    assert isinstance(make_segmenter("position"), PositionalSegmenter)
+    with pytest.raises(ValueError):
+        make_segmenter("embedding")

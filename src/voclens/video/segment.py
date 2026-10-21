@@ -7,6 +7,9 @@
 5. 구간마다 키워드로 이름(도입·언박싱·사용·장단점·총평)을 붙인다.
    마지막 구간에 총평 키워드가 있으면 총평으로 본다.
 2주차 이후 문장 임베딩으로 바꿔 비교한다.
+
+PositionalSegmenter(v0.2)는 경계는 그대로 두고, 구간 이름을 붙일 때 영상 안 시간 위치(도입은 앞, 총평은 뒤)와
+제품군을 함께 보고 같은 이름의 이웃 구간을 합친다. 규칙은 configs/video.yaml의 position_segmentation 주석에 있다.
 """
 
 from __future__ import annotations
@@ -102,7 +105,8 @@ class TextTilingSegmenter:
         best = max(counts, key=counts.get)
         return best if counts[best] > 0 else self.default_label
 
-    def segment(self, sentences: list[str]) -> list[Segment]:
+    def segment(self, sentences: list[str], positions: list[float] | None = None, meta: dict | None = None) -> list[Segment]:
+        """positions·meta는 PositionalSegmenter와 인터페이스를 맞추려고 받기만 한다."""
         if not sentences:
             return []
         cuts = [0, *self.boundaries(sentences), len(sentences)]
@@ -111,3 +115,95 @@ class TextTilingSegmenter:
             label = self._label(sentences[a:b], is_last=(b == len(sentences)), is_first=(a == 0))
             segments.append(Segment(i, a, b, label))
         return segments
+
+
+def product_group(meta: dict | None, groups: dict) -> str | None:
+    """제목·태그에 제품군 키워드가 있으면 그 제품군 이름 (설명란은 링크·광고가 섞여 보지 않는다)."""
+    if not meta:
+        return None
+    text = " ".join([meta.get("title") or "", " ".join(meta.get("tags") or [])])
+    for name, spec in groups.items():
+        if any(k in text for k in spec["keywords"]):
+            return name
+    return None
+
+
+class PositionalSegmenter(TextTilingSegmenter):
+    """TextTiling 경계 + 시간 위치·제품군을 본 구간 이름 + 같은 이름 병합 (v0.2)."""
+
+    name = "texttiling-bigram-position-v0.2"
+
+    def __init__(self, config: dict | None = None):
+        cfg = config or load_yaml("video.yaml")
+        super().__init__(cfg)
+        pos = cfg["position_segmentation"]
+        self.windows = pos["label_windows"]
+        self.groups = pos.get("product_groups") or {}
+
+    def _allowed(self, label: str, start: float, mid: float, excluded: set[str]) -> bool:
+        if label in excluded:
+            return False
+        w = self.windows.get(label, {})
+        return start <= w.get("start_max", 1.0) and mid >= w.get("mid_min", 0.0)
+
+    def _counts(self, sentences: list[str]) -> dict[str, int]:
+        text = " ".join(sentences)
+        return {name: sum(text.count(k) for k in kws) for name, kws in self.labels.items()}
+
+    def segment(self, sentences: list[str], positions: list[float] | None = None, meta: dict | None = None) -> list[Segment]:
+        n = len(sentences)
+        if not n:
+            return []
+        if positions is None or len(positions) != n:
+            positions = [(i + 0.5) / n for i in range(n)]
+        group = product_group(meta, self.groups)
+        excluded = set(self.groups[group].get("exclude_labels", [])) if group else set()
+        cuts = [0, *self.boundaries(sentences), n]
+        spans = list(zip(cuts, cuts[1:]))
+        info = []
+        for a, b in spans:
+            start = 0.0 if a == 0 else positions[a]
+            mid = positions[(a + b - 1) // 2] if b - a > 1 else positions[a]
+            counts = {k: v for k, v in self._counts(sentences[a:b]).items() if self._allowed(k, start, mid, excluded)}
+            info.append((start, mid, counts))
+
+        labels: list[str | None] = [None] * len(spans)
+        # 규칙 3: 도입은 첫머리부터 이어질 때만
+        for i, (_, _, counts) in enumerate(info):
+            if counts.get("도입", 0) > 0:
+                labels[i] = "도입"
+            else:
+                break
+        # 규칙 4: 마지막 구간부터 거꾸로 총평을 이어 붙인다
+        for i in range(len(spans) - 1, -1, -1):
+            if labels[i] is None and info[i][2].get("총평", 0) > 0:
+                labels[i] = "총평"
+            else:
+                break
+        # 나머지: 허용된 이름 가운데 키워드가 가장 많은 것 (도입은 규칙 3에서만 붙인다)
+        for i, (_, _, counts) in enumerate(info):
+            if labels[i] is not None:
+                continue
+            counts = {k: v for k, v in counts.items() if k != "도입"}
+            best = max(counts, key=counts.get) if counts else None
+            labels[i] = best if best and counts[best] > 0 else self.default_label
+
+        # 규칙 6: 같은 이름의 이웃 구간 병합
+        merged: list[list] = []
+        for (a, b), label in zip(spans, labels):
+            if merged and merged[-1][2] == label:
+                merged[-1][1] = b
+            else:
+                merged.append([a, b, label])
+        return [Segment(i, a, b, label) for i, (a, b, label) in enumerate(merged)]
+
+
+def make_segmenter(method: str | None = None, config: dict | None = None):
+    """설정(segmentation.method) 또는 인자로 분할기를 고른다: texttiling(기본) | position."""
+    cfg = config or load_yaml("video.yaml")
+    method = method or cfg["segmentation"].get("method", "texttiling")
+    if method == "position":
+        return PositionalSegmenter(cfg)
+    if method == "texttiling":
+        return TextTilingSegmenter(cfg)
+    raise ValueError(f"알 수 없는 구간 분할 방식: {method} (texttiling | position)")

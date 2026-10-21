@@ -106,7 +106,8 @@ def cmd_video(args, settings) -> int:
     from voclens.pipelines.video import run_video_pipeline
 
     started = time.perf_counter()
-    run_id, sessions = run_video_pipeline(args.sources, settings, db_path=args.db, allow_stt=args.stt)
+    run_id, sessions = run_video_pipeline(args.sources, settings, db_path=args.db, allow_stt=args.stt,
+                                         emotion_model=args.emotion_model, segmenter=args.segmenter)
     elapsed = time.perf_counter() - started
     print(f"실행 ID: {run_id}")
     print(f"영상 {len(sessions)}건 분석 ({elapsed:.1f}초) → {args.db or settings['db_path']}")
@@ -322,6 +323,8 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("video", help="영상 번들 JSON 또는 YouTube URL 분석")
     p.add_argument("sources", nargs="+", help="번들 JSON, 번들이 든 폴더, 또는 YouTube URL")
     p.add_argument("--stt", action="store_true", help="사람 자막이 없으면 음성을 받아 전사 (선택 의존성 필요)")
+    p.add_argument("--emotion-model", help="학습한 감정 모델 폴더 (예: models/emotion-kote-small). 없으면 감정 사전")
+    p.add_argument("--segmenter", choices=["texttiling", "position"], help="구간 분할 방식 (기본: configs/video.yaml)")
     p.set_defaults(func=cmd_video)
 
     p = sub.add_parser("cx", help="채널 통합 CX 리포트: CSAT·CES·NPS 추정, 채널 비교 (Markdown)")

@@ -100,3 +100,35 @@ def test_cli_video(tmp_path, capsys):
     assert main(["--db", str(tmp_path / "cli.db"), "video", str(VIDEOS)]) == 0
     out = capsys.readouterr().out
     assert "video_001_vacuum_review" in out and "총평" in out
+
+
+def test_default_models_keep_lexicon_and_texttiling():
+    from voclens.video.segment import TextTilingSegmenter
+
+    models = VideoModels.default()
+    assert models.emotion.name == "lexicon-v0.1"
+    assert type(models.segmenter) is TextTilingSegmenter
+
+
+def test_position_segmenter_on_sample_bundles():
+    settings = load_settings()
+    models = VideoModels.default(segmenter="position", settings=settings)
+    session = build_video_session(load_bundle(VIDEOS / "video_001_vacuum_review.json"), models, settings)
+    labels = [s["label"] for s in session.meta["segments"]]
+    assert labels[0] == "도입" and labels[-1] == "총평"
+    assert all(a != b for a, b in zip(labels, labels[1:]))
+    assert models.versions()["segmenter"] == "texttiling-bigram-position-v0.2"
+
+
+def test_video_emotion_model_option():
+    pytest.importorskip("torch")
+    pytest.importorskip("transformers")
+    model_dir = REPO_ROOT / "models" / "emotion-kote-small"
+    if not (model_dir / "config.json").exists():
+        pytest.skip("학습한 감정 모델이 없음 (scripts/train_emotion.py)")
+    settings = load_settings()
+    models = VideoModels.default(emotion_model=str(model_dir), settings=settings)
+    assert models.emotion.name == "transformer:emotion-kote-small"
+    assert models.taxonomy.topic_max_valence == settings["models"]["transformer_topic_max_valence"]
+    session = build_video_session(load_bundle(VIDEOS / "video_001_vacuum_review.json"), models, settings)
+    assert all(u.valence is not None for u in session.units)

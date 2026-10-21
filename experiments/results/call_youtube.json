@@ -1,0 +1,578 @@
+{
+  "note": "정답 라벨 없음. 상담 롤플레이 영상으로 상담 파이프라인 동작 점검. 원문 없음, 집계 값만",
+  "ser_model": "acoustic-arousal-v0.1",
+  "calls": [
+    {
+      "video_id": "h0x8Q3v-51g",
+      "channel": "CS TV",
+      "duration_sec": 196.0,
+      "clip_sec": [
+        30.0,
+        226.0
+      ],
+      "timing_sec": {
+        "download_sec": 12.6,
+        "stt_sec": 707.1,
+        "diarize_sec": 406.2,
+        "pipeline_sec": 3.5
+      },
+      "processing_x_realtime": 5.68,
+      "stt_turns": 69,
+      "stt_conf_mean": 0.825,
+      "stt_conf_below_0_5": 0,
+      "diarization": {
+        "speakers": 2,
+        "talk_share": {
+          "SPEAKER_00": 0.367,
+          "SPEAKER_01": 0.633
+        },
+        "turns_per_speaker": {
+          "SPEAKER_01": 49,
+          "SPEAKER_00": 20
+        }
+      },
+      "roles": {
+        "method": "rules",
+        "confidence": 1.0,
+        "speaker_roles": {
+          "SPEAKER_01": "agent",
+          "SPEAKER_00": "customer"
+        },
+        "first_speaker_role": "agent"
+      },
+      "audio": {
+        "used": true,
+        "snr_db": 25.5,
+        "reliable_share": 1.0,
+        "speech_rate_nan_share": 0.0
+      },
+      "by_role": {
+        "agent": {
+          "turns": 49,
+          "speech_rate_voiced_p10_p50_p90": [
+            3.53,
+            7.04,
+            9.1
+          ],
+          "speech_rate_voiced_p50_reliable_only": 7.04,
+          "speech_rate_plain_p10_p50_p90": [
+            2.52,
+            5.19,
+            7.12
+          ],
+          "audio_arousal_mean": 0.415,
+          "audio_arousal_sd": 0.11
+        },
+        "customer": {
+          "turns": 20,
+          "speech_rate_voiced_p10_p50_p90": [
+            7.78,
+            9.04,
+            11.19
+          ],
+          "speech_rate_voiced_p50_reliable_only": 9.04,
+          "speech_rate_plain_p10_p50_p90": [
+            4.94,
+            6.0,
+            7.0
+          ],
+          "audio_arousal_mean": 0.416,
+          "audio_arousal_sd": 0.129
+        }
+      },
+      "customer_arousal_curve": [
+        {
+          "bin": 1,
+          "turns": 0,
+          "audio_arousal": null,
+          "fused_arousal": null
+        },
+        {
+          "bin": 2,
+          "turns": 5,
+          "audio_arousal": 0.406,
+          "fused_arousal": 0.396
+        },
+        {
+          "bin": 3,
+          "turns": 5,
+          "audio_arousal": 0.401,
+          "fused_arousal": 0.389
+        },
+        {
+          "bin": 4,
+          "turns": 0,
+          "audio_arousal": null,
+          "fused_arousal": null
+        },
+        {
+          "bin": 5,
+          "turns": 10,
+          "audio_arousal": 0.429,
+          "fused_arousal": 0.422
+        }
+      ],
+      "tone_mismatch_units": 2,
+      "events": {
+        "count": 0,
+        "up": 0,
+        "down": 0
+      },
+      "indices": {
+        "stress": {
+          "raw": 0.0,
+          "end": 0.0
+        },
+        "happiness": {
+          "raw": 2.5,
+          "end": 0.0
+        },
+        "negative_affect": {
+          "raw": 0.0,
+          "end": 0.0
+        },
+        "frustration": {
+          "raw": 7.0,
+          "end": 0.0
+        },
+        "recovery": {
+          "raw": null,
+          "end": null
+        },
+        "engagement": {
+          "raw": 46.67,
+          "end": null
+        }
+      }
+    },
+    {
+      "video_id": "_xtHYKDr7S8",
+      "channel": "CS TV",
+      "duration_sec": 248.0,
+      "clip_sec": [
+        48.0,
+        296.0
+      ],
+      "timing_sec": {
+        "download_sec": 14.1,
+        "stt_sec": 697.5,
+        "diarize_sec": 398.5,
+        "pipeline_sec": 2.7
+      },
+      "processing_x_realtime": 4.42,
+      "stt_turns": 110,
+      "stt_conf_mean": 0.834,
+      "stt_conf_below_0_5": 0,
+      "diarization": {
+        "speakers": 2,
+        "talk_share": {
+          "SPEAKER_00": 0.472,
+          "SPEAKER_01": 0.528
+        },
+        "turns_per_speaker": {
+          "SPEAKER_01": 61,
+          "SPEAKER_00": 49
+        }
+      },
+      "roles": {
+        "method": "rules",
+        "confidence": 0.904,
+        "speaker_roles": {
+          "SPEAKER_01": "agent",
+          "SPEAKER_00": "customer"
+        },
+        "first_speaker_role": "agent"
+      },
+      "audio": {
+        "used": true,
+        "snr_db": 28.2,
+        "reliable_share": 0.964,
+        "speech_rate_nan_share": 0.0
+      },
+      "by_role": {
+        "agent": {
+          "turns": 61,
+          "speech_rate_voiced_p10_p50_p90": [
+            5.56,
+            7.08,
+            8.55
+          ],
+          "speech_rate_voiced_p50_reliable_only": 7.08,
+          "speech_rate_plain_p10_p50_p90": [
+            4.29,
+            6.19,
+            7.5
+          ],
+          "audio_arousal_mean": 0.237,
+          "audio_arousal_sd": 0.124
+        },
+        "customer": {
+          "turns": 49,
+          "speech_rate_voiced_p10_p50_p90": [
+            6.53,
+            8.7,
+            10.53
+          ],
+          "speech_rate_voiced_p50_reliable_only": 8.7,
+          "speech_rate_plain_p10_p50_p90": [
+            4.36,
+            5.52,
+            6.72
+          ],
+          "audio_arousal_mean": 0.483,
+          "audio_arousal_sd": 0.126
+        }
+      },
+      "customer_arousal_curve": [
+        {
+          "bin": 1,
+          "turns": 12,
+          "audio_arousal": 0.43,
+          "fused_arousal": 0.424
+        },
+        {
+          "bin": 2,
+          "turns": 9,
+          "audio_arousal": 0.494,
+          "fused_arousal": 0.466
+        },
+        {
+          "bin": 3,
+          "turns": 8,
+          "audio_arousal": 0.501,
+          "fused_arousal": 0.486
+        },
+        {
+          "bin": 4,
+          "turns": 9,
+          "audio_arousal": 0.488,
+          "fused_arousal": 0.468
+        },
+        {
+          "bin": 5,
+          "turns": 11,
+          "audio_arousal": 0.514,
+          "fused_arousal": 0.482
+        }
+      ],
+      "tone_mismatch_units": 4,
+      "events": {
+        "count": 0,
+        "up": 0,
+        "down": 0
+      },
+      "indices": {
+        "stress": {
+          "raw": 2.07,
+          "end": 0.0
+        },
+        "happiness": {
+          "raw": 0.0,
+          "end": 0.0
+        },
+        "negative_affect": {
+          "raw": 2.79,
+          "end": 0.0
+        },
+        "frustration": {
+          "raw": 20.95,
+          "end": 0.0
+        },
+        "recovery": {
+          "raw": 51.26,
+          "end": null
+        },
+        "engagement": {
+          "raw": 46.67,
+          "end": null
+        }
+      }
+    },
+    {
+      "video_id": "TtHbYEJ8rs8",
+      "channel": "CS TV",
+      "duration_sec": 308.0,
+      "clip_sec": [
+        14.0,
+        322.0
+      ],
+      "timing_sec": {
+        "download_sec": 13.6,
+        "stt_sec": 612.8,
+        "diarize_sec": 618.8,
+        "pipeline_sec": 4.1
+      },
+      "processing_x_realtime": 4.0,
+      "stt_turns": 146,
+      "stt_conf_mean": 0.751,
+      "stt_conf_below_0_5": 0,
+      "diarization": {
+        "speakers": 2,
+        "talk_share": {
+          "SPEAKER_00": 0.311,
+          "SPEAKER_01": 0.689
+        },
+        "turns_per_speaker": {
+          "SPEAKER_01": 94,
+          "SPEAKER_00": 52
+        }
+      },
+      "roles": {
+        "method": "rules",
+        "confidence": 1.0,
+        "speaker_roles": {
+          "SPEAKER_01": "agent",
+          "SPEAKER_00": "customer"
+        },
+        "first_speaker_role": "agent"
+      },
+      "audio": {
+        "used": true,
+        "snr_db": 21.6,
+        "reliable_share": 0.918,
+        "speech_rate_nan_share": 0.0
+      },
+      "by_role": {
+        "agent": {
+          "turns": 94,
+          "speech_rate_voiced_p10_p50_p90": [
+            5.28,
+            6.67,
+            8.59
+          ],
+          "speech_rate_voiced_p50_reliable_only": 6.65,
+          "speech_rate_plain_p10_p50_p90": [
+            4.6,
+            6.11,
+            7.25
+          ],
+          "audio_arousal_mean": 0.371,
+          "audio_arousal_sd": 0.128
+        },
+        "customer": {
+          "turns": 52,
+          "speech_rate_voiced_p10_p50_p90": [
+            4.78,
+            7.67,
+            10.6
+          ],
+          "speech_rate_voiced_p50_reliable_only": 7.73,
+          "speech_rate_plain_p10_p50_p90": [
+            3.79,
+            5.92,
+            7.5
+          ],
+          "audio_arousal_mean": 0.346,
+          "audio_arousal_sd": 0.138
+        }
+      },
+      "customer_arousal_curve": [
+        {
+          "bin": 1,
+          "turns": 19,
+          "audio_arousal": 0.378,
+          "fused_arousal": 0.37
+        },
+        {
+          "bin": 2,
+          "turns": 8,
+          "audio_arousal": 0.351,
+          "fused_arousal": 0.346
+        },
+        {
+          "bin": 3,
+          "turns": 12,
+          "audio_arousal": 0.291,
+          "fused_arousal": 0.291
+        },
+        {
+          "bin": 4,
+          "turns": 5,
+          "audio_arousal": 0.342,
+          "fused_arousal": 0.337
+        },
+        {
+          "bin": 5,
+          "turns": 8,
+          "audio_arousal": 0.349,
+          "fused_arousal": 0.341
+        }
+      ],
+      "tone_mismatch_units": 1,
+      "events": {
+        "count": 0,
+        "up": 0,
+        "down": 0
+      },
+      "indices": {
+        "stress": {
+          "raw": 0.45,
+          "end": 0.0
+        },
+        "happiness": {
+          "raw": 0.0,
+          "end": 0.0
+        },
+        "negative_affect": {
+          "raw": 0.61,
+          "end": 0.0
+        },
+        "frustration": {
+          "raw": 26.72,
+          "end": 0.0
+        },
+        "recovery": {
+          "raw": null,
+          "end": null
+        },
+        "engagement": {
+          "raw": 46.67,
+          "end": null
+        }
+      }
+    },
+    {
+      "video_id": "KmJb3UruXaI",
+      "channel": "CS TV",
+      "duration_sec": 287.0,
+      "clip_sec": [
+        25.0,
+        312.0
+      ],
+      "timing_sec": {
+        "download_sec": 14.0,
+        "stt_sec": 587.5,
+        "diarize_sec": 464.3,
+        "pipeline_sec": 2.8
+      },
+      "processing_x_realtime": 3.66,
+      "stt_turns": 80,
+      "stt_conf_mean": 0.783,
+      "stt_conf_below_0_5": 0,
+      "diarization": {
+        "speakers": 2,
+        "talk_share": {
+          "SPEAKER_00": 0.438,
+          "SPEAKER_01": 0.562
+        },
+        "turns_per_speaker": {
+          "SPEAKER_01": 41,
+          "SPEAKER_00": 39
+        }
+      },
+      "roles": {
+        "method": "rules",
+        "confidence": 1.0,
+        "speaker_roles": {
+          "SPEAKER_01": "agent",
+          "SPEAKER_00": "customer"
+        },
+        "first_speaker_role": "agent"
+      },
+      "audio": {
+        "used": true,
+        "snr_db": 20.4,
+        "reliable_share": 0.988,
+        "speech_rate_nan_share": 0.0
+      },
+      "by_role": {
+        "agent": {
+          "turns": 41,
+          "speech_rate_voiced_p10_p50_p90": [
+            5.65,
+            7.76,
+            9.45
+          ],
+          "speech_rate_voiced_p50_reliable_only": 7.78,
+          "speech_rate_plain_p10_p50_p90": [
+            4.0,
+            5.86,
+            7.0
+          ],
+          "audio_arousal_mean": 0.472,
+          "audio_arousal_sd": 0.222
+        },
+        "customer": {
+          "turns": 39,
+          "speech_rate_voiced_p10_p50_p90": [
+            2.66,
+            6.77,
+            8.17
+          ],
+          "speech_rate_voiced_p50_reliable_only": 6.77,
+          "speech_rate_plain_p10_p50_p90": [
+            1.85,
+            5.5,
+            7.0
+          ],
+          "audio_arousal_mean": 0.356,
+          "audio_arousal_sd": 0.196
+        }
+      },
+      "customer_arousal_curve": [
+        {
+          "bin": 1,
+          "turns": 4,
+          "audio_arousal": 0.401,
+          "fused_arousal": 0.391
+        },
+        {
+          "bin": 2,
+          "turns": 9,
+          "audio_arousal": 0.192,
+          "fused_arousal": 0.203
+        },
+        {
+          "bin": 3,
+          "turns": 12,
+          "audio_arousal": 0.417,
+          "fused_arousal": 0.404
+        },
+        {
+          "bin": 4,
+          "turns": 5,
+          "audio_arousal": 0.494,
+          "fused_arousal": 0.475
+        },
+        {
+          "bin": 5,
+          "turns": 9,
+          "audio_arousal": 0.342,
+          "fused_arousal": 0.338
+        }
+      ],
+      "tone_mismatch_units": 1,
+      "events": {
+        "count": 0,
+        "up": 0,
+        "down": 0
+      },
+      "indices": {
+        "stress": {
+          "raw": 0.95,
+          "end": 0.0
+        },
+        "happiness": {
+          "raw": 2.24,
+          "end": 0.0
+        },
+        "negative_affect": {
+          "raw": 1.94,
+          "end": 0.0
+        },
+        "frustration": {
+          "raw": 23.46,
+          "end": 0.0
+        },
+        "recovery": {
+          "raw": null,
+          "end": null
+        },
+        "engagement": {
+          "raw": 46.67,
+          "end": null
+        }
+      }
+    }
+  ]
+}

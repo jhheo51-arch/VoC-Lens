@@ -1,0 +1,155 @@
+{
+  "data": {
+    "clips": 1697,
+    "broken_files": [],
+    "groups": 6,
+    "female_groups": 6,
+    "by_label": {
+      "neutral": 541,
+      "negative": 588,
+      "positive": 568
+    },
+    "reliable_share": 1.0,
+    "duration_sec_p50": 5.89
+  },
+  "model": {
+    "name": "acoustic-arousal-v0.1",
+    "weights": {
+      "pitch_mean": 0.35,
+      "pitch_std": 0.2,
+      "energy_db": 0.35,
+      "speech_rate": 0.2,
+      "pause_ratio": -0.15
+    },
+    "note": "가중치를 바꾸지 않고 평가만 함. 한국어 문장을 넘겨 말 속도를 계산"
+  },
+  "speech_rate": {
+    "voiced_syll_per_sec": {
+      "p10": 5.0,
+      "p50": 6.16,
+      "p90": 7.64,
+      "n": 1697
+    },
+    "plain_syll_per_sec": {
+      "p10": 4.25,
+      "p50": 5.09,
+      "p90": 5.94,
+      "n": 1697
+    },
+    "nan_share": 0.0,
+    "voiced_p50_by_label": {
+      "neutral": 5.92,
+      "negative": 6.54,
+      "positive": 6.04
+    }
+  },
+  "normalization": {
+    "baseline_neutral": {
+      "auc_high_vs_low": 0.8802,
+      "auc_negative_vs_neutral": 0.8797,
+      "auc_positive_vs_neutral": 0.8807,
+      "auc_positive_vs_negative": 0.5217,
+      "by_room": {
+        "anechoic": 0.8756,
+        "dance_studio": 0.9508,
+        "studio_apartment": 0.8079
+      },
+      "by_speaker": {
+        "a": 0.787,
+        "b": 0.9693
+      },
+      "per_speaker_auc": {
+        "min": 0.7072,
+        "median": 0.9051,
+        "max": 0.9942,
+        "below_0.7": 0,
+        "groups": 6
+      },
+      "mean_arousal_by_label": {
+        "neutral": 0.368,
+        "negative": 0.602,
+        "positive": 0.621
+      }
+    },
+    "all": {
+      "auc_high_vs_low": 0.8526,
+      "auc_negative_vs_neutral": 0.8737,
+      "auc_positive_vs_neutral": 0.8309,
+      "auc_positive_vs_negative": 0.3928,
+      "by_room": {
+        "anechoic": 0.8128,
+        "dance_studio": 0.9296,
+        "studio_apartment": 0.8127
+      },
+      "by_speaker": {
+        "a": 0.7056,
+        "b": 0.9723
+      },
+      "per_speaker_auc": {
+        "min": 0.5451,
+        "median": 0.8713,
+        "max": 0.9969,
+        "below_0.7": 1,
+        "groups": 6
+      },
+      "mean_arousal_by_label": {
+        "neutral": 0.305,
+        "negative": 0.472,
+        "positive": 0.432
+      }
+    },
+    "none": {
+      "auc_high_vs_low": 0.7009,
+      "auc_negative_vs_neutral": 0.7466,
+      "auc_positive_vs_neutral": 0.6535,
+      "auc_positive_vs_negative": 0.3941,
+      "by_room": {
+        "anechoic": 0.6306,
+        "dance_studio": 0.8029,
+        "studio_apartment": 0.7362
+      },
+      "by_speaker": {
+        "a": 0.7065,
+        "b": 0.8485
+      },
+      "per_speaker_auc": {
+        "min": 0.5335,
+        "median": 0.8734,
+        "max": 0.9831,
+        "below_0.7": 1,
+        "groups": 6
+      },
+      "mean_arousal_by_label": {
+        "neutral": 0.349,
+        "negative": 0.45,
+        "positive": 0.412
+      }
+    }
+  },
+  "feature_auc_high_vs_low": {
+    "energy_db": 0.7288,
+    "energy_std": 0.51,
+    "pitch_mean": 0.8581,
+    "pitch_std": 0.7393,
+    "pitch_range": 0.8772,
+    "voiced_ratio": 0.5266,
+    "pause_ratio": 0.6258,
+    "speech_rate": 0.6391
+  },
+  "without_speech_rate": {
+    "baseline_neutral": 0.8417,
+    "all": 0.8163,
+    "none": 0.6404
+  },
+  "feature_auc_positive_vs_negative": {
+    "energy_db": 0.2946,
+    "energy_std": 0.4616,
+    "pitch_mean": 0.5229,
+    "pitch_std": 0.6823,
+    "pitch_range": 0.7698,
+    "voiced_ratio": 0.6379,
+    "pause_ratio": 0.2343,
+    "speech_rate": 0.3554
+  },
+  "reliable_only_high_vs_low": 0.8802
+}

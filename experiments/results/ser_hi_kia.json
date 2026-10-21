@@ -1,0 +1,162 @@
+{
+  "data": {
+    "clips": 488,
+    "broken_files": [],
+    "groups": 8,
+    "female_groups": 4,
+    "by_label": {
+      "neutral": 119,
+      "sad": 133,
+      "happy": 129,
+      "angry": 107
+    },
+    "reliable_share": 0.041,
+    "duration_sec_p50": 0.61
+  },
+  "model": {
+    "name": "acoustic-arousal-v0.1",
+    "weights": {
+      "pitch_mean": 0.35,
+      "pitch_std": 0.2,
+      "energy_db": 0.35,
+      "speech_rate": 0.2,
+      "pause_ratio": -0.15
+    },
+    "note": "가중치를 바꾸지 않고 평가만 함. 한국어 문장을 넘겨 말 속도를 계산"
+  },
+  "speech_rate": {
+    "voiced_syll_per_sec": {
+      "p10": 5.04,
+      "p50": 7.27,
+      "p90": 10.53,
+      "n": 488
+    },
+    "plain_syll_per_sec": {
+      "p10": 4.53,
+      "p50": 6.57,
+      "p90": 8.99,
+      "n": 488
+    },
+    "nan_share": 0.0,
+    "voiced_p50_by_label": {
+      "neutral": 7.84,
+      "sad": 5.97,
+      "happy": 7.84,
+      "angry": 7.84
+    }
+  },
+  "normalization": {
+    "baseline_neutral": {
+      "auc_high_vs_low": 0.7607,
+      "auc_angry_vs_neutral": 0.7468,
+      "by_gender": {
+        "female": 0.7424,
+        "male": 0.7834
+      },
+      "per_speaker_auc": {
+        "min": 0.629,
+        "median": 0.939,
+        "max": 0.993,
+        "below_0.7": 1,
+        "groups": 8
+      },
+      "mean_arousal_by_label": {
+        "neutral": 0.746,
+        "sad": 0.507,
+        "happy": 0.828,
+        "angry": 0.9
+      }
+    },
+    "all": {
+      "auc_high_vs_low": 0.7546,
+      "auc_angry_vs_neutral": 0.7362,
+      "by_gender": {
+        "female": 0.7423,
+        "male": 0.7724
+      },
+      "per_speaker_auc": {
+        "min": 0.629,
+        "median": 0.9051,
+        "max": 0.993,
+        "below_0.7": 1,
+        "groups": 8
+      },
+      "mean_arousal_by_label": {
+        "neutral": 0.714,
+        "sad": 0.483,
+        "happy": 0.805,
+        "angry": 0.882
+      }
+    },
+    "none": {
+      "auc_high_vs_low": 0.8699,
+      "auc_angry_vs_neutral": 0.7528,
+      "by_gender": {
+        "female": 0.8965,
+        "male": 0.8499
+      },
+      "per_speaker_auc": {
+        "min": 0.8589,
+        "median": 0.8739,
+        "max": 0.9738,
+        "below_0.7": 0,
+        "groups": 8
+      },
+      "mean_arousal_by_label": {
+        "neutral": 0.723,
+        "sad": 0.531,
+        "happy": 0.831,
+        "angry": 0.824
+      }
+    },
+    "baseline_neutral_ungated": {
+      "auc_high_vs_low": 0.942,
+      "auc_angry_vs_neutral": 0.8644,
+      "by_gender": {
+        "female": 0.9433,
+        "male": 0.9395
+      },
+      "per_speaker_auc": {
+        "min": 0.9135,
+        "median": 0.9396,
+        "max": 0.993,
+        "below_0.7": 0,
+        "groups": 8
+      },
+      "mean_arousal_by_label": {
+        "neutral": 0.391,
+        "sad": 0.248,
+        "happy": 0.624,
+        "angry": 0.595
+      }
+    }
+  },
+  "feature_auc_high_vs_low": {
+    "energy_db": 0.8015,
+    "energy_std": 0.5323,
+    "pitch_mean": 0.7555,
+    "pitch_std": 0.6428,
+    "pitch_range": 0.631,
+    "voiced_ratio": 0.5229,
+    "pause_ratio": 0.4797,
+    "speech_rate": 0.5973
+  },
+  "without_speech_rate": {
+    "baseline_neutral": 0.7785,
+    "all": 0.7942,
+    "none": 0.8556,
+    "baseline_neutral_ungated": 0.9418
+  },
+  "reliable_only_high_vs_low": 0.8627,
+  "human_agreed": {
+    "clips": 304,
+    "share": 0.623,
+    "share_by_label": {
+      "neutral": 0.563,
+      "sad": 0.842,
+      "happy": 0.605,
+      "angry": 0.439
+    },
+    "auc_high_vs_low": 0.8249
+  }
+}
