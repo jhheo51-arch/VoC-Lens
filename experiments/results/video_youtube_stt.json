@@ -1,0 +1,129 @@
+{
+  "note": "정답 라벨 없음. 수집·분석 동작 점검과 분포 확인용",
+  "videos": [
+    {
+      "video_id": "ULoEZw889Lc",
+      "channel": "올드게이머 우라카타",
+      "duration_sec": 315.3,
+      "views": 810,
+      "transcript_source": "stt",
+      "dropped_cues_after_end": 0,
+      "sentences": 71,
+      "longest_sentence_sec": 9.2,
+      "comments": 18,
+      "timestamp_comments": 0,
+      "video_type": "review",
+      "segments": 15,
+      "segment_labels": {
+        "사용": 8,
+        "언박싱": 1,
+        "본문": 4,
+        "장단점": 2
+      },
+      "segment_label_runs": 9,
+      "engagement": 50.99,
+      "creator_vs_audience": {
+        "creator_valence": 0.0309,
+        "audience_valence": 0.1599,
+        "audience_minus_creator": 0.129,
+        "n_creator": 71,
+        "n_audience": 18
+      },
+      "creator": {
+        "units": 71,
+        "neutral_share": 0.789,
+        "negative_share": 0.07,
+        "complaint_units": 15,
+        "top_categories": [
+          [
+            "칭찬",
+            10
+          ],
+          [
+            "분류 불가",
+            3
+          ],
+          [
+            "사용 편의",
+            1
+          ],
+          [
+            "배터리",
+            1
+          ]
+        ],
+        "top_aspects": [
+          [
+            "성능",
+            5
+          ],
+          [
+            "배터리",
+            4
+          ],
+          [
+            "가격",
+            3
+          ],
+          [
+            "사용성",
+            3
+          ],
+          [
+            "맛",
+            2
+          ]
+        ]
+      },
+      "audience": {
+        "units": 18,
+        "neutral_share": 0.333,
+        "negative_share": 0.111,
+        "complaint_units": 8,
+        "top_categories": [
+          [
+            "칭찬",
+            6
+          ],
+          [
+            "분류 불가",
+            1
+          ],
+          [
+            "가격",
+            1
+          ],
+          [
+            "배터리",
+            1
+          ]
+        ],
+        "top_aspects": [
+          [
+            "가격",
+            3
+          ],
+          [
+            "디자인",
+            1
+          ]
+        ]
+      },
+      "audio": {
+        "fetch_and_stt_sec": 771.0,
+        "stt_segments": 69,
+        "stt_conf_mean": 0.893,
+        "stt_conf_below_0_5": 0,
+        "diarized_speakers": 1,
+        "guest_share": 0.0,
+        "audio_used": true,
+        "audio_note": null,
+        "snr_db": 17.9,
+        "audio_arousal_units": 71,
+        "audio_arousal_mean": 0.5,
+        "audio_arousal_sd": 0.231,
+        "tone_mismatch": 3
+      }
+    }
+  ]
+}

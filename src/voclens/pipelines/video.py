@@ -10,6 +10,7 @@
 from __future__ import annotations
 
 import re
+import tempfile
 from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
@@ -256,9 +257,9 @@ def build_video_session(bundle: VideoBundle, models: VideoModels, settings: dict
     return session
 
 
-def load_video(source: str, allow_stt: bool = False) -> VideoBundle:
+def load_video(source: str, allow_stt: bool = False, audio_dir: str | None = None) -> VideoBundle:
     if source.startswith(("http://", "https://")):
-        return fetch_bundle(source, allow_stt=allow_stt)
+        return fetch_bundle(source, allow_stt=allow_stt, audio_dir=audio_dir)
     return load_bundle(source)
 
 
@@ -280,7 +281,9 @@ def run_video_pipeline(sources: list[str], settings: dict, db_path=None, allow_s
     conn = db.connect(db_path or settings["db_path"])
     run_id = db.start_run(conn, "video", ", ".join(items), settings, models.versions())
     try:
-        sessions = [build_video_session(load_video(s, allow_stt), models, settings, vcfg) for s in items]
+        # STT로 받은 음성은 음향 각성을 계산하는 동안만 두고 세션을 만든 뒤 지운다
+        with tempfile.TemporaryDirectory() as audio_dir:
+            sessions = [build_video_session(load_video(s, allow_stt, audio_dir), models, settings, vcfg) for s in items]
         tx = models.taxonomy.taxonomy
         db.save_sessions(
             conn, sessions, run_id, label_source="keyword",

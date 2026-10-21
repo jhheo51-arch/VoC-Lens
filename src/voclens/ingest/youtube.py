@@ -120,8 +120,39 @@ def _manual_korean_subtitle(info: dict) -> str | None:
     return None
 
 
-def fetch_bundle(url: str, max_comments: int = 500, allow_stt: bool = False, stt_model: str = "medium") -> VideoBundle:
-    """URL에서 영상 번들을 만든다. `pip install -e .[video]` 필요 (STT까지 하려면 [audio]도)."""
+def _download_wav(url: str, base: dict, tmp: str, video_id: str, out: Path) -> Path:
+    """원본 오디오를 그대로 받아 PyAV(faster-whisper 의존성)로 16kHz 모노 WAV로 바꾼다. ffmpeg 실행 파일이 필요 없다."""
+    import wave
+
+    import av
+    import yt_dlp
+
+    with yt_dlp.YoutubeDL({**base, "skip_download": False, "format": "bestaudio/best"}) as ydl:
+        ydl.download([url])
+    raw = next(p for p in Path(tmp).glob(f"{video_id}.*") if p.suffix not in (".vtt", ".part"))
+    # faster_whisper.decode_audio는 PyAV 버전에 따라 깨져서 직접 디코딩한다
+    resampler = av.AudioResampler(format="s16", layout="mono", rate=16000)
+    with av.open(str(raw)) as container, wave.open(str(out), "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(16000)
+        for frame in container.decode(audio=0):
+            for f in resampler.resample(frame):
+                w.writeframes(f.to_ndarray().tobytes())
+        for f in resampler.resample(None):
+            w.writeframes(f.to_ndarray().tobytes())
+    raw.unlink()
+    return out
+
+
+def fetch_bundle(
+    url: str, max_comments: int = 500, allow_stt: bool = False, stt_model: str = "medium", audio_dir: str | Path | None = None
+) -> VideoBundle:
+    """URL에서 영상 번들을 만든다. `pip install -e .[video]` 필요 (STT까지 하려면 [audio]도).
+
+    STT를 할 때 audio_dir을 주면 16kHz WAV를 그곳에 남기고 번들 audio에 연결한다 (음향 각성 분석용).
+    호출한 쪽이 분석 후 지운다. 주지 않으면 전사가 끝난 뒤 임시 폴더와 함께 지워진다.
+    """
     try:
         import yt_dlp
     except ImportError as exc:  # pragma: no cover - 선택 의존성
@@ -145,6 +176,7 @@ def fetch_bundle(url: str, max_comments: int = 500, allow_stt: bool = False, stt
             "url": f"https://www.youtube.com/watch?v={video_id}",
         }
 
+        audio = None
         lang = _manual_korean_subtitle(info)
         if lang:
             opts = {**base, "writesubtitles": True, "subtitleslangs": [lang], "subtitlesformat": "vtt"}
@@ -163,16 +195,12 @@ def fetch_bundle(url: str, max_comments: int = 500, allow_stt: bool = False, stt
         elif allow_stt:
             from voclens.audio.stt import assign_speakers, diarize, transcribe
 
-            opts = {**base, "skip_download": False, "format": "bestaudio/best",
-                    "postprocessors": [{"key": "FFmpegExtractAudio", "preferredcodec": "wav"}],
-                    "postprocessor_args": ["-ar", "16000", "-ac", "1"]}
-            with yt_dlp.YoutubeDL(opts) as ydl:
-                ydl.download([url])
-            wav = next(Path(tmp).glob(f"{video_id}*.wav"))
+            wav_dir = Path(audio_dir) if audio_dir else Path(tmp)
+            wav = _download_wav(url, base, tmp, video_id, wav_dir / f"{video_id}.wav")
             turns = assign_speakers(transcribe(wav, model_size=stt_model), diarize(wav, num_speakers=None))
             segments = [VideoSegment(**t) for t in turns]
             source = "stt"
-            # 원본 음성은 임시 폴더와 함께 지워진다 (음향 분석이 필요하면 번들로 따로 저장)
+            audio = str(wav) if audio_dir else None
         else:
             raise RuntimeError("사람이 단 한국어 자막이 없습니다. --stt 옵션으로 음성 전사를 하거나 번들 JSON을 쓰세요.")
 
@@ -181,5 +209,6 @@ def fetch_bundle(url: str, max_comments: int = 500, allow_stt: bool = False, stt
         meta=meta,
         segments=segments,
         comments=fetch_comments(video_id, max_comments=max_comments),
+        audio=audio,
         transcript_source=source,
     )

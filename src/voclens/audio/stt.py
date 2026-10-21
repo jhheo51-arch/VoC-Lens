@@ -45,10 +45,16 @@ def transcribe(
     except ImportError as exc:  # pragma: no cover - 선택 의존성
         raise RuntimeError("음성 전사에는 faster-whisper가 필요합니다: pip install -e .[audio]") from exc
 
+    from voclens.audio.acoustic import read_wav
+
+    # 경로를 넘기면 faster-whisper가 PyAV로 디코딩하는데 PyAV 버전에 따라 깨진다. 16kHz WAV는 배열로 넘긴다
+    audio = str(audio_path)
+    if Path(audio_path).suffix.lower() == ".wav":
+        signal, sr = read_wav(audio_path)
+        if sr == 16000:
+            audio = signal
     model = WhisperModel(model_size, device=device, compute_type=compute_type)
-    segments, _ = model.transcribe(
-        str(audio_path), language="ko", vad_filter=True, initial_prompt=initial_prompt
-    )
+    segments, _ = model.transcribe(audio, language="ko", vad_filter=True, initial_prompt=initial_prompt)
     out = []
     for s in segments:
         # 평균 로그확률을 0~1 신뢰도로 바꾼다 (avg_logprob 0 → 1, -1 → 약 0.37)
@@ -62,12 +68,23 @@ def diarize(audio_path: str | Path, num_speakers: int | None = 2, hf_token: str 
     except ImportError as exc:  # pragma: no cover - 선택 의존성
         raise RuntimeError("화자 분리에는 pyannote.audio가 필요합니다: pip install -e .[audio]") from exc
 
+    import torch
+
+    from voclens.audio.acoustic import read_wav
+
     token = hf_token or os.environ.get("HF_TOKEN")
     if not token:
         raise RuntimeError("화자 분리 모델을 받으려면 HF_TOKEN 환경변수가 필요합니다 (.env.example 참고)")
-    pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization-3.1", use_auth_token=token)
-    result = pipeline(str(audio_path), num_speakers=num_speakers)
-    return [SpeakerSpan(turn.start, turn.end, speaker) for turn, _, speaker in result.itertracks(yield_label=True)]
+    try:  # pyannote.audio 4.x
+        pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization-3.1", token=token)
+    except TypeError:  # 3.x
+        pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization-3.1", use_auth_token=token)
+    # 파일 경로를 넘기면 4.x는 torchcodec(ffmpeg 필요)으로 읽으므로 파형을 직접 넘긴다
+    signal, sr = read_wav(audio_path)
+    audio = {"waveform": torch.from_numpy(signal).unsqueeze(0), "sample_rate": sr}
+    result = pipeline(audio, num_speakers=num_speakers)
+    annotation = getattr(result, "speaker_diarization", result)   # 4.x는 출력 객체로 감싼다
+    return [SpeakerSpan(turn.start, turn.end, speaker) for turn, _, speaker in annotation.itertracks(yield_label=True)]
 
 
 def assign_speakers(segments: list[SttSegment], spans: list[SpeakerSpan]) -> list[dict]:
