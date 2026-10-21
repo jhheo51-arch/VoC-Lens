@@ -22,6 +22,7 @@ from pathlib import Path
 
 from pydantic import BaseModel, Field
 
+import voclens.config  # noqa: F401  .env의 YOUTUBE_API_KEY를 환경변수로 읽는다
 from voclens.ingest.subtitles import cues_to_sentences, parse_subtitles
 
 _VIDEO_ID = re.compile(r"(?:v=|youtu\.be/|shorts/|embed/)([A-Za-z0-9_-]{11})")

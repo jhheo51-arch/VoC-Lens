@@ -1,10 +1,14 @@
 {
   "data": {
     "clips": 1440,
+    "broken_files": [],
     "actors": 24,
+    "female_actors": 12,
     "high_arousal": 768,
     "low_arousal": 480,
     "excluded_disgust": 192,
+    "strong": 672,
+    "normal": 672,
     "reliable_share": 1.0
   },
   "model": {
@@ -19,7 +23,7 @@
     "note": "가중치를 바꾸지 않고 평가만 함. 말 속도는 영어라 0으로 고정"
   },
   "normalization": {
-    "neutral_calm": {
+    "baseline_neutral": {
       "auc_high_vs_low": 0.8759,
       "auc_strong_vs_normal": 0.731,
       "by_gender": {

@@ -26,6 +26,21 @@ def _find_repo_root() -> Path:
 REPO_ROOT = _find_repo_root()
 
 
+def load_dotenv(path: Path | None = None) -> None:
+    """저장소 루트의 .env(KEY=값)를 환경변수로 읽는다. 이미 설정된 환경변수는 덮어쓰지 않고, 빈 값은 건너뛴다."""
+    path = path or REPO_ROOT / ".env"
+    if not path.is_file():
+        return
+    for line in path.read_text(encoding="utf-8-sig").splitlines():
+        key, sep, value = line.partition("=")
+        key, value = key.strip(), value.strip().strip("'\"")
+        if sep and key and not key.startswith("#") and value:
+            os.environ.setdefault(key, value)
+
+
+load_dotenv()
+
+
 def config_dir() -> Path:
     return Path(os.environ.get("VOCLENS_CONFIG_DIR", REPO_ROOT / "configs"))
 

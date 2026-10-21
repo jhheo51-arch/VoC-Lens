@@ -15,6 +15,8 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
+import voclens.config  # noqa: F401  .env의 HF_TOKEN을 환경변수로 읽는다
+
 
 @dataclass
 class SttSegment:
