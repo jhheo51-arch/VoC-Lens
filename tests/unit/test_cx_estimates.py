@@ -33,6 +33,17 @@ def test_calibrated_threshold_matches_actual_share():
     assert est_share == pytest.approx((df["rating"] >= 4).mean(), abs=0.05)
 
 
+def test_calibrated_threshold_with_tied_predictions():
+    # 감정 표현이 없는 리뷰는 특징이 모두 0이라 예측이 한 값에 몰린다. 동점 전체가 만족으로 들어가면 안 된다
+    df = _frame()
+    df.loc[:59, list(FEATURES)] = 0.0
+    df.loc[:59, "rating"] = np.where(np.arange(60) % 2 == 0, 5.0, 2.0)   # 동점 구간에 만족·불만이 섞임
+    model = RidgeRegressor().fit(df, df["rating"])
+    model.calibrate_threshold(df, df["rating"])
+    est_share = (model.predict(df) >= model.csat_threshold).mean()
+    assert est_share == pytest.approx((df["rating"] >= 4).mean(), abs=0.05)
+
+
 def test_train_csat_beats_baselines():
     model, ev = train_csat(_frame(300))
     assert model is not None

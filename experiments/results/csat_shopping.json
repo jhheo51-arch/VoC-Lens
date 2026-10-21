@@ -1,0 +1,149 @@
+{
+  "data": {
+    "train_reviews_dev": 40000,
+    "test_reviews": 39807,
+    "test_by_rating": {
+      "1": 7102,
+      "2": 12786,
+      "4": 3723,
+      "5": 16196
+    }
+  },
+  "constant_baseline_mae": 1.585,
+  "trained_on_shopping": {
+    "mae": 1.055,
+    "spearman": 0.602,
+    "auc_satisfied": 0.858,
+    "csat_pct_actual": 50.0,
+    "csat_pct_est": 42.8,
+    "csat_pct_est_raw": 28.7,
+    "threshold": 2.902,
+    "coefficients": [
+      [
+        "happiness",
+        0.745
+      ],
+      [
+        "peak_end",
+        -0.682
+      ],
+      [
+        "min_valence",
+        -0.521
+      ],
+      [
+        "mean_valence",
+        0.418
+      ],
+      [
+        "negative_affect",
+        0.161
+      ],
+      [
+        "frustration",
+        0.147
+      ],
+      [
+        "n_complaints",
+        -0.144
+      ],
+      [
+        "stress",
+        -0.115
+      ],
+      [
+        "last_valence",
+        -0.091
+      ],
+      [
+        "repurchase",
+        0.086
+      ],
+      [
+        "churn",
+        -0.079
+      ],
+      [
+        "not_recommend",
+        -0.076
+      ],
+      [
+        "recommend",
+        0.014
+      ]
+    ]
+  },
+  "valence_only_on_shopping": {
+    "mae": 1.109,
+    "spearman": 0.594,
+    "auc_satisfied": 0.854,
+    "csat_pct_actual": 50.0,
+    "csat_pct_est": 42.3,
+    "csat_pct_est_raw": 21.1,
+    "threshold": 2.959
+  },
+  "trained_on_synthetic_delivery": {
+    "mae": 1.228,
+    "spearman": 0.559,
+    "auc_satisfied": 0.836,
+    "csat_pct_actual": 50.0,
+    "csat_pct_est": 80.8,
+    "csat_pct_est_raw": 37.5,
+    "threshold": 3.62,
+    "synthetic_holdout_mae": 0.564,
+    "coefficients": [
+      [
+        "min_valence",
+        -0.706
+      ],
+      [
+        "last_valence",
+        0.592
+      ],
+      [
+        "peak_end",
+        -0.582
+      ],
+      [
+        "frustration",
+        0.284
+      ],
+      [
+        "churn",
+        -0.282
+      ],
+      [
+        "not_recommend",
+        -0.273
+      ],
+      [
+        "happiness",
+        0.231
+      ],
+      [
+        "mean_valence",
+        0.193
+      ],
+      [
+        "repurchase",
+        0.19
+      ],
+      [
+        "negative_affect",
+        -0.166
+      ],
+      [
+        "recommend",
+        0.103
+      ],
+      [
+        "stress",
+        -0.046
+      ],
+      [
+        "n_complaints",
+        0.019
+      ]
+    ]
+  }
+}

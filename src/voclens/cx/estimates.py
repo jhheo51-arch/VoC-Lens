@@ -136,8 +136,16 @@ class RidgeRegressor:
 
     def calibrate_threshold(self, df: pd.DataFrame, y) -> float:
         actual_share = float((np.asarray(y, dtype=float) >= 4).mean())
-        pred = self.predict(df)
-        self.csat_threshold = float(np.quantile(pred, 1 - actual_share)) if 0 < actual_share < 1 else 4.0
+        if not 0 < actual_share < 1:
+            self.csat_threshold = 4.0
+            return self.csat_threshold
+        # 분위수를 그대로 쓰면 안 된다. 감정 표현이 하나도 없는 리뷰는 특징이 모두 0이라 예측이 같은 값에
+        # 몰리고(실제 쇼핑 리뷰의 약 30%), 분위수가 그 동점 값에 걸리면 '>='로 동점 전체가 만족이 된다.
+        # 후보 임계값마다 만족 비율을 세서 실제 비율에 가장 가까운 값을 고른다.
+        pred = np.sort(self.predict(df))
+        candidates = np.unique(pred)
+        shares = 1 - np.searchsorted(pred, candidates, side="left") / len(pred)   # 각 후보 이상인 비율
+        self.csat_threshold = float(candidates[np.argmin(np.abs(shares - actual_share))])
         return self.csat_threshold
 
     def coefficients(self) -> list[tuple[str, float]]:

@@ -1,0 +1,227 @@
+{
+  "method": "상수를 하나씩 ×0.5·×1.5, 그리고 전부 동시에 무작위 ×U(0.5,1.5) 500회. 기본값은 라이브러리와 일치 확인",
+  "constants": {
+    "unit": {
+      "w_repeat": 0.4,
+      "w_wait": 0.25,
+      "w_churn": 0.15,
+      "w_neg": 0.4,
+      "d_stress": 0.6,
+      "d_happy": 0.8,
+      "d_neg": 0.5,
+      "arousal_default": 0.3
+    },
+    "engagement": {
+      "w_chars": 0.35,
+      "w_aspects": 0.35,
+      "w_intent": 0.3,
+      "chars_full": 150,
+      "aspects_full": 3
+    },
+    "priority": {
+      "base": 0.5,
+      "trend": 0.5
+    },
+    "ces": {
+      "w_frus": 0.6,
+      "w_repeat": 0.2,
+      "w_wait": 0.1,
+      "w_unresolved": 0.1
+    }
+  },
+  "A_indices_shopping": {
+    "reviews": 39807,
+    "units": 89678,
+    "indices": {
+      "happiness": {
+        "baseline_auc": 0.8,
+        "auc": {
+          "min": 0.7989,
+          "p05": 0.7998,
+          "median": 0.8
+        },
+        "rank_spearman_vs_baseline": {
+          "min": 0.998,
+          "p05": 0.9996,
+          "median": 1.0
+        }
+      },
+      "engagement": {
+        "baseline_auc": 0.4444,
+        "auc": {
+          "min": 0.4251,
+          "p05": 0.4324,
+          "median": 0.4435
+        },
+        "rank_spearman_vs_baseline": {
+          "min": 0.9128,
+          "p05": 0.9588,
+          "median": 0.9903
+        }
+      },
+      "stress": {
+        "baseline_auc": 0.707,
+        "auc": {
+          "min": 0.707,
+          "p05": 0.707,
+          "median": 0.707
+        },
+        "rank_spearman_vs_baseline": {
+          "min": 1.0,
+          "p05": 1.0,
+          "median": 1.0
+        }
+      },
+      "negative_affect": {
+        "baseline_auc": 0.7078,
+        "auc": {
+          "min": 0.7078,
+          "p05": 0.7078,
+          "median": 0.7078
+        },
+        "rank_spearman_vs_baseline": {
+          "min": 0.9999,
+          "p05": 0.9999,
+          "median": 1.0
+        }
+      },
+      "frustration": {
+        "baseline_auc": 0.7097,
+        "auc": {
+          "min": 0.709,
+          "p05": 0.7093,
+          "median": 0.7097
+        },
+        "rank_spearman_vs_baseline": {
+          "min": 0.9984,
+          "p05": 0.9989,
+          "median": 0.9997
+        }
+      }
+    }
+  },
+  "B_priority_synthetic_delivery": {
+    "types": 12,
+    "baseline_order": [
+      "누락·오배송",
+      "배달 지연",
+      "온도·식감",
+      "문의·연락",
+      "가격",
+      "매장 응대",
+      "요청 미반영",
+      "배달비",
+      "위생·이물질",
+      "양",
+      "맛",
+      "포장 상태"
+    ],
+    "baseline_quadrant": {
+      "누락·오배송": "Quick Win",
+      "배달 지연": "핵심 과제",
+      "온도·식감": "핵심 과제",
+      "문의·연락": "핵심 과제",
+      "가격": "핵심 과제",
+      "매장 응대": "핵심 과제",
+      "요청 미반영": "쉬운 개선",
+      "배달비": "후순위",
+      "위생·이물질": "후순위",
+      "양": "쉬운 개선",
+      "맛": "후순위",
+      "포장 상태": "쉬운 개선"
+    },
+    "rank_spearman": {
+      "min": 0.972,
+      "p05": 0.986,
+      "median": 0.993
+    },
+    "top3_set_unchanged": 1.0,
+    "first_unchanged": 0.912,
+    "quadrant_changed_share": {
+      "min": 0.0,
+      "p05": 0.0,
+      "median": 0.0,
+      "mean": 0.0571
+    },
+    "worst_variant": {
+      "name": "joint#107",
+      "spearman": 0.972
+    }
+  },
+  "B_priority_shopping": {
+    "types": 18,
+    "baseline_order": [
+      "품질·마감",
+      "맛·신선도",
+      "제품 불량",
+      "배송 지연",
+      "사이즈·색상",
+      "포장·파손",
+      "가격",
+      "사용 편의",
+      "냄새",
+      "오배송·누락",
+      "효과 없음",
+      "성능",
+      "문의·연락",
+      "환불·취소",
+      "매장 응대",
+      "정보 불일치",
+      "배송비",
+      "품질 편차"
+    ],
+    "baseline_quadrant": {
+      "품질·마감": "핵심 과제",
+      "맛·신선도": "핵심 과제",
+      "제품 불량": "핵심 과제",
+      "배송 지연": "핵심 과제",
+      "사이즈·색상": "Quick Win",
+      "포장·파손": "Quick Win",
+      "가격": "핵심 과제",
+      "사용 편의": "핵심 과제",
+      "냄새": "핵심 과제",
+      "오배송·누락": "쉬운 개선",
+      "효과 없음": "후순위",
+      "성능": "후순위",
+      "문의·연락": "후순위",
+      "환불·취소": "후순위",
+      "매장 응대": "후순위",
+      "정보 불일치": "쉬운 개선",
+      "배송비": "후순위",
+      "품질 편차": "후순위"
+    },
+    "rank_spearman": {
+      "min": 0.9938,
+      "p05": 0.9959,
+      "median": 1.0
+    },
+    "top3_set_unchanged": 0.944,
+    "first_unchanged": 1.0,
+    "quadrant_changed_share": {
+      "min": 0.0,
+      "p05": 0.0,
+      "median": 0.0,
+      "mean": 0.0
+    },
+    "worst_variant": {
+      "name": "joint#153",
+      "spearman": 0.9938
+    }
+  },
+  "C_ces_synthetic_calls": {
+    "calls": 4,
+    "baseline_ces": [
+      1.42,
+      5.66,
+      1.95,
+      1.22
+    ],
+    "kendall_tau_vs_baseline": {
+      "min": 1.0,
+      "p05": 1.0,
+      "median": 1.0
+    },
+    "hardest_call_unchanged": 1.0,
+    "full_order_unchanged": 1.0
+  }
+}
