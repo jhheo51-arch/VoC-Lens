@@ -151,7 +151,13 @@ def fetch_bundle(url: str, max_comments: int = 500, allow_stt: bool = False, stt
             with yt_dlp.YoutubeDL(opts) as ydl:
                 ydl.download([url])
             vtt = next(Path(tmp).glob(f"{video_id}*.vtt"))
-            sentences = cues_to_sentences(parse_subtitles(vtt))
+            cues = parse_subtitles(vtt)
+            if meta["duration"]:
+                # 편집 전 영상의 자막이 남아 영상 길이 밖에 큐가 있는 경우가 있다
+                kept = [c for c in cues if c.start < meta["duration"]]
+                meta["dropped_cues_after_end"] = len(cues) - len(kept)
+                cues = kept
+            sentences = cues_to_sentences(cues)
             segments = [VideoSegment(start=s.start, end=s.end, text=s.text) for s in sentences]
             source = "manual_subtitles"
         elif allow_stt:

@@ -154,7 +154,7 @@ def build_video_session(bundle: VideoBundle, models: VideoModels, settings: dict
     session_id = f"video:{bundle.video_id}"
     boilerplate = re.compile("|".join(vcfg["boilerplate"])) if vcfg.get("boilerplate") else None
     spans = split_timed(bundle, boilerplate)
-    domain = bundle.meta.get("domain")
+    domain = bundle.meta.get("domain") or vcfg.get("domain")
     creator = main_speaker(spans)
 
     units = []
@@ -246,7 +246,8 @@ def build_video_session(bundle: VideoBundle, models: VideoModels, settings: dict
     if comments:
         audience = Session(session_id="tmp", source_id="tmp", source_type=SourceType.VIDEO, units=comments)
         score_session(audience, idx["above_threshold"], idx["recovery_min_negative"])
-        session.meta["audience_indices"] = {k: v.raw for k, v in audience.indices.items() if k != "recovery"}
+        # 몰입은 리뷰 공식(글 길이·속성 수)이라 댓글 수백 개를 합치면 항상 100이 된다. 영상 몰입은 audience_engagement로 따로 낸다
+        session.meta["audience_indices"] = {k: v.raw for k, v in audience.indices.items() if k not in ("recovery", "engagement")}
     engagement = audience_engagement(bundle.meta, len(comments), session.meta["n_timestamp_comments"])
     if engagement is not None:
         session.indices["engagement"].raw = engagement

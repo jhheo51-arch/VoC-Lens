@@ -67,6 +67,13 @@ def test_cues_to_sentences_aligns_times():
     assert last.start == 3.5 and last.end == 9.0   # 두 큐에 걸친 문장
 
 
+def test_cues_to_sentences_breaks_at_long_gap():
+    # 마침표 없는 자막에서 7분 떨어진 큐가 한 문장으로 붙지 않아야 한다 (실제 영상에서 발견)
+    cues = [Cue(990, 993, "배터리는 생각보다 오래 가고"), Cue(1406, 1408, "카메라는 아쉽네요")]
+    sentences = cues_to_sentences(cues)
+    assert [(s.start, s.end) for s in sentences] == [(990, 993), (1406, 1408)]
+
+
 @pytest.mark.parametrize(
     "url, vid",
     [

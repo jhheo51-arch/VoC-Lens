@@ -1,0 +1,264 @@
+{
+  "note": "정답 라벨 없음. 수집·분석 동작 점검과 분포 확인용",
+  "videos": [
+    {
+      "video_id": "dStfwAbQB0A",
+      "channel": "underKG",
+      "duration_sec": 993.4,
+      "views": 369915,
+      "transcript_source": "manual_subtitles",
+      "dropped_cues_after_end": 93,
+      "sentences": 174,
+      "longest_sentence_sec": 28.6,
+      "comments": 448,
+      "timestamp_comments": 38,
+      "video_type": "review",
+      "segments": 22,
+      "segment_labels": {
+        "도입": 1,
+        "사용": 7,
+        "장단점": 1,
+        "총평": 3,
+        "본문": 10
+      },
+      "segment_label_runs": 14,
+      "engagement": 18.21,
+      "creator_vs_audience": {
+        "creator_valence": 0.022,
+        "audience_valence": 0.0327,
+        "audience_minus_creator": 0.0107,
+        "n_creator": 174,
+        "n_audience": 448
+      },
+      "creator": {
+        "units": 174,
+        "neutral_share": 0.885,
+        "negative_share": 0.023,
+        "complaint_units": 14,
+        "top_categories": [
+          [
+            "칭찬",
+            10
+          ],
+          [
+            "앱·결제 오류",
+            1
+          ],
+          [
+            "사용 편의",
+            1
+          ],
+          [
+            "분류 불가",
+            1
+          ],
+          [
+            "오배송·누락",
+            1
+          ]
+        ],
+        "top_aspects": [
+          [
+            "성능",
+            8
+          ],
+          [
+            "디자인",
+            4
+          ],
+          [
+            "배터리",
+            4
+          ],
+          [
+            "앱",
+            3
+          ],
+          [
+            "사용성",
+            2
+          ]
+        ]
+      },
+      "audience": {
+        "units": 448,
+        "neutral_share": 0.594,
+        "negative_share": 0.154,
+        "complaint_units": 123,
+        "top_categories": [
+          [
+            "칭찬",
+            57
+          ],
+          [
+            "분류 불가",
+            23
+          ],
+          [
+            "성능",
+            18
+          ],
+          [
+            "가격",
+            13
+          ],
+          [
+            "배터리",
+            6
+          ]
+        ],
+        "top_aspects": [
+          [
+            "성능",
+            45
+          ],
+          [
+            "가격",
+            41
+          ],
+          [
+            "디자인",
+            24
+          ],
+          [
+            "배터리",
+            8
+          ],
+          [
+            "사용성",
+            6
+          ]
+        ]
+      }
+    },
+    {
+      "video_id": "-D9zBKMBkeU",
+      "channel": "오토뷰(AutoView) - 자동차 & 타이어 구입 참고서",
+      "duration_sec": 2100.6,
+      "views": 339474,
+      "transcript_source": "manual_subtitles",
+      "dropped_cues_after_end": 0,
+      "sentences": 282,
+      "longest_sentence_sec": 38.0,
+      "comments": 500,
+      "timestamp_comments": 8,
+      "video_type": "review",
+      "segments": 37,
+      "segment_labels": {
+        "본문": 24,
+        "사용": 8,
+        "도입": 4,
+        "언박싱": 1
+      },
+      "segment_label_runs": 22,
+      "engagement": 15.41,
+      "creator_vs_audience": {
+        "creator_valence": 0.0237,
+        "audience_valence": 0.0752,
+        "audience_minus_creator": 0.0515,
+        "n_creator": 282,
+        "n_audience": 500
+      },
+      "creator": {
+        "units": 282,
+        "neutral_share": 0.816,
+        "negative_share": 0.064,
+        "complaint_units": 47,
+        "top_categories": [
+          [
+            "칭찬",
+            29
+          ],
+          [
+            "분류 불가",
+            9
+          ],
+          [
+            "가격",
+            3
+          ],
+          [
+            "품질·마감",
+            1
+          ],
+          [
+            "사용 편의",
+            1
+          ]
+        ],
+        "top_aspects": [
+          [
+            "성능",
+            22
+          ],
+          [
+            "가격",
+            9
+          ],
+          [
+            "디자인",
+            6
+          ],
+          [
+            "사용성",
+            4
+          ],
+          [
+            "배터리",
+            4
+          ]
+        ]
+      },
+      "audience": {
+        "units": 500,
+        "neutral_share": 0.51,
+        "negative_share": 0.14,
+        "complaint_units": 175,
+        "top_categories": [
+          [
+            "칭찬",
+            107
+          ],
+          [
+            "가격",
+            37
+          ],
+          [
+            "분류 불가",
+            18
+          ],
+          [
+            "품질·마감",
+            5
+          ],
+          [
+            "품질 편차",
+            3
+          ]
+        ],
+        "top_aspects": [
+          [
+            "가격",
+            128
+          ],
+          [
+            "디자인",
+            15
+          ],
+          [
+            "품질",
+            8
+          ],
+          [
+            "성능",
+            6
+          ],
+          [
+            "응대",
+            5
+          ]
+        ]
+      }
+    }
+  ]
+}

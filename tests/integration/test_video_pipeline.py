@@ -56,7 +56,7 @@ def test_indices_and_audience(sessions):
     for s in sessions.values():
         assert s.indices["engagement"].raw < 100      # 시청자 반응 기준 (리뷰 공식처럼 포화되지 않음)
         assert s.meta["engagement_basis"] == "audience"
-        assert set(s.meta["audience_indices"]) == {"stress", "happiness", "negative_affect", "frustration", "engagement"}
+        assert set(s.meta["audience_indices"]) == {"stress", "happiness", "negative_affect", "frustration"}
         assert -1 <= s.meta["weighted_valence"] <= 1
 
 

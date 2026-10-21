@@ -80,10 +80,25 @@ class TimedSentence:
     text: str
 
 
-def cues_to_sentences(cues: list[Cue]) -> list[TimedSentence]:
-    """큐를 이어 붙여 문장으로 나누고, 문장마다 시작·끝 시각을 붙인다."""
-    if not cues:
-        return []
+def cues_to_sentences(cues: list[Cue], max_gap: float = 5.0) -> list[TimedSentence]:
+    """큐를 이어 붙여 문장으로 나누고, 문장마다 시작·끝 시각을 붙인다.
+
+    큐 사이가 max_gap초보다 벌어지면 거기서 끊는다. 자막에 마침표가 없으면
+    몇 분 떨어진 큐가 한 문장으로 붙기 때문이다.
+    """
+    out: list[TimedSentence] = []
+    group: list[Cue] = []
+    for cue in cues:
+        if group and cue.start - group[-1].end > max_gap:
+            out.extend(_group_to_sentences(group))
+            group = []
+        group.append(cue)
+    if group:
+        out.extend(_group_to_sentences(group))
+    return out
+
+
+def _group_to_sentences(cues: list[Cue]) -> list[TimedSentence]:
     spans = []           # (글자 시작, 글자 끝, 큐)
     parts = []
     pos = 0
