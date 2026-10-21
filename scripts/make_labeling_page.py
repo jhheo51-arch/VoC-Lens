@@ -97,6 +97,7 @@ button.primary { background:var(--blue); border-color:var(--blue); color:#fff; }
 <nav>
   <button id="prev">← 이전</button><button id="next" class="primary">다음 →</button>
   <button id="download">결과 내려받기</button>
+  <button id="reset">처음부터 다시</button>
 </nav>
 <p class="small">진행 상황은 이 브라우저에 저장됩니다(앱 안 미리보기 창에서는 저장되지 않을 수 있으니 창을 닫기 전에 결과를 내려받으세요). 단축키: ← → 이동. 기준은 labeling/guidelines.md와 label_definitions_product.md를 따릅니다.</p>
 </main>
@@ -151,6 +152,12 @@ document.getElementById('download').onclick = () => {
   const url = URL.createObjectURL(new Blob([JSON.stringify(out, null, 1)], {type: "application/json"}));
   const a = Object.assign(document.createElement('a'), {href: url, download: "human_labels.json"}); a.click();
   URL.revokeObjectURL(url);
+};
+document.getElementById('reset').onclick = () => {
+  if (!confirm("고른 라벨과 메모를 모두 지우고 1번부터 다시 할까요? 되돌릴 수 없습니다.")) return;
+  state = Object.assign({}, PRELOAD); i = 0;
+  try { localStorage.removeItem(KEY); } catch (e) {}
+  render();
 };
 render();
 </script>
