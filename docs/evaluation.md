@@ -374,7 +374,7 @@ voclens eval gold labeling/eval/naver_shopping_eval_labels_A.json --emotion-mode
 1. **0인 유형의 학습 예시를 직접 늘립니다.** 성능, 오배송·누락, 효과 없음을 개발용 리뷰에서 골라 사람(또는 Claude) 라벨을 붙이고 분류기를 다시 학습합니다. → 5-1절에서 Claude 라벨 915절로 실행했습니다. 불만 여부 F1은 0.69로 올랐지만 세 유형 개선은 기준값 효과였습니다.
 2. 다음 학습에서는 기준값 탐색 범위를 0.95 이상까지 넓히되, 개발용 정답에서만 고릅니다. → 5-1절에서 0.99까지 넓혔고, 기존 모델은 0.93(평가 F1 0.58)으로 0.9와 차이가 없었습니다.
 3. 사람 검수(3절, 20절)에서 불만 여부 κ는 0.78, 유형 완전 일치는 5/12였습니다. 그래서 이 표의 불만 여부 지표는 사람 기준에 가깝게 읽을 수 있지만 유형 지표는 그렇지 않습니다. 검수가 50절로 늘면 다시 기록합니다.
-4. 새 평가는 이 평가 세트를 다시 쓰지 않고, 평가용에서 새로 뽑은 세트로 합니다(이미 결과를 본 세트이기 때문). 338절을 뽑아 ID만 저장했고(`labeling/eval/naver_shopping_eval_next_ids.json`), 사람 라벨을 기다립니다.
+4. 새 평가는 이 평가 세트를 다시 쓰지 않고, 평가용에서 새로 뽑은 세트로 합니다(이미 결과를 본 세트이기 때문). 338절을 뽑아 ID만 저장했고(`labeling/eval/naver_shopping_eval_next_ids.json`), 사람 라벨을 기다립니다. 라벨링 페이지는 `scripts/next_eval_tasks.py`로 원문을 다시 찾아 만들며, ID 순서로 별점이 드러나지 않게 리뷰 단위로 섞습니다.
 
 ```bash
 python scripts/train_complaint.py --epochs 3                 # → models/complaint-weak-small (git에 올리지 않음)
