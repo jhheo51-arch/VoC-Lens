@@ -18,6 +18,7 @@ from pathlib import Path
 
 from voclens.text.taxonomy import Taxonomy
 
+# 유형을 함께 붙이지 않는 라벨. 분류 불가는 기준서 v0.3부터 "이유 없는 불만"으로 불만에 센다(칭찬·해당 없음만 불만 아님)
 NON_COMPLAINT = ["칭찬", "해당 없음", "분류 불가"]
 
 
@@ -35,7 +36,9 @@ def labels_for(domain: str) -> dict[str, list[str]]:
 def build(tasks: list[dict], groups: dict[str, list[str]], title: str, preload: dict[str, dict] | None = None) -> str:
     items = [{"unit_id": t["data"]["unit_id"], "text": t["data"]["text"], "review": t["data"]["review"]} for t in tasks]
     choices = '<fieldset><legend>불만 아님</legend>' + "".join(
-        f'<label><input type="checkbox" value="{n}"> {n}</label>' for n in NON_COMPLAINT) + "</fieldset>"
+        f'<label><input type="checkbox" value="{n}"> {n}</label>' for n in NON_COMPLAINT[:2]) + "</fieldset>"
+    choices += ('<fieldset><legend>불만인데 이유가 없음</legend><label><input type="checkbox" value="분류 불가"> 분류 불가</label>'
+                '<span class="small">"다신 안 살게요", "실망이에요"처럼 이 절에 이유가 없거나 어느 유형에도 안 맞는 불만</span></fieldset>')
     order = ["제품·품질", "배송·이행", "가격·혜택", "응대·서비스", "사용성"]
     groups = {c: groups[c] for c in sorted(groups, key=lambda c: order.index(c) if c in order else len(order))}
     choices += "".join(
@@ -66,7 +69,7 @@ def pick_tasks(tasks: list[dict], n: int | None, seed: int, exclude: set[str] | 
 
 
 def needs_review(labels: list[str]) -> bool:
-    """불만 아님(칭찬·해당 없음·분류 불가)과 불만 유형이 함께 있거나, 라벨이 3개 이상이면 다시 본다."""
+    """유형 없는 라벨(칭찬·해당 없음·분류 불가)과 불만 유형이 함께 있거나, 라벨이 3개 이상이면 다시 본다."""
     non = [l for l in labels if l in NON_COMPLAINT]
     return len(labels) >= 3 or bool(non and len(non) < len(labels)) or len(non) > 1
 
@@ -103,7 +106,7 @@ button.primary { background:var(--blue); border-color:var(--blue); color:#fff; }
 <div class="card">
   <div class="small">리뷰 전체 (참고용, 노란 부분이 라벨을 붙일 절)</div>
   <div class="review" id="review"></div>
-  <div class="small" style="margin-top:12px">라벨을 붙일 절</div>
+  <div class="small" style="margin-top:12px">라벨을 붙일 절 (이 절 안에서 말한 것만 봅니다. 이유가 다른 절에만 있으면 분류 불가)</div>
   <p class="clause" id="clause"></p>
 </div>
 <div class="card" id="choices">__CHOICES__
@@ -126,7 +129,7 @@ let state = Object.assign({}, PRELOAD); let i = 0;
 try { const s = JSON.parse(localStorage.getItem(KEY) || "{}"); Object.assign(state, s.state || {}); i = s.i || 0; } catch (e) {}
 const boxes = [...document.querySelectorAll('#choices fieldset input')];
 const NON = ["칭찬", "해당 없음", "분류 불가"];
-// 실수 방지: 불만 아님 하나를 고르면 나머지가 모두 풀리고, 불만 유형을 고르면 불만 아님이 풀린다
+// 실수 방지: 유형 없는 라벨(칭찬·해당 없음·분류 불가) 하나를 고르면 나머지가 모두 풀리고, 불만 유형을 고르면 유형 없는 라벨이 풀린다
 boxes.forEach(b => b.addEventListener('change', () => {
   if (!b.checked) return;
   if (NON.includes(b.value)) boxes.forEach(o => { if (o !== b) o.checked = false; });
