@@ -11,6 +11,8 @@ scripts/video_bundle_cache.py로 data/external/youtube/ 에 받아 둔 번들을
 unit_id는 파이프라인의 unit_id(video:<id>#<순번>)와 같아서 예측과 바로 맞춰 볼 수 있다.
 
     python scripts/make_video_labeling_page.py --dev dStfwAbQB0A,-D9zBKMBkeU,ULoEZw889Lc --eval crOa9gsD9tE,hNwemeKKNGs,AWmjVAoC_zE
+    # 평가용 영상의 크리에이터 문장에서 무작위 50문장, 감성만 (구간 경계는 이어진 문장이 있어야 해서 표본으로는 재지 않는다)
+    python scripts/make_video_labeling_page.py --eval crOa9gsD9tE,hNwemeKKNGs,AWmjVAoC_zE --sample 50 --out data/labeling/video_speech_50.html
 
 원문이 들어 있으므로 data/labeling/ 아래에 만들고 저장소에 올리지 않는다 (data/ 는 .gitignore).
 """
@@ -18,6 +20,7 @@ unit_id는 파이프라인의 unit_id(video:<id>#<순번>)와 같아서 예측�
 import argparse
 import html
 import json
+import random
 import re
 from pathlib import Path
 
@@ -35,16 +38,31 @@ def video_items(video_id: str, split: str, vcfg: dict) -> dict:
     boilerplate = re.compile("|".join(vcfg["boilerplate"])) if vcfg.get("boilerplate") else None
     spans = split_timed(bundle, boilerplate)
     creator = main_speaker(spans)
+    texts = [preprocess(s.text).text for s in spans]
     rows = [
-        {"unit_id": f"video:{video_id}#{i}", "t": s.start, "text": preprocess(s.text).text, "guest": s.speaker != creator}
+        {"unit_id": f"video:{video_id}#{i}", "t": s.start, "text": texts[i], "guest": s.speaker != creator,
+         "before": texts[i - 1] if i else "", "after": texts[i + 1] if i + 1 < len(texts) else ""}
         for i, s in enumerate(spans)
     ]
     return {"video_id": video_id, "split": split, "title": bundle.meta.get("title") or video_id,
             "duration": bundle.meta.get("duration"), "rows": rows}
 
 
-def build(videos: list[dict], segment_labels: list[str], title: str) -> str:
-    data = json.dumps({"videos": videos, "sentiments": SENTIMENTS, "segments": segment_labels}, ensure_ascii=False)
+def sample_rows(videos: list[dict], n: int, seed: int) -> list[dict]:
+    """크리에이터 문장에서 무작위로 n개를 고르고, 영상별 시간 순서로 돌려놓는다. 고른 문장이 없는 영상은 뺀다."""
+    pool = [(vi, ri) for vi, v in enumerate(videos) for ri, r in enumerate(v["rows"]) if not r["guest"]]
+    keep = set(random.Random(seed).sample(pool, min(n, len(pool))))
+    out = []
+    for vi, v in enumerate(videos):
+        rows = [r for ri, r in enumerate(v["rows"]) if (vi, ri) in keep]
+        if rows:
+            out.append({**v, "rows": rows})
+    return out
+
+
+def build(videos: list[dict], segment_labels: list[str], title: str, key: str = "voclens-video-labels-v1") -> str:
+    """segment_labels를 비우면 구간 선택 없이 감성만 받는 페이지가 된다(표본 모드)."""
+    data = json.dumps({"videos": videos, "sentiments": SENTIMENTS, "segments": segment_labels, "key": key}, ensure_ascii=False)
     return TEMPLATE.replace("__TITLE__", html.escape(title)).replace("__DATA__", data.replace("</", "<\\/"))
 
 
@@ -77,7 +95,7 @@ button.primary { background:var(--blue); border-color:var(--blue); color:#fff; }
   <h1>__TITLE__</h1>
   <div><select id="video"></select> <span id="progress" class="small"></span></div>
 </header>
-<p class="small">문장마다 감성을 고르고, 구간이 바뀌는 문장에서만 구간 이름을 고르세요 (비우면 앞 문장과 같은 구간). 영상 링크를 열어 해당 시각을 들어 봐도 됩니다.
+<p class="small" id="intro">문장마다 감성을 고르고, 구간이 바뀌는 문장에서만 구간 이름을 고르세요 (비우면 앞 문장과 같은 구간). 영상 링크를 열어 해당 시각을 들어 봐도 됩니다.
 진행 상황은 이 브라우저에 저장됩니다. 끝나면 결과를 내려받으세요.</p>
 <p><a id="link" target="_blank" rel="noopener"></a></p>
 <div id="rows"></div>
@@ -85,7 +103,8 @@ button.primary { background:var(--blue); border-color:var(--blue); color:#fff; }
 </main>
 <script>
 const D = __DATA__;
-const KEY = "voclens-video-labels-v1";
+const KEY = D.key;
+if (!D.segments.length) document.getElementById("intro").textContent = "평가용 영상에서 무작위로 뽑은 크리에이터 문장입니다. 문장마다 감성만 고르세요(앞뒤 문장은 참고용). 시각을 누르면 그 부분을 들을 수 있습니다. 진행 상황은 이 브라우저에 저장됩니다. 끝나면 결과를 내려받으세요.";
 let store = {};
 try { store = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { store = {}; }
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} };
@@ -113,6 +132,9 @@ function render() {
     const t = document.createElement("a"); t.className = "t"; t.textContent = fmt(r.t);
     t.href = `https://www.youtube.com/watch?v=${v.video_id}&t=${Math.floor(r.t)}s`; t.target = "_blank"; t.rel = "noopener";
     const tx = document.createElement("div"); tx.className = "text"; tx.textContent = r.text;
+    if (!D.segments.length && (r.before || r.after)) {
+      const c = document.createElement("div"); c.className = "small"; c.textContent = `앞: ${r.before || "(없음)"} / 뒤: ${r.after || "(없음)"}`; tx.appendChild(c);
+    }
     if (r.guest) { const g = document.createElement("span"); g.className = "guest"; g.textContent = "다른 화자"; tx.appendChild(g); }
     const ctl = document.createElement("div"); ctl.className = "ctl";
     D.sentiments.forEach(s => {
@@ -127,7 +149,8 @@ function render() {
     const now = document.createElement("span"); now.className = "seg-now"; now.textContent = segs[i] ? `구간: ${segs[i]}` : "구간: 미정";
     const memo = document.createElement("input"); memo.className = "memo"; memo.placeholder = "메모"; memo.value = st.memo || "";
     memo.onchange = () => { store[r.unit_id] = { ...(store[r.unit_id] || {}), memo: memo.value }; save(); };
-    ctl.append(ss, now, memo);
+    if (D.segments.length) ctl.append(ss, now);
+    ctl.append(memo);
     div.append(t, tx, ctl); box.appendChild(div);
   });
   progress();
@@ -157,13 +180,19 @@ def main() -> None:
     ap.add_argument("--dev", type=lambda s: s.split(","), default=[], help="개발용 영상 ID (쉼표로 구분)")
     ap.add_argument("--eval", type=lambda s: s.split(","), default=[], help="평가용 영상 ID (쉼표로 구분)")
     ap.add_argument("--out", default=str(REPO_ROOT / "data" / "labeling" / "video_speech.html"))
+    ap.add_argument("--sample", type=int, help="크리에이터 문장에서 무작위로 n개만, 감성만 라벨링")
+    ap.add_argument("--seed", type=int, default=2026)
     args = ap.parse_args()
     vcfg = load_yaml("video.yaml")
     videos = [video_items(v, "dev", vcfg) for v in args.dev] + [video_items(v, "eval", vcfg) for v in args.eval]
     labels = [*vcfg["segment_labels"], vcfg["default_segment_label"]]
+    title, key = "영상 문장 감성·구간 라벨링", "voclens-video-labels-v1"
+    if args.sample:
+        videos, labels = sample_rows(videos, args.sample, args.seed), []
+        title, key = f"영상 문장 감성 라벨링 ({args.sample}문장)", f"voclens-video-sample-{args.sample}-{args.seed}"
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(build(videos, labels, "영상 문장 감성·구간 라벨링"), encoding="utf-8", newline="\n")
+    out.write_text(build(videos, labels, title, key), encoding="utf-8", newline="\n")
     print(f"영상 {len(videos)}편, 문장 {sum(len(v['rows']) for v in videos)}개 → {out}")
     print("원문이 들어 있으니 저장소에 올리지 마세요 (data/ 는 .gitignore).")
 

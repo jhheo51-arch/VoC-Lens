@@ -9,6 +9,8 @@ unit_id는 상담 파이프라인과 같은 "call:<영상 ID>#<발화 순서>"�
 
     python scripts/make_arousal_labeling_page.py                      # data/external/call_youtube/*.json 전부
     python scripts/make_arousal_labeling_page.py --out data/labeling/call_arousal.html
+    # 전체 대신 무작위 50발화만 (앞뒤 발화는 문맥으로 함께 보여 준다)
+    python scripts/make_arousal_labeling_page.py --sample 50 --out data/labeling/call_arousal_50.html
 
 전사 원문이 들어 있고 음성은 data/external/call_youtube/의 WAV를 상대 경로로 재생하므로 data/ 아래에 만들고 저장소에 올리지 않는다.
 """
@@ -17,6 +19,7 @@ import argparse
 import html
 import json
 import os
+import random
 from pathlib import Path
 
 from voclens.config import REPO_ROOT
@@ -30,10 +33,20 @@ def items_from(paths: list[Path], out: Path) -> list[dict]:
         data = json.loads(p.read_text(encoding="utf-8"))
         wav = Path(data["audio"])
         src = Path(os.path.relpath(wav, out.parent)).as_posix()
-        for i, t in enumerate(data["turns"]):
+        turns = data["turns"]
+        for i, t in enumerate(turns):
             items.append({"unit_id": f"call:{data['call_id']}#{i}", "call": data["call_id"], "src": src,
-                          "start": round(t["start"], 2), "end": round(t["end"], 2), "text": t["text"]})
+                          "start": round(t["start"], 2), "end": round(t["end"], 2), "text": t["text"],
+                          "before": turns[i - 1]["text"] if i else "", "after": turns[i + 1]["text"] if i + 1 < len(turns) else ""})
     return items
+
+
+def sample_items(items: list[dict], n: int | None, seed: int) -> list[dict]:
+    """n을 주면 무작위로 n개만 고르고, 통화와 발화 순서대로 돌려놓는다."""
+    if not n or n >= len(items):
+        return items
+    keep = set(map(id, random.Random(seed).sample(items, n)))
+    return [it for it in items if id(it) in keep]
 
 
 TEMPLATE = """<!doctype html>
@@ -114,11 +127,10 @@ function save() { try { localStorage.setItem(KEY, JSON.stringify({state, i})); }
 function collect() { state[ITEMS[i].unit_id] = {speaker: pick('speaker'), arousal: pick('arousal'), memo: document.getElementById('memo').value}; }
 function render() {
   const it = ITEMS[i], s = state[it.unit_id] || {};
-  const prev = ITEMS[i - 1], next = ITEMS[i + 1];
   document.getElementById('where').textContent = `${it.call} · ${it.start.toFixed(1)}~${it.end.toFixed(1)}초`;
-  document.getElementById('before').textContent = prev && prev.call === it.call ? "앞: " + prev.text : "";
+  document.getElementById('before').textContent = it.before ? "앞: " + it.before : "";
   document.getElementById('clause').textContent = it.text;
-  document.getElementById('after').textContent = next && next.call === it.call ? "뒤: " + next.text : "";
+  document.getElementById('after').textContent = it.after ? "뒤: " + it.after : "";
   document.querySelectorAll('#choices input').forEach(b => b.checked = (b.name === 'speaker' ? s.speaker : s.arousal) === b.value);
   document.getElementById('memo').value = s.memo || "";
   const done = ITEMS.filter(x => (state[x.unit_id] || {}).arousal).length;
@@ -168,10 +180,12 @@ def main() -> None:
     ap.add_argument("transcripts", nargs="*", help="전사본 JSON (기본: data/external/call_youtube/*.json)")
     ap.add_argument("--title", default="상담 발화 각성 라벨링")
     ap.add_argument("--out", default="data/labeling/call_arousal.html")
+    ap.add_argument("--sample", type=int, help="무작위로 n발화만")
+    ap.add_argument("--seed", type=int, default=2026)
     args = ap.parse_args()
     paths = [Path(p) for p in args.transcripts] or sorted(SOURCE.glob("*.json"))
     out = (REPO_ROOT / args.out) if not Path(args.out).is_absolute() else Path(args.out)
-    items = items_from(paths, out)
+    items = sample_items(items_from(paths, out), args.sample, args.seed)
     if not items:
         raise SystemExit("전사본이 없습니다. 먼저 scripts/call_youtube_check.py를 돌리세요")
     out.parent.mkdir(parents=True, exist_ok=True)
